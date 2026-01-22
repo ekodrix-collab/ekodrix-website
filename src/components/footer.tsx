@@ -35,7 +35,7 @@ export function Footer() {
   return (
     <footer className="bg-ekodrix-charcoal-dark border-t border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-8">
           <div>
             <EkodrixLogo size="sm" showTagline />
             <p className="text-sm text-gray-400 mb-4 mt-4">
@@ -112,9 +112,6 @@ export function Footer() {
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-gray-400">
             © {new Date().getFullYear()} EKODRIX. All rights reserved.
-          </p>
-          <p className="text-sm text-gray-400 mt-4 md:mt-0">
-            Made with ❤️ in India
           </p>
         </div>
       </div>

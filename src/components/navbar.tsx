@@ -87,15 +87,15 @@ export function Navbar() {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden bg-white border-t border-gray-200 shadow-lg"
           >
-            <div className="px-4 py-4 space-y-4">
+            <div className="px-4 py-4 space-y-2">
               {navItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`block py-2 text-base font-medium ${
+                  className={`block py-3 px-2 text-base font-medium rounded-lg transition-colors min-h-[44px] flex items-center ${
                     pathname === item.href
-                      ? "text-ekodrix-green"
-                      : "text-ekodrix-charcoal"
+                      ? "text-ekodrix-green bg-ekodrix-green/5"
+                      : "text-ekodrix-charcoal hover:bg-gray-100"
                   }`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
@@ -104,7 +104,7 @@ export function Navbar() {
               ))}
               <Link
                 href="/start-project"
-                className="block w-full text-center px-4 py-2 rounded-lg bg-accent-gradient text-white font-semibold"
+                className="block w-full text-center px-4 py-3 rounded-lg bg-accent-gradient text-white font-semibold min-h-[44px] flex items-center justify-center mt-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Start Project
