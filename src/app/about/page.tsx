@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { Code2, Rocket, Heart, Globe, ArrowRight, Zap, Target, Shield } from "lucide-react";
+import { Card3D } from "@/components/ui/Card3D";
 
 export const metadata: Metadata = {
   title: "About Us - EKODRIX",
@@ -180,50 +181,54 @@ const teamMembers = [
 function TeamCard({ member }: { member: typeof teamMembers[0] }) {
   return (
     <div className="flex-shrink-0 w-64 group cursor-pointer">
-      <div className="glass-card rounded-2xl p-6 hover:bg-white/[0.05] transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-ekodrix-green/10">
-        {/* Profile Image */}
-        <div className="relative mb-4 mx-auto w-24 h-24">
-          <div className={`w-full h-full rounded-full bg-gradient-to-br ${member.color} flex items-center justify-center overflow-hidden group-hover:scale-110 transition-transform duration-500 border-2 border-white/10 group-hover:border-white/20`}>
-            <img 
-              src={member.image} 
-              alt={member.name}
-              className="w-full h-full object-cover"
-              loading="lazy"
-            />
+      <Card3D intensity={0.6} enableScale={true}>
+        <div className="glass-card rounded-2xl p-6 hover:bg-white/[0.05] transition-all duration-500 hover:shadow-2xl hover:shadow-ekodrix-green/10">
+          {/* Profile Image */}
+          <div className="relative mb-4 mx-auto w-24 h-24">
+            <div className={`w-full h-full rounded-full bg-gradient-to-br ${member.color} flex items-center justify-center overflow-hidden group-hover:scale-110 transition-transform duration-500 border-2 border-white/10 group-hover:border-white/20`}>
+              <img 
+                src={member.image} 
+                alt={member.name}
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           </div>
-          <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          
+          {/* Name & Role */}
+          <div className="text-center">
+            <h3 className="text-lg font-bold mb-1 group-hover:text-ekodrix-green transition-colors duration-300">
+              {member.name}
+            </h3>
+            <p className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
+              {member.role}
+            </p>
+          </div>
         </div>
-        
-        {/* Name & Role */}
-        <div className="text-center">
-          <h3 className="text-lg font-bold mb-1 group-hover:text-ekodrix-green transition-colors duration-300">
-            {member.name}
-          </h3>
-          <p className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
-            {member.role}
-          </p>
-        </div>
-      </div>
+      </Card3D>
     </div>
   );
 }
 
 function ValueCard({ icon, title, description, color, delay }: { icon: any, title: string, description: string, color: string, delay: string }) {
   return (
-    <div 
-      className={`glass-card p-8 rounded-2xl hover:bg-white/[0.03] group animate-fade-in-up cursor-pointer hover:shadow-2xl hover:shadow-ekodrix-green/10`}
-      style={{ animationDelay: `${delay}ms` }}
-    >
-      <div className={`w-12 h-12 rounded-lg bg-white/5 flex items-center justify-center mb-6 ${color} group-hover:scale-125 group-hover:rotate-12 transition-all duration-500 ease-out group-hover:shadow-lg`}>
-        {icon}
+    <Card3D intensity={0.4} enableScale={true}>
+      <div 
+        className={`glass-card p-8 rounded-2xl hover:bg-white/[0.03] group animate-fade-in-up cursor-pointer hover:shadow-2xl hover:shadow-ekodrix-green/10`}
+        style={{ animationDelay: `${delay}ms` }}
+      >
+        <div className={`w-12 h-12 rounded-lg bg-white/5 flex items-center justify-center mb-6 ${color} group-hover:scale-125 group-hover:rotate-12 transition-all duration-500 ease-out group-hover:shadow-lg`}>
+          {icon}
+        </div>
+        <h3 className="text-xl font-bold mb-3 text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-400 transition-all duration-300">
+          {title}
+        </h3>
+        <p className="text-gray-400 text-sm leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
+          {description}
+        </p>
+        <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/0 to-white/0 group-hover:from-white/[0.02] group-hover:to-white/0 transition-all duration-500 pointer-events-none" />
       </div>
-      <h3 className="text-xl font-bold mb-3 text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-400 transition-all duration-300">
-        {title}
-      </h3>
-      <p className="text-gray-400 text-sm leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
-        {description}
-      </p>
-      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/0 to-white/0 group-hover:from-white/[0.02] group-hover:to-white/0 transition-all duration-500 pointer-events-none" />
-    </div>
+    </Card3D>
   );
 }
