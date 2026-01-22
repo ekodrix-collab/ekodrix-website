@@ -6,6 +6,7 @@ import { Analytics } from "@/components/analytics";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { StructuredData } from "@/components/structured-data";
+import { PreloaderIntro } from "@/components/preloader/PreloaderIntro";
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -57,9 +58,11 @@ export default function RootLayout({
       <body>
         <StructuredData />
         <SmoothScroll />
-        <Navbar />
-        {children}
-        <Footer />
+        <PreloaderIntro>
+          <Navbar />
+          {children}
+          <Footer />
+        </PreloaderIntro>
         <Analytics />
       </body>
     </html>

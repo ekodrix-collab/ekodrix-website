@@ -5,6 +5,7 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { ArrowRight, TrendingUp, Zap, Shield } from "lucide-react";
 import Link from "next/link";
+import { Card3D } from "@/components/ui/Card3D";
 
 const caseStudies = [
   {
@@ -73,75 +74,79 @@ export function CaseStudies() {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: index * 0.2, duration: 0.6 }}
-              className="bg-[#111] rounded-2xl p-8 md:p-12 border border-white/10 hover:border-ekodrix-green shadow-sm hover:shadow-lg transition-all"
+              className="bg-transparent border-none p-0 shadow-none hover:shadow-none"
             >
-              <div className="grid lg:grid-cols-2 gap-8">
-                <div>
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className="px-3 py-1 rounded-full bg-ekodrix-green/15 text-ekodrix-green text-sm font-semibold">
-                      {study.industry}
-                    </span>
-                    <span className="text-white/70">{study.client}</span>
-                  </div>
-                  
-                  <h3 className="text-3xl font-bold mb-4 text-white">{study.client}</h3>
-                  
-                  <div className="space-y-4 mb-6">
+              <Card3D intensity={0.4} className="h-full">
+                <div className="bg-[#111] rounded-2xl p-8 md:p-12 border border-white/10 hover:border-ekodrix-green shadow-sm hover:shadow-lg transition-all h-full">
+                  <div className="grid lg:grid-cols-2 gap-8">
                     <div>
-                      <p className="text-white/60 text-sm mb-1">Challenge</p>
-                      <p className="text-white/85">{study.challenge}</p>
-                    </div>
-                    <div>
-                      <p className="text-white/60 text-sm mb-1">Solution</p>
-                      <p className="text-white/85">{study.solution}</p>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {study.tech.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-sm text-white/80"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-
-                  <Link
-                    href={`/work/${study.id}`}
-                    className="inline-flex items-center gap-2 text-ekodrix-green font-semibold hover:gap-3 transition-all"
-                  >
-                    Read Full Case Study
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-                </div>
-
-                <div>
-                  <h4 className="text-xl font-bold mb-6 text-white">Results</h4>
-                  <div className="space-y-4 mb-8">
-                    {study.results.map((result, i) => (
-                      <div key={i} className="bg-white/5 rounded-lg p-4 border border-white/10">
-                        <div className="flex items-center justify-between mb-2">
-                          <span className="text-sm text-white/70">{result.metric}</span>
-                          <span className="text-xs px-2 py-1 rounded-full bg-ekodrix-green/20 text-ekodrix-green">
-                            {result.change}
-                          </span>
-                        </div>
-                        <p className="text-2xl font-bold ekodrix-gradient-text">{result.value}</p>
+                      <div className="flex items-center gap-3 mb-4">
+                        <span className="px-3 py-1 rounded-full bg-ekodrix-green/15 text-ekodrix-green text-sm font-semibold">
+                          {study.industry}
+                        </span>
+                        <span className="text-white/70">{study.client}</span>
                       </div>
-                    ))}
-                  </div>
+                      
+                      <h3 className="text-3xl font-bold mb-4 text-white">{study.client}</h3>
+                      
+                      <div className="space-y-4 mb-6">
+                        <div>
+                          <p className="text-white/60 text-sm mb-1">Challenge</p>
+                          <p className="text-white/85">{study.challenge}</p>
+                        </div>
+                        <div>
+                          <p className="text-white/60 text-sm mb-1">Solution</p>
+                          <p className="text-white/85">{study.solution}</p>
+                        </div>
+                      </div>
 
-                  <div className="bg-white/5 rounded-lg p-6 border border-white/10">
-                    <p className="text-white italic mb-4">"{study.testimonial.text}"</p>
+                      <div className="flex flex-wrap gap-2 mb-6">
+                        {study.tech.map((tech) => (
+                          <span
+                            key={tech}
+                            className="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-sm text-white/80"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+
+                      <Link
+                        href={`/work/${study.id}`}
+                        className="inline-flex items-center gap-2 text-ekodrix-green font-semibold hover:gap-3 transition-all"
+                      >
+                        Read Full Case Study
+                        <ArrowRight className="w-4 h-4" />
+                      </Link>
+                    </div>
+
                     <div>
-                      <p className="font-semibold text-white">{study.testimonial.author}</p>
-                      <p className="text-sm text-white/70">{study.testimonial.position}</p>
+                      <h4 className="text-xl font-bold mb-6 text-white">Results</h4>
+                      <div className="space-y-4 mb-8">
+                        {study.results.map((result, i) => (
+                          <div key={i} className="bg-white/5 rounded-lg p-4 border border-white/10">
+                            <div className="flex items-center justify-between mb-2">
+                              <span className="text-sm text-white/70">{result.metric}</span>
+                              <span className="text-xs px-2 py-1 rounded-full bg-ekodrix-green/20 text-ekodrix-green">
+                                {result.change}
+                              </span>
+                            </div>
+                            <p className="text-2xl font-bold ekodrix-gradient-text">{result.value}</p>
+                          </div>
+                        ))}
+                      </div>
+
+                      <div className="bg-white/5 rounded-lg p-6 border border-white/10">
+                        <p className="text-white italic mb-4">"{study.testimonial.text}"</p>
+                        <div>
+                          <p className="font-semibold text-white">{study.testimonial.author}</p>
+                          <p className="text-sm text-white/70">{study.testimonial.position}</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </Card3D>
             </motion.div>
           ))}
         </div>
