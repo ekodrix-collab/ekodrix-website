@@ -134,7 +134,7 @@ export default function AboutPage() {
 
         {/* Infinite Scroll Container */}
         <div className="relative">
-          <div className="flex gap-6 animate-scroll-left">
+          <div className="flex gap-6 animate-scroll-left pr-6 w-max">
             {/* First set of team members */}
             {teamMembers.map((member, index) => (
               <TeamCard key={`first-${index}`} member={member} />
