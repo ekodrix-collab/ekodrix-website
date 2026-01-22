@@ -4,7 +4,7 @@ import { ArrowRight, Check, MessageSquare, Calendar } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Pricing - EKODRIX | Transparent Project-Based Pricing",
-  description: "Transparent pricing for world-class SaaS development. Fixed-price projects from $50K. Get a custom quote in 24 hours.",
+  description: "Transparent pricing for world-class SaaS development. Fixed-price projects for every stage. Get a custom quote in 24 hours.",
 };
 
 export default function PricingPage() {
@@ -23,7 +23,7 @@ export default function PricingPage() {
             </span>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold mb-6 text-white">
               World-Class Development<br />
-              <span className="gradient-text">Predictable Pricing</span>
+              <span className="gradient-text">Startup-Friendly Pricing</span>
             </h1>
             <p className="text-xl text-white/70 max-w-3xl mx-auto mb-8">
               No hourly rates. No surprises. Fixed-price projects with weekly milestones.
@@ -50,7 +50,7 @@ export default function PricingPage() {
                 <h3 className="text-2xl font-bold mb-2 text-white">MVP Launch</h3>
                 <p className="text-white/50 text-sm mb-6">For validating your idea fast</p>
                 <div className="mb-6">
-                  <span className="text-4xl font-bold text-white">$50K - $75K</span>
+                  <span className="text-4xl font-bold text-white">₹80K - ₹1.5L</span>
                   <span className="text-white/50 text-sm ml-2">fixed price</span>
                 </div>
                 <ul className="space-y-3 mb-8">
@@ -82,7 +82,7 @@ export default function PricingPage() {
                 <h3 className="text-2xl font-bold mb-2 text-white">Full Product</h3>
                 <p className="text-white/50 text-sm mb-6">Complete SaaS platform</p>
                 <div className="mb-6">
-                  <span className="text-4xl font-bold text-white">$100K - $250K</span>
+                  <span className="text-4xl font-bold text-white">₹2L - ₹5L</span>
                   <span className="text-white/50 text-sm ml-2">fixed price</span>
                 </div>
                 <ul className="space-y-3 mb-8">
@@ -111,7 +111,7 @@ export default function PricingPage() {
                 <h3 className="text-2xl font-bold mb-2 text-white">Enterprise</h3>
                 <p className="text-white/50 text-sm mb-6">Complex platforms & scale</p>
                 <div className="mb-6">
-                  <span className="text-4xl font-bold text-white">$250K+</span>
+                  <span className="text-4xl font-bold text-white">₹8L+</span>
                   <span className="text-white/50 text-sm ml-2">custom quote</span>
                 </div>
                 <ul className="space-y-3 mb-8">
@@ -203,7 +203,7 @@ export default function PricingPage() {
               },
               {
                 q: "Do you offer ongoing support?",
-                a: "All projects include 30 days post-launch support. After that, we offer monthly retainers starting at $5K/month for maintenance, updates, and new features.",
+                a: "All projects include 30 days post-launch support. After that, we offer monthly retainers starting at ₹15,000/month for maintenance, updates, and new features.",
               },
               {
                 q: "How do I get started?",
