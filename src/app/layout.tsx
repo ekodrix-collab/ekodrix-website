@@ -7,6 +7,8 @@ import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { StructuredData } from "@/components/structured-data";
 import { PreloaderIntro } from "@/components/preloader/PreloaderIntro";
+import { FloatingContact } from "@/components/ui/FloatingContact";
+import { Toaster } from "sonner";
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -61,7 +63,9 @@ export default function RootLayout({
         <PreloaderIntro>
           <Navbar />
           {children}
+          <FloatingContact />
           <Footer />
+          <Toaster position="top-center" theme="dark" />
         </PreloaderIntro>
         <Analytics />
       </body>
