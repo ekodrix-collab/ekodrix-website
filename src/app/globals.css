@@ -374,7 +374,7 @@ body {
 }
 
 .animate-scroll-left {
-  animation: scroll-left 10s linear infinite;
+  animation: scroll-left 15s linear infinite;
   will-change: transform;
 }
 
