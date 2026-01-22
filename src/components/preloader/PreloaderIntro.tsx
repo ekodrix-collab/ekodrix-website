@@ -171,7 +171,7 @@ export function PreloaderIntro({ children }: { children: React.ReactNode }) {
                   Desktop: mb-20 (more space)
                   ======================================== */}
               <motion.div
-                className="relative flex items-center justify-center w-full max-w-[280px] min-[375px]:max-w-[320px] min-[400px]:max-w-[360px] sm:max-w-none mb-16 sm:mb-20 md:mb-24 lg:mb-28"
+                className="relative flex items-center justify-center w-full max-w-[280px] min-[375px]:max-w-[320px] min-[400px]:max-w-[360px] sm:max-w-[600px] md:max-w-[680px] lg:max-w-[720px] mb-16 sm:mb-20 md:mb-24 lg:mb-28"
                 initial={{ 
                   scale: 15, 
                   opacity: 0,
@@ -205,17 +205,17 @@ export function PreloaderIntro({ children }: { children: React.ReactNode }) {
                 <motion.div
                   className="absolute inset-0 rounded-full pointer-events-none"
                   style={{
-                    margin: '-20px',
+                    margin: '-10px',
                   }}
                   animate={{
                     boxShadow: 
                       animationStage === "logo-enter" 
                         ? [
                             "0 0 0px rgba(40,179,106,0)",
-                            "0 0 60px rgba(40,179,106,0.3)",
-                            "0 0 50px rgba(40,179,106,0.5)",
+                            "0 0 40px rgba(40,179,106,0.3)",
+                            "0 0 35px rgba(40,179,106,0.5)",
                           ]
-                        : "0 0 40px rgba(40,179,106,0.3)",
+                        : "0 0 30px rgba(40,179,106,0.3)",
                   }}
                   transition={{
                     duration: 2,
@@ -223,9 +223,9 @@ export function PreloaderIntro({ children }: { children: React.ReactNode }) {
                   }}
                 />
 
-                {/* Logo Container - Constrained Width */}
+                {/* Logo Container - Properly Aligned */}
                 <div className="relative flex items-center justify-center w-full">
-                  <div className="transform scale-[0.95] min-[360px]:scale-[1.05] min-[375px]:scale-[1.15] min-[400px]:scale-[1.3] sm:scale-[2.2] md:scale-[2.8] lg:scale-[3.5] origin-center">
+                  <div className="transform scale-[0.95] min-[360px]:scale-[1.05] min-[375px]:scale-[1.15] min-[400px]:scale-[1.3] sm:scale-[2.2] md:scale-[1.5] lg:scale-[1.6] origin-center">
                     <EkodrixLogo size="lg" variant="light" />
                   </div>
                 </div>
