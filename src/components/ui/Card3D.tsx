@@ -57,18 +57,15 @@ export function Card3D({
         onMouseMove={handleMouseMove}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        animate={{
-          rotateX,
-          rotateY,
-          scale: enableScale && isHovering ? 1.05 : 1,
+        // Disable 3D transform on mobile for performance
+        style={{
+          transformStyle: "preserve-3d",
+          ...(typeof window !== 'undefined' && window.innerWidth < 768 ? { transform: 'none !important' } : {})
         }}
         transition={{
           type: "spring",
           stiffness: 300,
           damping: 20,
-        }}
-        style={{
-          transformStyle: "preserve-3d",
         }}
       >
         {children}
