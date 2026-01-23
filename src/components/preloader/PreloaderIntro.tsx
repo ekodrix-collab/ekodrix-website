@@ -42,33 +42,34 @@ export function PreloaderIntro({ children }: { children: React.ReactNode }) {
     }));
     setParticles(newParticles);
 
-    // CINEMATIC TIMELINE
+    // CINEMATIC TIMELINE (FAST & SNAPPY)
     const timeline = [
-      setTimeout(() => setAnimationStage("logo-settled"), 2000),
-      setTimeout(() => setAnimationStage("loading-appear"), 2500),
-      setTimeout(() => setAnimationStage("text-appear"), 3500),
+      setTimeout(() => setAnimationStage("logo-settled"), 800),
+      setTimeout(() => setAnimationStage("loading-appear"), 1100),
+      setTimeout(() => setAnimationStage("text-appear"), 2200),
       setTimeout(() => {
         setAnimationStage("complete");
         setIsLoading(false);
         sessionStorage.setItem("ekodrix_seen_intro", "true");
-      }, 8000),
+      }, 4500),
     ];
 
-    // Animate loading progress
+    // Animate loading progress (Staccato Jumps: 1, 10, 50, 80, 100)
     const progressTimer = setTimeout(() => {
+      const steps = [1, 10, 50, 80, 100];
+      let stepIdx = 0;
+      
       const progressInterval = setInterval(() => {
-        setLoadingProgress((prev) => {
-          if (prev >= 100) {
-            clearInterval(progressInterval);
-            return 100;
-          }
-          const increment = Math.random() > 0.8 ? Math.random() * 12 : Math.random() * 4;
-          return Math.min(prev + increment, 100);
-        });
-      }, 150);
+        if (stepIdx < steps.length) {
+          setLoadingProgress(steps[stepIdx]);
+          stepIdx++;
+        } else {
+          clearInterval(progressInterval);
+        }
+      }, 400); // 400ms per "jump"
       
       return () => clearInterval(progressInterval);
-    }, 2500);
+    }, 1200);
 
     // Allow ESC to skip
     const handleEsc = (e: KeyboardEvent) => {
@@ -173,17 +174,17 @@ export function PreloaderIntro({ children }: { children: React.ReactNode }) {
               <motion.div
                 className="relative flex items-center justify-center w-full max-w-[280px] min-[375px]:max-w-[320px] min-[400px]:max-w-[360px] sm:max-w-[600px] md:max-w-[680px] lg:max-w-[720px] mb-16 sm:mb-20 md:mb-24 lg:mb-28"
                 initial={{ 
-                  scale: 15, 
+                  scale: 4, 
                   opacity: 0,
-                  rotateY: 180,
-                  z: -1000,
+                  rotateY: 90,
+                  z: -500,
                 }}
                 animate={
                   animationStage === "logo-enter" ? {
-                    scale: [15, 3, 1],
-                    opacity: [0, 0.5, 1],
-                    rotateY: [180, 90, 0],
-                    z: [-1000, -200, 0],
+                    scale: [4, 1.2, 1],
+                    opacity: [0, 0.8, 1],
+                    rotateY: [90, 45, 0],
+                    z: [-500, -100, 0],
                   } : {
                     scale: 1,
                     opacity: 1,
@@ -192,7 +193,7 @@ export function PreloaderIntro({ children }: { children: React.ReactNode }) {
                   }
                 }
                 transition={{
-                  duration: 2,
+                  duration: 0.8,
                   ease: [0.25, 0.46, 0.45, 0.94],
                   times: [0, 0.6, 1],
                 }}
