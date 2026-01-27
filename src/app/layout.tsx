@@ -2,13 +2,16 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { SmoothScroll } from "@/components/smooth-scroll";
-import { Analytics } from "@/components/analytics";
+import { Analytics } from "@vercel/analytics/next"
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { StructuredData } from "@/components/structured-data";
 import { PreloaderIntro } from "@/components/preloader/PreloaderIntro";
 import { FloatingContact } from "@/components/ui/FloatingContact";
 import { Toaster } from "sonner";
+import Script from "next/script";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
+
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -50,6 +53,8 @@ export const metadata: Metadata = {
   },
 };
 
+
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -57,7 +62,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={inter.variable}>
+
+<Script
+        strategy="afterInteractive"
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+      />
+      <Script id="ga-init" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
+        `}
+      </Script>
+
       <body>
+        <GoogleAnalytics />
         <StructuredData />
         <SmoothScroll />
         <PreloaderIntro>
