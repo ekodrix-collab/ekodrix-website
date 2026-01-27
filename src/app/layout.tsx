@@ -8,6 +8,7 @@ import { Footer } from "@/components/footer";
 import { StructuredData } from "@/components/structured-data";
 import { PreloaderIntro } from "@/components/preloader/PreloaderIntro";
 import { FloatingContact } from "@/components/ui/FloatingContact";
+import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { Toaster } from "sonner";
 import Script from "next/script";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
@@ -79,6 +80,7 @@ export default function RootLayout({
       <body>
         <GoogleAnalytics />
         <StructuredData />
+        <ScrollProgress />
         <SmoothScroll />
         <PreloaderIntro>
           <Navbar />
