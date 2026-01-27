@@ -203,7 +203,7 @@ const techRibbon = [
 const teamMembers = [
   { name: "Muhammed Siyad", role: "CEO", image: "/team/siyad-2.PNG", color: "from-teal-500 to-cyan-500" },
   { name: "Muhammed Rashid", role: "Co-founder", image: "/team/Muhammed_Rashid.png", color: "from-blue-500 to-cyan-500" },
-  { name: "Anaswar Mohan", role: "Co-founder", image: "/team/member-2.png", color: "from-purple-500 to-pink-500" },
+  { name: "Anaswar Mohanan", role: "Co-founder", image: "/team/Anaswar.JPG", color: "from-purple-500 to-pink-500" },
   { name: "Mrithul", role: "Founding Engineer", image: "/team/member-3.png", color: "from-orange-500 to-red-500" },
   { name: "Unais Kuruniyan", role: "Founding Engineer", image: "/team/member-4.png", color: "from-red-500 to-rose-500" },
   { name: "BijuLal", role: "Founding Engineer", image: "/team/Bijulal.jpeg", color: "from-green-500 to-emerald-500", position: "center 5%", scale: 1.0 },
