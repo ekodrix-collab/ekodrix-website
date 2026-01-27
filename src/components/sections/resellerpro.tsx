@@ -103,7 +103,8 @@ export function ResellerPro() {
                   Start Trial
                 </Link>
                 <Link
-                  href="/resellerpro"
+                  href="https://resellerpro.in"
+                  target="_blank"
                   className="px-4 py-2 rounded-lg border border-white/15 text-white font-semibold text-sm hover:border-white/35 hover:bg-white/5 transition-all"
                 >
                   View Product Page

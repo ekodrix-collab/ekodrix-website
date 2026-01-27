@@ -1,8 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
 import {
   Cloud,
   Brain,
@@ -14,6 +11,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { Card3D } from "@/components/ui/Card3D";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 const services = [
   {
@@ -109,41 +107,31 @@ const services = [
 ];
 
 export function Services() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
   return (
-    <section ref={ref} id="services" className="py-24 bg-ekodrix-charcoal-dark">
+    <section id="services" className="py-24 bg-ekodrix-charcoal-dark">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-        >
+        <ScrollReveal type="fade-up" className="text-center mb-16">
           <h2 className="text-4xl sm:text-5xl font-display font-bold mb-4 text-white">
             What We Build
           </h2>
           <p className="text-xl text-white/70 max-w-2xl mx-auto">
             End-to-end software solutions that scale from Day 1
           </p>
-        </motion.div>
+        </ScrollReveal>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
-              <motion.div
+              <ScrollReveal
                 key={service.id}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-
-                whileHover={{ y: -8, scale: 1.02 }}
-                className="group relative"
+                type="blur-in"
+                delay={index * 0.1}
+                threshold={0.1}
+                className="h-full"
               >
-                <Card3D intensity={0.5} enableScale={false}>
-                  <div className="h-full bg-[#111] rounded-2xl p-6 border border-white/10 hover:border-ekodrix-green shadow-sm hover:shadow-lg transition-all duration-300">
+                <Card3D intensity={0.5} enableScale={false} className="h-full">
+                  <div className="h-full bg-[#111] rounded-2xl p-6 border border-white/10 hover:border-ekodrix-green shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col group">
                     <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${service.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
                       <Icon className="w-6 h-6 text-white" />
                     </div>
@@ -165,7 +153,7 @@ export function Services() {
                       ))}
                     </ul>
 
-                    <div className="flex flex-wrap gap-2 mb-4">
+                    <div className="flex flex-wrap gap-2 mb-4 mt-auto">
                       {service.tech.slice(0, 3).map((tech) => (
                         <span
                           key={tech}
@@ -185,7 +173,7 @@ export function Services() {
                     </Link>
                   </div>
                 </Card3D>
-              </motion.div>
+              </ScrollReveal>
             );
           })}
         </div>

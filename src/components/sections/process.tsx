@@ -1,10 +1,8 @@
 ﻿"use client";
 
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
 import { ArrowRight, CheckCircle2, Rocket, Code, Zap } from "lucide-react";
 import Link from "next/link";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 const processSteps = [
   {
@@ -52,41 +50,33 @@ const processSteps = [
 ];
 
 export function Process() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
   return (
     <section
-      ref={ref}
       className="py-24 bg-gradient-to-b from-ekodrix-charcoal-dark to-ekodrix-charcoal relative overflow-hidden"
     >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(40,179,106,0.08),transparent_50%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(47,128,237,0.08),transparent_50%)]" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-        >
+        <ScrollReveal type="fade-up" className="text-center mb-16">
           <h2 className="text-4xl sm:text-5xl font-display font-bold mb-4 text-white">
             How We Work
           </h2>
           <p className="text-xl text-white/70 max-w-2xl mx-auto">
             Transparent, predictable process from idea to launch
           </p>
-        </motion.div>
+        </ScrollReveal>
+        
         <div className="relative">
           <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-green-500 opacity-20" />
           <div className="grid md:grid-cols-3 gap-8">
             {processSteps.map((step, index) => {
               const Icon = step.icon;
               return (
-                <motion.div
+                <ScrollReveal
                   key={step.phase}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: index * 0.15, duration: 0.5 }}
+                  type="fade-up"
+                  delay={index * 0.15}
+                  threshold={0.1}
                   className="relative"
                 >
                   <div className="bg-[#111] rounded-2xl p-8 border border-white/10 hover:border-ekodrix-green/30 transition-all duration-300 h-full group hover:shadow-2xl hover:shadow-ekodrix-green/10">
@@ -96,7 +86,7 @@ export function Process() {
                     <div className={'w-16 h-16 rounded-xl bg-gradient-to-br ' + step.color + ' flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300'}>
                       <Icon className="w-8 h-8 text-white" />
                     </div>
-<div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-white/80 mb-4">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-white/80 mb-4">
                       <div className="w-1.5 h-1.5 rounded-full bg-ekodrix-green animate-pulse" />
                       {step.duration}
                     </div>
@@ -126,17 +116,13 @@ export function Process() {
                       <ArrowRight className="w-8 h-8 text-ekodrix-green/50" />
                     </div>
                   )}
-                </motion.div>
+                </ScrollReveal>
               );
             })}
           </div>
         </div>
-        <motion.div
-          className="mt-16 text-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.6, duration: 0.5 }}
-        >
+        
+        <ScrollReveal type="fade-up" delay={0.4} threshold={0.1} className="mt-16 text-center">
           <p className="text-white/70 mb-6">
             Ready to turn your idea into reality?
           </p>
@@ -147,7 +133,7 @@ export function Process() {
             Start Your Project
             <ArrowRight className="w-5 h-5" />
           </Link>
-        </motion.div>
+        </ScrollReveal>
       </div>
     </section>
   );

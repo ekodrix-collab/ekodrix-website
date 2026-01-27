@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { Calendar, Clock, ArrowRight, Sparkles, ChevronRight } from "lucide-react";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export const metadata: Metadata = {
   title: "Blog - EKODRIX",
@@ -10,39 +11,63 @@ export const metadata: Metadata = {
 const blogPosts = [
   {
     slug: "building-scalable-saas-platform",
-    title: "How We Built a SaaS Platform That Handles 1M+ Daily Transactions",
-    excerpt: "Deep dive into the architecture and decisions behind building a high-traffic SaaS platform. From database sharding to caching strategies.",
-    category: "SaaS Development",
-    date: "2024-01-15",
-    readTime: "8 min read",
-    featured: true,
-  },
-  {
-    slug: "ai-powered-saas-guide",
-    title: "The Complete Guide to Building AI-Powered SaaS in 2024",
-    excerpt: "Learn how to integrate cutting-edge AI into your SaaS products effectively without breaking the bank.",
-    category: "AI & ML",
-    date: "2024-01-10",
+    title: "Mastering SaaS Scalability: Engineering for 1M+ Transactions",
+    excerpt: "A technical deep dive into the architecture and decisions behind building high-traffic SaaS platforms. From database sharding to advanced caching strategies.",
+    category: "Architecture",
+    date: "2024-01-20",
     readTime: "12 min read",
-    featured: false,
+    featured: true,
+    image: "/images/blog/saas-scalability.png"
   },
   {
-    slug: "saas-mrr-roadmap",
-    title: "From 0 to $10K MRR: Technical Roadmap for SaaS Founders",
-    excerpt: "A practical guide to scaling your SaaS from zero to $10K monthly recurring revenue. Focusing on technical debt vs speed.",
-    category: "Startup Tech",
-    date: "2024-01-05",
+    slug: "ai-production-workflows",
+    title: "AI in Production: Integrating LLMs into Real-World SaaS",
+    excerpt: "Learn how to effectively integrate cutting-edge AI into your production workflows without sacrificing reliability or performance.",
+    category: "Artificial Intelligence",
+    date: "2024-01-18",
     readTime: "10 min read",
     featured: false,
+    image: "/images/blog/ai-production.png"
   },
   {
-    slug: "microservices-vs-monolith",
-    title: "Monolith vs Microservices: When to Switch?",
-    excerpt: "Don't fall into the microservices trap too early. Here is our honest take on when you actually need to split your monolith.",
-    category: "Architecture",
-    date: "2023-12-28",
+    slug: "art-of-premium-ux",
+    title: "The Art of User Experience: Why Micro-interactions Matter",
+    excerpt: "How the smallest details in design can define a premium product. Exploring the intersection of aesthetics and functionality.",
+    category: "Design",
+    date: "2024-01-15",
+    readTime: "8 min read",
+    featured: false,
+    image: "/images/blog/ux-design.png"
+  },
+  {
+    slug: "modern-tech-stack-2024",
+    title: "Modern Tech Stack 2024: Next.js, Framer Motion, and Beyond",
+    excerpt: "Why we choose these specific technologies to build production-grade systems that scale from Day 1 to IPO.",
+    category: "Engineering",
+    date: "2024-01-12",
     readTime: "15 min read",
     featured: false,
+    image: "/images/blog/tech-stack.png"
+  },
+  {
+    slug: "engineering-the-future",
+    title: "Engineering the Future: Automated Production Pipelines",
+    excerpt: "Our vision for the next generation of software deployment and automated infrastructure management.",
+    category: "DevOps",
+    date: "2024-01-08",
+    readTime: "9 min read",
+    featured: false,
+    image: "/images/blog/engineering-future.png"
+  },
+  {
+    slug: "startup-velocity-mvp-to-scale",
+    title: "Startup Velocity: Shipping MVPs That Actually Scale",
+    excerpt: "Breaking the myth of 'move fast and break things'. How to maintain extreme velocity while building stable engineering foundations.",
+    category: "Startup Tech",
+    date: "2024-01-05",
+    readTime: "11 min read",
+    featured: false,
+    image: "/images/blog/startup-velocity.png"
   },
 ];
 
@@ -102,13 +127,18 @@ export default function BlogPage() {
                     </div>
                   </div>
                 </div>
-                {/* Decorative Visual for Featured Post */}
-                <div className="hidden md:flex items-center justify-center relative">
-                   <div className="absolute inset-0 bg-gradient-to-br from-ekodrix-green/10 to-resellerpro-blue-medium/10 rounded-2xl blur-lg group-hover:from-ekodrix-green/20 group-hover:to-resellerpro-blue-medium/20 transition-all duration-700" />
-                   <div className="relative w-full aspect-video rounded-xl bg-ekodrix-charcoal border border-white/10 flex items-center justify-center overflow-hidden group-hover:scale-[1.02] group-hover:border-white/20 transition-all duration-700">
-                      <div className="absolute inset-0 bg-grid-white/[0.05]" />
-                      <div className="w-20 h-20 rounded-full bg-white/5 flex items-center justify-center backdrop-blur-sm group-hover:bg-white/10 group-hover:scale-110 transition-all duration-700">
-                        <ArrowRight className="w-8 h-8 text-white -rotate-45 group-hover:rotate-0 transition-transform duration-700 ease-out" />
+                {/* Image Visual for Featured Post */}
+                <div className="hidden md:block relative group-hover:scale-[1.02] transition-transform duration-700">
+                   <div className="absolute inset-0 bg-gradient-to-br from-ekodrix-green/20 to-resellerpro-blue-medium/20 rounded-2xl blur-lg group-hover:from-ekodrix-green/30 group-hover:to-resellerpro-blue-medium/30 transition-all duration-700" />
+                   <div className="relative aspect-video rounded-xl overflow-hidden border border-white/10 group-hover:border-white/20 transition-all duration-700">
+                      <img 
+                        src={featuredPost.image} 
+                        alt={featuredPost.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                      <div className="absolute bottom-4 right-4 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 group-hover:bg-ekodrix-green group-hover:border-ekodrix-green transition-all duration-500">
+                        <ArrowRight className="w-5 h-5 text-white -rotate-45 group-hover:rotate-0 transition-transform duration-500" />
                       </div>
                    </div>
                 </div>
@@ -120,47 +150,60 @@ export default function BlogPage() {
         {/* Recent Posts Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
           {regularPosts.map((post, index) => (
-            <Link
-              key={post.slug}
-              href={`/blog/${post.slug}`}
-              className="group glass-card rounded-2xl p-8 hover:bg-white/[0.03] transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-ekodrix-green/10 animate-fade-in-up relative overflow-hidden"
-              style={{ animationDelay: `${(index + 4) * 100}ms` }}
+            <ScrollReveal 
+              key={post.slug} 
+              type="blur-in" 
+              delay={(index % 3) * 0.15} 
+              threshold={0.1}
             >
-              {/* Hover gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-ekodrix-green/0 to-resellerpro-blue-medium/0 group-hover:from-ekodrix-green/5 group-hover:to-resellerpro-blue-medium/5 rounded-2xl transition-all duration-700 pointer-events-none" />
-              
-              <div className="relative">
-                <div className="flex items-center justify-between mb-6">
-                  <span className="px-3 py-1 rounded-full bg-white/5 text-xs font-medium text-gray-400 border border-white/5 group-hover:border-ekodrix-green/30 group-hover:text-ekodrix-green group-hover:bg-ekodrix-green/10 transition-all duration-500">
-                    {post.category}
-                  </span>
-                </div>
+              <Link
+                href={`/blog/${post.slug}`}
+                className="group glass-card block rounded-2xl p-8 hover:bg-white/[0.03] transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-ekodrix-green/10 relative overflow-hidden h-full"
+              >
+                {/* Hover gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-ekodrix-green/0 to-resellerpro-blue-medium/0 group-hover:from-ekodrix-green/5 group-hover:to-resellerpro-blue-medium/5 rounded-2xl transition-all duration-700 pointer-events-none" />
                 
-                <h3 className="text-2xl font-bold mb-4 line-clamp-2 group-hover:text-ekodrix-green transition-colors duration-500">
-                  {post.title}
-                </h3>
-                
-                <p className="text-gray-400 mb-6 line-clamp-3 text-sm leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
-                  {post.excerpt}
-                </p>
+                <div className="relative h-full flex flex-col">
+                  <div className="aspect-video rounded-xl overflow-hidden mb-6 border border-white/5 group-hover:border-white/20 transition-all duration-500 bg-ekodrix-charcoal relative">
+                    <img 
+                      src={post.image} 
+                      alt={post.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                    <div className="absolute top-3 left-3">
+                      <span className="px-3 py-1 rounded-full bg-black/50 text-[10px] font-bold text-ekodrix-green border border-ekodrix-green/30 backdrop-blur-md">
+                        {post.category}
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <h3 className="text-2xl font-bold mb-4 line-clamp-2 group-hover:text-ekodrix-green transition-colors duration-500">
+                    {post.title}
+                  </h3>
+                  
+                  <p className="text-gray-400 mb-6 line-clamp-3 text-sm leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
+                    {post.excerpt}
+                  </p>
 
-                <div className="flex items-center justify-between pt-6 border-t border-white/5 mt-auto">
-                  <div className="flex items-center gap-4 text-xs text-gray-500">
-                    <span className="flex items-center gap-1 group-hover:text-gray-400 transition-colors">
-                      <Calendar className="w-3 h-3" />
-                      {new Date(post.date).toLocaleDateString()}
-                    </span>
-                    <span className="flex items-center gap-1 group-hover:text-gray-400 transition-colors">
-                      <Clock className="w-3 h-3" />
-                      {post.readTime}
-                    </span>
-                  </div>
-                  <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-ekodrix-green/20 group-hover:text-ekodrix-green group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 ease-out">
-                    <ChevronRight className="w-4 h-4" />
+                  <div className="flex items-center justify-between pt-6 border-t border-white/5 mt-auto">
+                    <div className="flex items-center gap-4 text-xs text-gray-500">
+                      <span className="flex items-center gap-1 group-hover:text-gray-400 transition-colors">
+                        <Calendar className="w-3 h-3" />
+                        {new Date(post.date).toLocaleDateString()}
+                      </span>
+                      <span className="flex items-center gap-1 group-hover:text-gray-400 transition-colors">
+                        <Clock className="w-3 h-3" />
+                        {post.readTime}
+                      </span>
+                    </div>
+                    <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-ekodrix-green/20 group-hover:text-ekodrix-green group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 ease-out">
+                      <ChevronRight className="w-4 h-4" />
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Link>
+              </Link>
+            </ScrollReveal>
           ))}
         </div>
       </div>
