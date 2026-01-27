@@ -8,6 +8,7 @@ import { Footer } from "@/components/footer";
 import { StructuredData } from "@/components/structured-data";
 import { PreloaderIntro } from "@/components/preloader/PreloaderIntro";
 import { FloatingContact } from "@/components/ui/FloatingContact";
+import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { Toaster } from "sonner";
 
 const inter = Inter({ 
@@ -59,6 +60,7 @@ export default function RootLayout({
     <html lang="en" className={inter.variable}>
       <body>
         <StructuredData />
+        <ScrollProgress />
         <SmoothScroll />
         <PreloaderIntro>
           <Navbar />

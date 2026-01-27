@@ -376,6 +376,9 @@ body {
 .animate-scroll-left {
   animation: scroll-left 15s linear infinite;
   will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
 
 .animate-scroll-left:hover {
