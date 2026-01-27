@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { SmoothScroll } from "@/components/smooth-scroll";
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@/components/analytics";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { StructuredData } from "@/components/structured-data";
@@ -78,7 +79,9 @@ export default function RootLayout({
       </Script>
 
       <body>
-        <GoogleAnalytics />
+        <Suspense fallback={null}>
+          <GoogleAnalytics />
+        </Suspense>
         <StructuredData />
         <ScrollProgress />
         <SmoothScroll />
