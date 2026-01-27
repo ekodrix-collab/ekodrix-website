@@ -1,0 +1,1073 @@
+﻿
+> ekodrix-page@1.0.0 build
+> next build
+
+  Γû▓ Next.js 14.2.35
+
+   Creating an optimized production build ...
+ Γ£ô Compiled successfully
+   Linting and checking validity of types ...
+
+./src/app/about/page.tsx
+48:21  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+221:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/blog/page.tsx
+134:23  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+168:21  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/components/logos/resellerpro-logo.tsx
+19:7  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/components/ui/TechSphere3D.tsx
+67:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules
+   Collecting page data ...
+   Generating static pages (0/18) ...
+   Generating static pages (4/18) 
+node.exe :  Γ¿» 
+useSearchParams() 
+should be wrapped in 
+a suspense boundary 
+at page "/privacy". 
+Read more: https://ne
+xtjs.org/docs/message
+s/missing-suspense-wi
+th-csr-bailout
+At C:\Program Files\n
+odejs\npm.ps1:29 
+char:3
++   & $NODE_EXE 
+$NPM_CLI_JS $args
++   ~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~
+    + CategoryInfo   
+           : NotSpe  
+  cified: ( Γ¿» us   
+ eSearchP...ith-c    
+sr-bailout:Strin    
+g) [], RemoteExc    
+eption
+    + FullyQualified 
+   ErrorId : Native  
+  CommandError
+ 
+    at o (D:\WORKS\Ek
+odrix-website\.next\s
+erver\chunks\406.js:1
+:15131)
+    at c (D:\WORKS\Ek
+odrix-website\.next\s
+erver\chunks\406.js:1
+:26067)
+    at s (D:\WORKS\Ek
+odrix-website\.next\s
+erver\chunks\960.js:1
+:867)
+    at nj (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:46252)
+    at nM (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:47572)
+    at nM (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:61547)
+    at nL (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:64547)
+    at nB (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:67539)
+    at nD (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:66681)
+    at nL (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:64854)
+
+Error occurred 
+prerendering page 
+"/privacy". Read 
+more: https://nextjs.
+org/docs/messages/pre
+render-error
+
+ Γ¿» 
+useSearchParams() 
+should be wrapped in 
+a suspense boundary 
+at page "/work". 
+Read more: https://ne
+xtjs.org/docs/message
+s/missing-suspense-wi
+th-csr-bailout
+    at o (D:\WORKS\Ek
+odrix-website\.next\s
+erver\chunks\406.js:1
+:15131)
+    at c (D:\WORKS\Ek
+odrix-website\.next\s
+erver\chunks\406.js:1
+:26067)
+    at s (D:\WORKS\Ek
+odrix-website\.next\s
+erver\chunks\960.js:1
+:867)
+    at nj (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:46252)
+    at nM (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:47572)
+    at nM (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:61547)
+   Generating static pages (8/18) 
+    at nL (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:64547)
+    at nB (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:67539)
+    at nD (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:66681)
+    at nL (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:64854)
+
+Error occurred 
+prerendering page 
+"/work". Read more: h
+ttps://nextjs.org/doc
+s/messages/prerender-
+error
+
+ Γ¿» 
+useSearchParams() 
+should be wrapped in 
+a suspense boundary 
+at page "/services". 
+Read more: https://ne
+xtjs.org/docs/message
+s/missing-suspense-wi
+th-csr-bailout
+    at o (D:\WORKS\Ek
+odrix-website\.next\s
+erver\chunks\406.js:1
+:15131)
+    at c (D:\WORKS\Ek
+odrix-website\.next\s
+erver\chunks\406.js:1
+:26067)
+    at s (D:\WORKS\Ek
+odrix-website\.next\s
+erver\chunks\960.js:1
+:867)
+    at nj (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:46252)
+    at nM (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:47572)
+    at nM (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:61547)
+    at nL (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:64547)
+    at nB (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:67539)
+    at nD (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:66681)
+    at nL (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:64854)
+
+Error occurred 
+prerendering page 
+"/services". Read 
+more: https://nextjs.
+org/docs/messages/pre
+render-error
+
+ Γ¿» 
+useSearchParams() 
+should be wrapped in 
+a suspense boundary 
+at page 
+"/start-project". 
+Read more: https://ne
+xtjs.org/docs/message
+s/missing-suspense-wi
+th-csr-bailout
+    at o (D:\WORKS\Ek
+odrix-website\.next\s
+erver\chunks\406.js:1
+:15131)
+    at c (D:\WORKS\Ek
+odrix-website\.next\s
+erver\chunks\406.js:1
+:26067)
+    at s (D:\WORKS\Ek
+odrix-website\.next\s
+erver\chunks\960.js:1
+:867)
+    at nj (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:46252)
+    at nM (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:47572)
+    at nM (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:61547)
+    at nL (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:64547)
+    at nB (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:67539)
+    at nD (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:66681)
+    at nL (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:64854)
+
+Error occurred 
+prerendering page 
+"/start-project". 
+Read more: https://ne
+xtjs.org/docs/message
+s/prerender-error
+
+ Γ¿» 
+useSearchParams() 
+should be wrapped in 
+a suspense boundary 
+at page 
+"/resellerpro". Read 
+more: https://nextjs.
+org/docs/messages/mis
+sing-suspense-with-cs
+r-bailout
+    at o (D:\WORKS\Ek
+odrix-website\.next\s
+erver\chunks\406.js:1
+:15131)
+    at c (D:\WORKS\Ek
+odrix-website\.next\s
+erver\chunks\406.js:1
+:26067)
+    at s (D:\WORKS\Ek
+odrix-website\.next\s
+erver\chunks\960.js:1
+:867)
+    at nj (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:46252)
+    at nM (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:47572)
+    at nM (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:61547)
+    at nL (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:64547)
+    at nB (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:67539)
+    at nD (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:66681)
+    at nL (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:64854)
+
+Error occurred 
+prerendering page 
+"/resellerpro". Read 
+more: https://nextjs.
+org/docs/messages/pre
+render-error
+
+ Γ¿» 
+useSearchParams() 
+should be wrapped in 
+a suspense boundary 
+at page "/careers". 
+Read more: https://ne
+xtjs.org/docs/message
+s/missing-suspense-wi
+th-csr-bailout
+    at o (D:\WORKS\Ek
+odrix-website\.next\s
+erver\chunks\406.js:1
+:15131)
+    at c (D:\WORKS\Ek
+odrix-website\.next\s
+erver\chunks\406.js:1
+:26067)
+    at s (D:\WORKS\Ek
+odrix-website\.next\s
+erver\chunks\960.js:1
+:867)
+    at nj (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:46252)
+    at nM (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:47572)
+    at nM (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:61547)
+    at nL (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:64547)
+    at nB (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:67539)
+    at nD (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:66681)
+    at nL (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:64854)
+
+Error occurred 
+prerendering page 
+"/careers". Read 
+more: https://nextjs.
+org/docs/messages/pre
+render-error
+
+ Γ¿» 
+useSearchParams() 
+should be wrapped in 
+a suspense boundary 
+at page "/contact". 
+Read more: https://ne
+xtjs.org/docs/message
+s/missing-suspense-wi
+th-csr-bailout
+    at o (D:\WORKS\Ek
+odrix-website\.next\s
+erver\chunks\406.js:1
+:15131)
+    at c (D:\WORKS\Ek
+odrix-website\.next\s
+erver\chunks\406.js:1
+:26067)
+    at s (D:\WORKS\Ek
+odrix-website\.next\s
+erver\chunks\960.js:1
+:867)
+    at nj (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:46252)
+    at nM (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:47572)
+    at nM (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:61547)
+    at nL (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:64547)
+    at nB (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:67539)
+    at nD (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:66681)
+    at nL (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:64854)
+
+Error occurred 
+prerendering page 
+"/contact". Read 
+more: https://nextjs.
+org/docs/messages/pre
+render-error
+
+ Γ¿» 
+useSearchParams() 
+should be wrapped in 
+a suspense boundary 
+at page "/terms". 
+Read more: https://ne
+xtjs.org/docs/message
+s/missing-suspense-wi
+th-csr-bailout
+    at o (D:\WORKS\Ek
+odrix-website\.next\s
+erver\chunks\406.js:1
+:15131)
+    at c (D:\WORKS\Ek
+odrix-website\.next\s
+erver\chunks\406.js:1
+:26067)
+    at s (D:\WORKS\Ek
+odrix-website\.next\s
+erver\chunks\960.js:1
+:867)
+    at nj (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:46252)
+    at nM (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:47572)
+    at nM (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:61547)
+    at nL (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:64547)
+    at nB (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:67539)
+    at nD (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:66681)
+    at nL (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:64854)
+
+Error occurred 
+prerendering page 
+"/terms". Read more: 
+https://nextjs.org/do
+cs/messages/prerender
+-error
+
+ Γ¿» 
+useSearchParams() 
+should be wrapped in 
+a suspense boundary 
+at page "/pricing". 
+Read more: https://ne
+xtjs.org/docs/message
+s/missing-suspense-wi
+th-csr-bailout
+    at o (D:\WORKS\Ek
+odrix-website\.next\s
+erver\chunks\406.js:1
+:15131)
+    at c (D:\WORKS\Ek
+odrix-website\.next\s
+erver\chunks\406.js:1
+:26067)
+    at s (D:\WORKS\Ek
+odrix-website\.next\s
+erver\chunks\960.js:1
+:867)
+    at nj (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:46252)
+    at nM (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:47572)
+    at nM (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:61547)
+    at nL (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:64547)
+    at nB (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:67539)
+    at nD (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:66681)
+    at nL (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:64854)
+
+Error occurred 
+prerendering page 
+"/pricing". Read 
+more: https://nextjs.
+org/docs/messages/pre
+render-error
+
+   Generating static pages (13/18) 
+ Γ¿» 
+useSearchParams() 
+should be wrapped in 
+a suspense boundary 
+at page "/". Read 
+more: https://nextjs.
+org/docs/messages/mis
+sing-suspense-with-cs
+r-bailout
+    at o (D:\WORKS\Ek
+odrix-website\.next\s
+erver\chunks\406.js:1
+:15131)
+    at c (D:\WORKS\Ek
+odrix-website\.next\s
+erver\chunks\406.js:1
+:26067)
+    at s (D:\WORKS\Ek
+odrix-website\.next\s
+erver\chunks\960.js:1
+:867)
+    at nj (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:46252)
+    at nM (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:47572)
+    at nM (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:61547)
+    at nL (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:64547)
+    at nB (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:67539)
+    at nD (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:66681)
+    at nL (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:64854)
+
+Error occurred 
+prerendering page 
+"/". Read more: https
+://nextjs.org/docs/me
+ssages/prerender-erro
+r
+
+ Γ¿» 
+useSearchParams() 
+should be wrapped in 
+a suspense boundary 
+at page "/about". 
+Read more: https://ne
+xtjs.org/docs/message
+s/missing-suspense-wi
+th-csr-bailout
+    at o (D:\WORKS\Ek
+odrix-website\.next\s
+erver\chunks\406.js:1
+:15131)
+    at c (D:\WORKS\Ek
+odrix-website\.next\s
+erver\chunks\406.js:1
+:26067)
+    at s (D:\WORKS\Ek
+odrix-website\.next\s
+erver\chunks\960.js:1
+:867)
+    at nj (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:46252)
+    at nM (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:47572)
+    at nM (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:61547)
+    at nL (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:64547)
+    at nB (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:67539)
+    at nD (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:66681)
+    at nL (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:64854)
+
+Error occurred 
+prerendering page 
+"/about". Read more: 
+https://nextjs.org/do
+cs/messages/prerender
+-error
+
+ Γ¿» 
+useSearchParams() 
+should be wrapped in 
+a suspense boundary 
+at page "/cookies". 
+Read more: https://ne
+xtjs.org/docs/message
+s/missing-suspense-wi
+th-csr-bailout
+    at o (D:\WORKS\Ek
+odrix-website\.next\s
+erver\chunks\406.js:1
+:15131)
+    at c (D:\WORKS\Ek
+odrix-website\.next\s
+erver\chunks\406.js:1
+:26067)
+    at s (D:\WORKS\Ek
+odrix-website\.next\s
+erver\chunks\960.js:1
+:867)
+    at nj (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:46252)
+    at nM (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:47572)
+    at nM (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:61547)
+    at nL (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:64547)
+    at nB (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:67539)
+    at nD (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:66681)
+    at nL (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:64854)
+
+Error occurred 
+prerendering page 
+"/cookies". Read 
+more: https://nextjs.
+org/docs/messages/pre
+render-error
+
+ Γ¿» 
+useSearchParams() 
+should be wrapped in 
+a suspense boundary 
+at page "/404". Read 
+more: https://nextjs.
+org/docs/messages/mis
+sing-suspense-with-cs
+r-bailout
+    at o (D:\WORKS\Ek
+odrix-website\.next\s
+erver\chunks\406.js:1
+:15131)
+    at c (D:\WORKS\Ek
+odrix-website\.next\s
+erver\chunks\406.js:1
+:26067)
+    at s (D:\WORKS\Ek
+odrix-website\.next\s
+erver\chunks\960.js:1
+:867)
+ Γ£ô Generating static pages (18/18)
+    at nj (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:46252)
+    at nM (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:47572)
+    at nM (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:61547)
+    at nL (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:64547)
+    at nB (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:67539)
+    at nD (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:66681)
+    at nL (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:64854)
+
+Error occurred 
+prerendering page 
+"/_not-found". Read 
+more: https://nextjs.
+org/docs/messages/pre
+render-error
+
+ Γ¿» 
+useSearchParams() 
+should be wrapped in 
+a suspense boundary 
+at page "/blog". 
+Read more: https://ne
+xtjs.org/docs/message
+s/missing-suspense-wi
+th-csr-bailout
+    at o (D:\WORKS\Ek
+odrix-website\.next\s
+erver\chunks\406.js:1
+:15131)
+    at c (D:\WORKS\Ek
+odrix-website\.next\s
+erver\chunks\406.js:1
+:26067)
+    at s (D:\WORKS\Ek
+odrix-website\.next\s
+erver\chunks\960.js:1
+:867)
+    at nj (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:46252)
+    at nM (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:47572)
+    at nM (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:61547)
+    at nL (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:64547)
+    at nB (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:67539)
+    at nD (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:66681)
+    at nL (D:\WORKS\E
+kodrix-website\node_m
+odules\next\dist\comp
+iled\next-server\app-
+page.runtime.prod.js:
+12:64854)
+
+Error occurred 
+prerendering page 
+"/blog". Read more: h
+ttps://nextjs.org/doc
+s/messages/prerender-
+error
+
+
+> Export encountered 
+errors on following 
+paths:
+	/_not-found/page: 
+/_not-found
+	/about/page: /about
+	/blog/page: /blog
+	/careers/page: 
+/careers
+	/contact/page: 
+/contact
+	/cookies/page: 
+/cookies
+	/page: /
+	/pricing/page: 
+/pricing
+	/privacy/page: 
+/privacy
+	/resellerpro/page: 
+/resellerpro
+	/services/page: 
+/services
+	
+/start-project/page: 
+/start-project
+	/terms/page: /terms
+	/work/page: /work
