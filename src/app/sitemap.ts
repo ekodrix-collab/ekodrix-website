@@ -2,7 +2,23 @@ import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://ekodrix.com'
-  
+
+  const blogSlugs = [
+    "building-scalable-saas-platform",
+    "ai-production-workflows",
+    "art-of-premium-ux",
+    "modern-tech-stack-2026",
+    "engineering-the-future",
+    "startup-velocity-mvp-to-scale"
+  ]
+
+  const blogEntries: MetadataRoute.Sitemap = blogSlugs.map((slug) => ({
+    url: `${baseUrl}/blog/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.7,
+  }))
+
   return [
     {
       url: baseUrl,
@@ -52,5 +68,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
+    ...blogEntries,
   ]
 }

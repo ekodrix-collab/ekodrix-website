@@ -14,7 +14,7 @@ const blogPosts = [
     title: "Mastering SaaS Scalability: Engineering for 1M+ Transactions",
     excerpt: "A technical deep dive into the architecture and decisions behind building high-traffic SaaS platforms. From database sharding to advanced caching strategies.",
     category: "Architecture",
-    date: "2024-01-20",
+    date: "2026-01-20",
     readTime: "12 min read",
     featured: true,
     image: "/images/blog/saas-scalability.png"
@@ -24,7 +24,7 @@ const blogPosts = [
     title: "AI in Production: Integrating LLMs into Real-World SaaS",
     excerpt: "Learn how to effectively integrate cutting-edge AI into your production workflows without sacrificing reliability or performance.",
     category: "Artificial Intelligence",
-    date: "2024-01-18",
+    date: "2026-01-18",
     readTime: "10 min read",
     featured: false,
     image: "/images/blog/ai-production.png"
@@ -34,17 +34,17 @@ const blogPosts = [
     title: "The Art of User Experience: Why Micro-interactions Matter",
     excerpt: "How the smallest details in design can define a premium product. Exploring the intersection of aesthetics and functionality.",
     category: "Design",
-    date: "2024-01-15",
+    date: "2026-01-15",
     readTime: "8 min read",
     featured: false,
     image: "/images/blog/ux-design.png"
   },
   {
-    slug: "modern-tech-stack-2024",
-    title: "Modern Tech Stack 2024: Next.js, Framer Motion, and Beyond",
+    slug: "modern-tech-stack-2026",
+    title: "Modern Tech Stack 2026: Next.js, Framer Motion, and Beyond",
     excerpt: "Why we choose these specific technologies to build production-grade systems that scale from Day 1 to IPO.",
     category: "Engineering",
-    date: "2024-01-12",
+    date: "2026-01-12",
     readTime: "15 min read",
     featured: false,
     image: "/images/blog/tech-stack.png"
@@ -54,7 +54,7 @@ const blogPosts = [
     title: "Engineering the Future: Automated Production Pipelines",
     excerpt: "Our vision for the next generation of software deployment and automated infrastructure management.",
     category: "DevOps",
-    date: "2024-01-08",
+    date: "2026-01-08",
     readTime: "9 min read",
     featured: false,
     image: "/images/blog/engineering-future.png"
@@ -64,7 +64,7 @@ const blogPosts = [
     title: "Startup Velocity: Shipping MVPs That Actually Scale",
     excerpt: "Breaking the myth of 'move fast and break things'. How to maintain extreme velocity while building stable engineering foundations.",
     category: "Startup Tech",
-    date: "2024-01-05",
+    date: "2026-01-05",
     readTime: "11 min read",
     featured: false,
     image: "/images/blog/startup-velocity.png"

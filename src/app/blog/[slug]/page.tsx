@@ -13,7 +13,7 @@ const blogPosts: Record<string, {
   "building-scalable-saas-platform": {
     title: "Mastering SaaS Scalability: Engineering for 1M+ Transactions",
     category: "Architecture",
-    date: "2024-01-20",
+    date: "2026-01-20",
     readTime: "12 min read",
     content: `
 # Mastering SaaS Scalability: Engineering for 1M+ Transactions
@@ -44,7 +44,7 @@ Engineering for scale is an iterative process. It's about building systems that 
   "ai-production-workflows": {
     title: "AI in Production: Integrating LLMs into Real-World SaaS",
     category: "Artificial Intelligence",
-    date: "2024-01-18",
+    date: "2026-01-18",
     readTime: "10 min read",
     content: `
 # AI in Production: Integrating LLMs into Real-World SaaS
@@ -74,7 +74,7 @@ Reliability is key. We build automated validation layers to catch "hallucination
   "art-of-premium-ux": {
     title: "The Art of User Experience: Why Micro-interactions Matter",
     category: "Design",
-    date: "2024-01-15",
+    date: "2026-01-15",
     readTime: "8 min read",
     content: `
 # The Art of User Experience: Why Micro-interactions Matter
@@ -97,13 +97,13 @@ Small animations provide critical feedback. A subtle button press animation, a s
 We believe in "Invisible UI" — where the most important actions are the most intuitive. By removing friction and emphasizing clarity, we help users achieve their goals without thinking about the interface.
     `,
   },
-  "modern-tech-stack-2024": {
-    title: "Modern Tech Stack 2024: Next.js, Framer Motion, and Beyond",
+  "modern-tech-stack-2026": {
+    title: "Modern Tech Stack 2026: Next.js, Framer Motion, and Beyond",
     category: "Engineering",
-    date: "2024-01-12",
+    date: "2026-01-12",
     readTime: "15 min read",
     content: `
-# Modern Tech Stack 2024: Next.js, Framer Motion, and Beyond
+# Modern Tech Stack 2026: Next.js, Framer Motion, and Beyond
 
 Choosing the right tech stack is the most important decision a founder can make. At EKODRIX, we prioritize tools that offer both high developer velocity and world-class performance.
 
@@ -119,13 +119,13 @@ Animations shouldn't be an afterthought. We use Framer Motion to create cinemati
 
 Safety first. By using TypeScript across the entire stack, we catch errors at compile-time, not in production. Combined with a scalable Node.js backend and a robust ORM like Prisma, we build systems that are easy to maintain and scale.
 
-The 2024 stack is about cohesion. Choosing tools that work together seamlessly allows us to ship faster and build better.
+The 2026 stack is about cohesion. Choosing tools that work together seamlessly allows us to ship faster and build better.
     `,
   },
   "engineering-the-future": {
     title: "Engineering the Future: Automated Production Pipelines",
     category: "DevOps",
-    date: "2024-01-08",
+    date: "2026-01-08",
     readTime: "9 min read",
     content: `
 # Engineering the Future: Automated Production Pipelines
@@ -151,7 +151,7 @@ You can't fix what you can't see. We integrate comprehensive monitoring (Sentry,
   "startup-velocity-mvp-to-scale": {
     title: "Startup Velocity: Shipping MVPs That Actually Scale",
     category: "Startup Tech",
-    date: "2024-01-05",
+    date: "2026-01-05",
     readTime: "11 min read",
     content: `
 # Startup Velocity: Shipping MVPs That Actually Scale

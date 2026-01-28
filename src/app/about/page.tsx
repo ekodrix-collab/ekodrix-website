@@ -24,7 +24,7 @@ export default function AboutPage() {
             type="fade-up"
           >
             <span className="inline-block px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-sm font-medium text-ekodrix-green mb-6 backdrop-blur-sm">
-              EST. 2024
+              EST. 2026
             </span>
             <h1 className="text-6xl md:text-8xl font-display font-bold mb-8 tracking-tight">
               Engineering <br />
