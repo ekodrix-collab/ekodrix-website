@@ -108,7 +108,7 @@ const services = [
 
 export function Services() {
   return (
-    <section id="services" className="py-24 bg-ekodrix-charcoal-dark">
+    <section id="services" className="py-12 sm:py-16 md:py-24 bg-ekodrix-charcoal-dark">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal type="fade-up" className="text-center mb-16">
           <h2 className="text-4xl sm:text-5xl font-display font-bold mb-4 text-white">

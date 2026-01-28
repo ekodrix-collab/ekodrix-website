@@ -65,7 +65,7 @@ export function SuccessStories() {
   return (
     <section
       ref={ref}
-      className="relative py-32 bg-gradient-to-b from-black/40 via-ekodrix-charcoal-dark to-black/40 overflow-hidden"
+      className="relative py-16 sm:py-20 md:py-32 bg-gradient-to-b from-black/40 via-ekodrix-charcoal-dark to-black/40 overflow-hidden"
     >
       {/* Background Elements */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(40,179,106,0.08),transparent_50%)]" />

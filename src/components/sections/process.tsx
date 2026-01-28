@@ -52,7 +52,7 @@ const processSteps = [
 export function Process() {
   return (
     <section
-      className="py-24 bg-gradient-to-b from-ekodrix-charcoal-dark to-ekodrix-charcoal relative overflow-hidden"
+      className="py-12 sm:py-16 md:py-24 bg-gradient-to-b from-ekodrix-charcoal-dark to-ekodrix-charcoal relative overflow-hidden"
     >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(40,179,106,0.08),transparent_50%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(47,128,237,0.08),transparent_50%)]" />

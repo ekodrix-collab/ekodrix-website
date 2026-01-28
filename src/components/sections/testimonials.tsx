@@ -37,7 +37,7 @@ export function Testimonials() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="py-24 bg-ekodrix-charcoal">
+    <section ref={ref} className="py-12 sm:py-16 md:py-24 bg-ekodrix-charcoal">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-16"
