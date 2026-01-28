@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useMemo, useState, Suspense } from "react";
+import React, { useRef, useMemo, useState, useEffect, Suspense } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Stars, PerspectiveCamera, Html } from "@react-three/drei";
 import * as THREE from "three";
@@ -135,7 +135,71 @@ function TechEcosystem() {
   );
 }
 
+// Static Mobile Grid - Beautiful and lag-free
+function MobileTechGrid() {
+  return (
+    <div className="h-full w-full bg-[#010101] rounded-[24px] overflow-hidden p-6">
+      {/* Background Glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(16,185,129,0.1)_0%,transparent_60%)] pointer-events-none" />
+      
+      {/* Header */}
+      <div className="text-center mb-6">
+        <h3 className="text-xl font-display font-bold text-white mb-2">Our Tech Stack</h3>
+        <p className="text-sm text-white/50">Technologies we master</p>
+      </div>
+      
+      {/* Tech Grid */}
+      <div className="grid grid-cols-4 gap-3">
+        {techStack.slice(0, 16).map((tech) => (
+          <div key={tech.id} className="flex flex-col items-center gap-2">
+            <div 
+              className="w-12 h-12 rounded-xl bg-white/[0.05] border border-white/10 flex items-center justify-center p-2 transition-all duration-300 hover:bg-white/[0.1] hover:border-white/20"
+              style={{ boxShadow: `0 0 20px ${tech.color}15` }}
+            >
+              <img 
+                src={`https://skillicons.dev/icons?i=${tech.id}`}
+                alt={tech.name}
+                className="w-full h-full object-contain"
+                loading="lazy"
+              />
+            </div>
+            <span className="text-[9px] text-white/40 font-medium text-center leading-tight">
+              {tech.name}
+            </span>
+          </div>
+        ))}
+      </div>
+      
+      {/* Footer Badge */}
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2">
+        <div className="w-1.5 h-1.5 rounded-full bg-ekodrix-green animate-pulse" />
+        <span className="text-[9px] text-white/30 font-display tracking-[0.3em] uppercase">20+ Technologies</span>
+      </div>
+    </div>
+  );
+}
+
 export function TechSphere3D() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Check for mobile on client side
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // On mobile, render static grid instead of heavy 3D
+  if (isMobile) {
+    return (
+      <div className="h-[400px] w-full relative bg-[#010101] rounded-[24px] overflow-hidden border border-white/5 shadow-2xl">
+        <MobileTechGrid />
+      </div>
+    );
+  }
+
+  // Desktop: Full 3D experience
   return (
     <div className="h-[750px] w-full relative bg-[#010101] rounded-[48px] overflow-hidden group border border-white/5 select-none touch-none shadow-2xl">
       {/* Background Atmosphere & High-End Lighting */}
@@ -177,3 +241,4 @@ export function TechSphere3D() {
     </div>
   );
 }
+
