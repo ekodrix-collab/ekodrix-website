@@ -30,25 +30,63 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "EKODRIX - Engineering Tomorrow's Software Today",
-  description: "Premium software studio crafting production-grade SaaS products for ambitious startups. From MVP to IPO-ready systems.",
-  keywords: ["saas development", "software studio", "web development", "custom saas solutions", "startup development"],
-  authors: [{ name: "EKODRIX" }],
+  title: {
+    default: "EKODRIX - Engineering Tomorrow's Software Today",
+    template: "%s | EKODRIX",
+  },
+  description: "Premium software studio crafting production-grade SaaS products for ambitious startups. From MVP to IPO-ready systems. Custom web development, mobile apps, and AI solutions.",
+  keywords: [
+    "saas development",
+    "software studio",
+    "web development",
+    "custom saas solutions",
+    "startup development",
+    "mobile app development",
+    "ai solutions",
+    "next.js development",
+    "react development",
+    "custom software",
+    "tech consulting",
+    "bangalore software company",
+    "india software development",
+  ],
+  authors: [{ name: "EKODRIX", url: "https://ekodrix.com" }],
   creator: "EKODRIX",
   publisher: "EKODRIX",
   metadataBase: new URL("https://ekodrix.com"),
+  alternates: {
+    canonical: "https://ekodrix.com",
+  },
+  icons: {
+    icon: [
+      { url: "/logo/Ekodrix-logo.JPG", sizes: "any" },
+    ],
+    apple: [
+      { url: "/logo/Ekodrix-logo.JPG", sizes: "180x180" },
+    ],
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://ekodrix.com",
     title: "EKODRIX - Engineering Tomorrow's Software Today",
-    description: "Premium software studio crafting production-grade SaaS products for ambitious startups.",
+    description: "Premium software studio crafting production-grade SaaS products for ambitious startups. From MVP to IPO-ready systems.",
     siteName: "EKODRIX",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "EKODRIX - Premium Software Studio",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "EKODRIX - Engineering Tomorrow's Software Today",
-    description: "Premium software studio crafting production-grade SaaS products.",
+    description: "Premium software studio crafting production-grade SaaS products for ambitious startups.",
+    images: ["/og-image.jpg"],
+    creator: "@ekodrix",
   },
   robots: {
     index: true,
@@ -61,6 +99,10 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  verification: {
+    google: "iNnJ0Dib4hiXiImL2YfYldA3qBkinI6spXV1lG4KW6Q",
+  },
+  category: "technology",
 };
 
 // Get GA ID with fallback
