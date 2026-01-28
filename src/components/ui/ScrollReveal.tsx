@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef, ReactNode } from "react";
+import { useRef, ReactNode, useState, useEffect } from "react";
 
 type RevealType = "fade-up" | "fade-down" | "slide-left" | "slide-right" | "scale-in" | "blur-in";
 
@@ -26,6 +26,12 @@ export function ScrollReveal({
 }: ScrollRevealProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once, amount: threshold });
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Check if mobile on client side
+    setIsMobile(window.innerWidth < 768);
+  }, []);
 
   const variants = {
     "fade-up": {
@@ -54,6 +60,15 @@ export function ScrollReveal({
     },
   };
 
+  // On mobile, just render children without animation to prevent empty space issues
+  if (isMobile) {
+    return (
+      <div ref={ref} className={className}>
+        {children}
+      </div>
+    );
+  }
+
   return (
     <motion.div
       ref={ref}
@@ -71,3 +86,4 @@ export function ScrollReveal({
     </motion.div>
   );
 }
+

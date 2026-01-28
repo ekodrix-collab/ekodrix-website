@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 interface Card3DProps {
@@ -20,9 +20,15 @@ export function Card3D({
   const [rotateX, setRotateX] = useState(0);
   const [rotateY, setRotateY] = useState(0);
   const [isHovering, setIsHovering] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Check for mobile on client side
+    setIsMobile(window.innerWidth < 768);
+  }, []);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
+    if (!cardRef.current || isMobile) return;
 
     const rect = cardRef.current.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
@@ -41,7 +47,7 @@ export function Card3D({
   };
 
   const handleMouseEnter = () => {
-    setIsHovering(true);
+    if (!isMobile) setIsHovering(true);
   };
 
   const handleMouseLeave = () => {
@@ -50,6 +56,15 @@ export function Card3D({
     setIsHovering(false);
   };
 
+  // On mobile, render without 3D effects to prevent scroll issues
+  if (isMobile) {
+    return (
+      <div className={className} ref={cardRef}>
+        {children}
+      </div>
+    );
+  }
+
   return (
     <div className="perspective-1000" ref={cardRef}>
       <motion.div
@@ -57,10 +72,13 @@ export function Card3D({
         onMouseMove={handleMouseMove}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        // Disable 3D transform on mobile for performance
+        animate={{
+          rotateX,
+          rotateY,
+          scale: enableScale && isHovering ? 1.05 : 1,
+        }}
         style={{
           transformStyle: "preserve-3d",
-          ...(typeof window !== 'undefined' && window.innerWidth < 768 ? { transform: 'none !important' } : {})
         }}
         transition={{
           type: "spring",
@@ -73,3 +91,4 @@ export function Card3D({
     </div>
   );
 }
+

@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export function CTA() {
   return (
-    <section className="py-24 bg-ekodrix-gradient relative overflow-hidden border-t border-white/5">
+    <section className="py-12 sm:py-16 md:py-24 bg-ekodrix-gradient relative overflow-hidden border-t border-white/5">
       {/* Background Effects */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,255,136,0.1),transparent_70%)]" />
       

@@ -29,6 +29,12 @@ export const metadata: Metadata = {
   creator: "EKODRIX",
   publisher: "EKODRIX",
   metadataBase: new URL("https://ekodrix.com"),
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
