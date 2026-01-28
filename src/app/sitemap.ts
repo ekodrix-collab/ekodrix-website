@@ -7,7 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "building-scalable-saas-platform",
     "ai-production-workflows",
     "art-of-premium-ux",
-    "modern-tech-stack-2024",
+    "modern-tech-stack-2026",
     "engineering-the-future",
     "startup-velocity-mvp-to-scale"
   ]
