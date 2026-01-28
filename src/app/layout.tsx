@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Suspense } from "react";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -21,6 +21,14 @@ const inter = Inter({
   display: "swap",
 });
 
+// Viewport export (separated per Next.js 14 requirements)
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
+
 export const metadata: Metadata = {
   title: "EKODRIX - Engineering Tomorrow's Software Today",
   description: "Premium software studio crafting production-grade SaaS products for ambitious startups. From MVP to IPO-ready systems.",
@@ -29,12 +37,6 @@ export const metadata: Metadata = {
   creator: "EKODRIX",
   publisher: "EKODRIX",
   metadataBase: new URL("https://ekodrix.com"),
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 1,
-    userScalable: false,
-  },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -61,7 +63,8 @@ export const metadata: Metadata = {
   },
 };
 
-
+// Get GA ID with fallback
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "";
 
 export default function RootLayout({
   children,
@@ -70,21 +73,29 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={inter.variable}>
-
-<Script
-        strategy="afterInteractive"
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
-      />
-      <Script id="ga-init" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
-        `}
-      </Script>
-
+      <head>
+        {/* Google Analytics - Only load if GA_ID is set */}
+        {GA_ID && (
+          <>
+            <Script
+              strategy="afterInteractive"
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+            />
+            <Script id="ga-init" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_ID}', {
+                  page_path: window.location.pathname,
+                });
+              `}
+            </Script>
+          </>
+        )}
+      </head>
       <body>
+        {/* Page view tracking for client-side navigation */}
         <Suspense fallback={null}>
           <GoogleAnalytics />
         </Suspense>
@@ -103,3 +114,4 @@ export default function RootLayout({
     </html>
   );
 }
+
