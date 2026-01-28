@@ -226,7 +226,7 @@ export function PreloaderIntro({ children }: { children: React.ReactNode }) {
 
                 {/* Logo Container - Properly Aligned */}
                 <div className="relative flex items-center justify-center w-full">
-                  <div className="transform scale-[0.95] min-[360px]:scale-[1.05] min-[375px]:scale-[1.15] min-[400px]:scale-[1.3] sm:scale-[2.2] md:scale-[1.5] lg:scale-[1.6] origin-center">
+                  <div className="transform scale-[0.6] min-[360px]:scale-[0.65] min-[375px]:scale-[0.7] min-[400px]:scale-[0.75] sm:scale-[0.9] md:scale-[1.2] lg:scale-[1.4] origin-center">
                     <EkodrixLogo size="lg" variant="light" />
                   </div>
                 </div>
