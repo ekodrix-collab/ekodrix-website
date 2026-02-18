@@ -26,7 +26,7 @@ const footerLinks = {
 
 const socialLinks = [
   { href: "https://instagram.com/ekodrix", icon: Instagram, label: "Instagram" },
-  { href: "https://twitter.com/ekodrix", icon: Twitter, label: "Twitter" },
+  // { href: "https://twitter.com/ekodrix", icon: Twitter, label: "Twitter" },
   { href: "https://linkedin.com/company/ekodrix", icon: Linkedin, label: "LinkedIn" },
   { href: "mailto:hello@ekodrix.com", icon: Mail, label: "Email" },
 ];
