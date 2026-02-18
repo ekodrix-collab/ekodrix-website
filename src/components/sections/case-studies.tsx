@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { ArrowRight, TrendingUp, Zap, Shield } from "lucide-react";
+import { ArrowRight, TrendingUp, Zap, Shield, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { Card3D } from "@/components/ui/Card3D";
 
@@ -11,12 +11,13 @@ const caseStudies = [
   {
     id: "resellerpro",
     client: "ResellerPro",
-    industry: "E-commerce CRM",
-    challenge: "Scaling an automated CRM for 2,000+ high-volume resellers.",
-    solution: "A custom-built SaaS ecosystem with deep WhatsApp automation and real-time profitability tracking.",
+    industry: "Online Sellers CRM",
+    demoUrl: "https://resellerpro.in",
+    challenge: "Scaling an automated CRM for 2,000+ small resellers selling via Instagram, WhatsApp, and social channels.",
+    solution: "A custom-built SaaS ecosystem with deep WhatsApp & Instagram automation and real-time profitability tracking for small online sellers.",
     results: [
-      { metric: "Monthly Volume", value: "₹5Cr+", change: "Flagship" },
-      { metric: "Active Sellers", value: "2,000+", change: "+120%" },
+      { metric: "Monthly Volume", value: "₹25L+", change: "Growing" },
+      { metric: "Active Sellers", value: "150+", change: "+40%" },
       { metric: "Uptime", value: "99.9%", change: "Stable" },
     ],
     tech: ["Next.js", "Supabase", "WhatsApp API", "PostgreSQL"],
@@ -27,39 +28,60 @@ const caseStudies = [
     },
   },
   {
-    id: "fintech-platform",
-    client: "PayFlow",
-    industry: "FinTech",
-    challenge: "Architecture for a resilient digital payment gateway.",
-    solution: "Distributed microservices with near-instant transaction processing.",
+    id: "vidya-academy",
+    client: "Vidya Academy",
+    industry: "EdTech",
+    demoUrl: "https://vidyaacademy.ekodrix.com",
+    challenge: "Building a modern platform for expert-led professional training at scale.",
+    solution: "A sleek, conversion-optimized web platform with course management, batch scheduling, and enrollment tracking.",
     results: [
-      { metric: "Transactions", value: "₹15Cr+", change: "+450%" },
-      { metric: "Latency", value: "< 1s", change: "-75%" },
-      { metric: "Success Rate", value: "99.95%", change: "Enterprise" },
+      { metric: "Enrollments", value: "200+", change: "Growing" },
+      { metric: "Course Completion", value: "85%", change: "Strong" },
+      { metric: "Avg. Rating", value: "4.7/5", change: "50+ Reviews" },
     ],
-    tech: ["Node.js", "Kubernetes", "Redis", "AWS"],
+    tech: ["Next.js", "Tailwind CSS", "Vercel", "Supabase"],
     testimonial: {
-      text: "EKODRIX built a system that handles our volume effortlessly. Their engineering is world-class.",
-      author: "Amit Shah",
-      position: "CEO, PayFlow",
+      text: "EKODRIX transformed our vision into a platform that truly inspires students. The design and performance exceeded all expectations.",
+      author: "Vidya Academy Team",
+      position: "Vidya Academy",
     },
   },
   {
-    id: "healthtech-saas",
-    client: "CareFlow",
-    industry: "HealthTech",
-    challenge: "Modernizing clinical workflows and appointment management.",
-    solution: "Secure, HIPAA-compliant scheduling platform with automated patient notifications.",
+    id: "habitek-interiors",
+    client: "Habitek Interiors",
+    industry: "Interior Design & Realty",
+    demoUrl: "https://habitek.ekodrix.com",
+    challenge: "Creating a premium digital presence that reflects the elegance of bespoke interior design.",
+    solution: "A visually stunning portfolio website with immersive project galleries and seamless enquiry management.",
     results: [
-      { metric: "Providers", value: "350+", change: "+200%" },
-      { metric: "Appointments", value: "8,000/mo", change: "Steady" },
-      { metric: "Efficiency", value: "35%", change: "+35%" },
+      { metric: "Client Reach", value: "Kerala", change: "Expanding" },
+      { metric: "Enquiries", value: "50+/mo", change: "+80%" },
+      { metric: "Bounce Rate", value: "-35%", change: "Improved" },
     ],
-    tech: ["React", "Python", "AWS", "PostgreSQL"],
+    tech: ["Next.js", "Framer Motion", "Tailwind CSS", "Vercel"],
     testimonial: {
-      text: "Our providers now spend less time on paperwork and more time on patients. A game changer.",
-      author: "Priya Sharma",
-      position: "CTO, CareFlow",
+      text: "Our online presence finally matches the quality of our designs. EKODRIX captured our brand essence perfectly.",
+      author: "Habitek Team",
+      position: "Habitek Interiors & Realty",
+    },
+  },
+  {
+    id: "genz-store",
+    client: "Gen-Z",
+    industry: "E-commerce",
+    demoUrl: "https://genzstore.ekodrix.com",
+    challenge: "Launching a bold men's streetwear brand with a cutting-edge online storefront.",
+    solution: "A high-performance e-commerce platform with dynamic product showcases, cart management, and a trend-forward UI.",
+    results: [
+      { metric: "Products Listed", value: "120+", change: "Curated" },
+      { metric: "Monthly Visitors", value: "2,500+", change: "Organic" },
+      { metric: "Conversion Rate", value: "3.2%", change: "Above Avg" },
+    ],
+    tech: ["Next.js", "Tailwind CSS", "Vercel", "Stripe"],
+    testimonial: {
+      text: "Gen-Z isn't just a store — it's a statement. EKODRIX nailed the vibe and the tech behind it.",
+      author: "Gen-Z Team",
+      position: "Gen-Z Streetwear",
     },
   },
 ];
@@ -104,9 +126,9 @@ export function CaseStudies() {
                         </span>
                         <span className="text-white/70">{study.client}</span>
                       </div>
-                      
+
                       <h3 className="text-3xl font-bold mb-4 text-white">{study.client}</h3>
-                      
+
                       <div className="space-y-4 mb-6">
                         <div>
                           <p className="text-white/60 text-sm mb-1">Challenge</p>
@@ -136,6 +158,31 @@ export function CaseStudies() {
                         Read Full Case Study
                         <ArrowRight className="w-4 h-4" />
                       </Link>
+
+                      {/* Live Demo Embed */}
+                      <div className="mt-6">
+                        <div className="flex items-center justify-between mb-3">
+                          <p className="text-white/60 text-sm font-medium">Live Preview</p>
+                          <a
+                            href={study.demoUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-ekodrix-green/10 border border-ekodrix-green/20 text-ekodrix-green text-xs font-semibold hover:bg-ekodrix-green/20 hover:border-ekodrix-green/40 transition-all"
+                          >
+                            Full View
+                            <ExternalLink className="w-3 h-3" />
+                          </a>
+                        </div>
+                        <div className="relative rounded-xl overflow-hidden border border-white/10 bg-white">
+                          <iframe
+                            src={study.demoUrl}
+                            title={`${study.client} Demo`}
+                            className="w-full h-[280px] pointer-events-auto"
+                            loading="lazy"
+                            sandbox="allow-scripts allow-same-origin allow-popups"
+                          />
+                        </div>
+                      </div>
                     </div>
 
                     <div>
