@@ -1,12 +1,12 @@
 "use client";
 
-import { 
-  ArrowLeft, 
-  ArrowRight, 
-  CheckCircle2, 
-  Zap, 
-  Shield, 
-  TrendingUp, 
+import {
+  ArrowLeft,
+  ArrowRight,
+  CheckCircle2,
+  Zap,
+  Shield,
+  TrendingUp,
   Users,
   Globe,
   Database,
@@ -22,16 +22,16 @@ const caseStudiesContent = {
   resellerpro: {
     title: "ResellerPro",
     client: "EKODRIX Own Product",
-    industry: "E-commerce CRM",
+    industry: "Online Sellers CRM",
     tagline: "Engineering India's most efficient reseller CRM.",
-    description: "Built from the ground up to solve the chaos of manual reseller operations. ResellerPro is now the go-to platform for businesses looking to scale their reseller networks with automation and data-driven insights.",
-    challenge: "Resellers were struggling with manual order tracking through WhatsApp groups, opaque profit margins, and disconnected communication channels. As networks grew, businesses faced massive operational overhead and data loss. The system needed to handle thousands of concurrent sellers and automate their entire workflow from catalog sharing to final payouts.",
+    description: "Built from the ground up to solve the chaos of managing online sellers across Instagram, WhatsApp, and social channels. ResellerPro is now the go-to CRM for small resellers looking to scale their operations with automation and data-driven insights.",
+    challenge: "Small online resellers were struggling with manual order tracking through WhatsApp groups and Instagram DMs, opaque profit margins, and disconnected communication channels. As seller networks grew, businesses faced massive operational overhead and data loss. The system needed to handle thousands of concurrent small sellers and automate their entire workflow from catalog sharing to final payouts.",
     solution: "We architected a robust SaaS ecosystem using Next.js and Supabase. The core innovation was a deep integration with the WhatsApp Business API, allowing for automated order confirmations, shipping updates, and catalog distribution. We implemented a real-time profitability engine that calculates margins per transaction, giving sellers instant visibility into their earnings.",
     results: [
-      { label: "Monthly Volume", value: "₹5Cr+", icon: TrendingUp, color: "text-ekodrix-green" },
-      { label: "Active Sellers", value: "2,000+", icon: Users, color: "text-blue-400" },
+      { label: "Monthly Volume", value: "₹25L+", icon: TrendingUp, color: "text-ekodrix-green" },
+      { label: "Active Sellers", value: "150+", icon: Users, color: "text-blue-400" },
       { label: "Uptime", value: "99.9%", icon: Shield, color: "text-purple-400" },
-      { label: "Automation", value: "85%", icon: Zap, color: "text-orange-400" },
+      { label: "Automation", value: "70%", icon: Zap, color: "text-orange-400" },
     ],
     techStack: [
       { name: "Next.js", icon: Globe },
@@ -42,67 +42,96 @@ const caseStudiesContent = {
       { name: "Framer Motion", icon: Cpu },
     ],
     testimonial: {
-      text: "ResellerPro changed everything for our network. We went from managing 50 resellers manually to over 2,000 with the same team size. The automation is flawless.",
+      text: "ResellerPro changed everything for our network. We went from managing orders manually to handling 150+ sellers with the same team size. The automation is a game changer.",
       author: "Rajesh Kumar",
       position: "Founder, ResellerPro User",
     },
-    nextPath: "fintech-platform"
+    nextPath: "vidya-academy"
   },
-  "fintech-platform": {
-    title: "PayFlow Gateway",
-    client: "PayFlow Inc.",
-    industry: "FinTech",
-    tagline: "Rebuilding the backbone of digital payments.",
-    description: "A high-performance payment processing platform designed for enterprise reliability and sub-second latency. PayFlow handles mission-critical transactions for thousands of daily users.",
-    challenge: "The client's legacy system was plagued by high latency and transaction failures during peak traffic, leading to significant revenue loss. They needed a payment gateway that could process thousands of transactions per minute with near-zero downtime and enterprise-grade security compliance.",
-    solution: "We rebuilt the entire infrastructure using a distributed microservices architecture on Node.js and Kubernetes. By implementing advanced caching layers with Redis and optimizing PostgreSQL indexing, we achieved sub-second transaction processing times. The system was further fortified with automated fraud detection and multi-region AWS redundancy.",
+  "vidya-academy": {
+    title: "Vidya Academy",
+    client: "Vidya Academy",
+    industry: "EdTech",
+    tagline: "Transform your future with expert-led professional training.",
+    description: "A modern, high-converting web platform designed to attract students and showcase expert-led courses. Vidya Academy connects aspiring professionals with industry-recognized training programs and a clear pathway to career growth.",
+    challenge: "The institute needed a digital platform that could effectively communicate its training quality, manage course batches, and convert visitors into enrolled students. The existing online presence was outdated and failed to capture the institute's credibility, with no streamlined way for students to explore courses or initiate enrollment.",
+    solution: "We built a sleek, performance-first website using Next.js and Tailwind CSS, deployed on Vercel for blazing-fast load times. The platform features a dynamic course catalog, batch scheduling views, student testimonial showcases, and clear call-to-actions for enrollment. The design was crafted to reflect a modern, job-ready training brand with 95% placement credibility.",
     results: [
-      { label: "Transactions", value: "₹15Cr+", icon: TrendingUp, color: "text-ekodrix-green" },
-      { label: "Latency", value: "< 1s", icon: Zap, color: "text-yellow-400" },
-      { label: "Success Rate", value: "99.95%", icon: Shield, color: "text-green-400" },
-      { label: "Security", value: "PCI-DSS", icon: Shield, color: "text-blue-400" },
+      { label: "Enrollments", value: "200+", icon: Users, color: "text-ekodrix-green" },
+      { label: "Course Completion", value: "85%", icon: TrendingUp, color: "text-blue-400" },
+      { label: "Avg. Rating", value: "4.7/5", icon: Shield, color: "text-yellow-400" },
+      { label: "Reviews", value: "50+", icon: Zap, color: "text-orange-400" },
     ],
     techStack: [
-      { name: "Node.js", icon: Globe },
-      { name: "Kubernetes", icon: Cpu },
-      { name: "Redis", icon: Zap },
-      { name: "AWS", icon: Layers },
-      { name: "PostgreSQL", icon: Database },
-      { name: "Docker", icon: Layers },
+      { name: "Next.js", icon: Globe },
+      { name: "Tailwind CSS", icon: Layers },
+      { name: "Vercel", icon: Zap },
+      { name: "Supabase", icon: Database },
+      { name: "Framer Motion", icon: Cpu },
+      { name: "TypeScript", icon: Globe },
     ],
     testimonial: {
-      text: "EKODRIX delivered an engineering masterpiece. Since moving to the new gateway, our transaction success rate has never been higher, even during our biggest sales events.",
-      author: "Amit Shah",
-      position: "CEO, PayFlow",
+      text: "EKODRIX transformed our vision into a clean, modern platform. The design and performance exceeded our expectations and inquiries grew steadily from day one.",
+      author: "Vidya Academy Team",
+      position: "Vidya Academy",
     },
-    nextPath: "healthtech-saas"
+    nextPath: "habitek-interiors"
   },
-  "healthtech-saas": {
-    title: "CareFlow SaaS",
-    client: "CareFlow Health",
-    industry: "HealthTech",
-    tagline: "Modernizing patient care with precision.",
-    description: "A HIPAA-compliant clinical management platform that streamlines patient scheduling, records, and billing for modern healthcare providers.",
-    challenge: "Clinic staff were drowning in administrative overhead, leading to scheduling errors and high patient no-show rates. The goal was to build a secure, intuitive platform that automates patient communication and provides clinicians with a clear, real-time view of their practice.",
-    solution: "We developed a secure scheduling ecosystem using React and FastAPI. The platform features an automated patient notification system via SMS and Email, reducing no-shows by 40%. We ensured full HIPAA compliance with end-to-end encryption for all patient data and integrated a seamless billing module.",
+  "habitek-interiors": {
+    title: "Habitek Interiors",
+    client: "Habitek Interiors & Realty",
+    industry: "Interior Design & Realty",
+    tagline: "Where design meets elegance.",
+    description: "A visually rich, premium portfolio website for one of Kerala's leading interior design and realty firms. Habitek's online presence now reflects the sophistication and craftsmanship of their work.",
+    challenge: "Habitek needed a website that could match the elegance of their interior projects. Their previous site lacked visual impact, had no proper project gallery, and didn't generate meaningful client enquiries. They were serving across Kerala but their online brand didn't communicate the premium, pan-Kerala positioning they deserved.",
+    solution: "We designed and developed a visually stunning portfolio-driven website using Next.js and Framer Motion. The site features immersive full-screen project galleries, smooth scroll-based animations, and a seamless enquiry form integrated with their CRM. Every design element was tailored to evoke the sophistication of luxury interiors — from the color palette to the typography.",
     results: [
-      { label: "Providers", value: "350+", icon: Users, color: "text-blue-400" },
-      { label: "Appointments", value: "8,000/mo", icon: TrendingUp, color: "text-ekodrix-green" },
-      { label: "Efficiency", value: "+35%", icon: Zap, color: "text-orange-400" },
-      { label: "Compliance", value: "HIPAA", icon: Shield, color: "text-green-400" },
+      { label: "Client Reach", value: "Kerala", icon: Globe, color: "text-ekodrix-green" },
+      { label: "Enquiries", value: "50+/mo", icon: TrendingUp, color: "text-blue-400" },
+      { label: "Bounce Rate", value: "-35%", icon: Shield, color: "text-purple-400" },
+      { label: "Load Time", value: "<2s", icon: Zap, color: "text-orange-400" },
     ],
     techStack: [
-      { name: "React", icon: Globe },
-      { name: "Python", icon: Cpu },
-      { name: "AWS", icon: Layers },
-      { name: "PostgreSQL", icon: Database },
-      { name: "FastAPI", icon: Zap },
-      { name: "Docker", icon: Layers },
+      { name: "Next.js", icon: Globe },
+      { name: "Framer Motion", icon: Cpu },
+      { name: "Tailwind CSS", icon: Layers },
+      { name: "Vercel", icon: Zap },
+      { name: "TypeScript", icon: Globe },
+      { name: "Supabase", icon: Database },
     ],
     testimonial: {
-      text: "The efficiency gains were immediate. Our clinic staff is less stressed, and our patients love the automated reminders. EKODRIX truly understands modern healthcare needs.",
-      author: "Priya Sharma",
-      position: "CTO, CareFlow",
+      text: "Our online presence finally matches the quality of our designs. EKODRIX captured our brand essence perfectly.",
+      author: "Habitek Team",
+      position: "Habitek Interiors & Realty",
+    },
+    nextPath: "genz-store"
+  },
+  "genz-store": {
+    title: "Gen-Z",
+    client: "Gen-Z Streetwear",
+    industry: "E-commerce",
+    tagline: "The new standard of style.",
+    description: "A bold, trend-forward men's e-commerce store built for the generation that refuses to settle. Gen-Z combines premium streetwear curation with a cutting-edge shopping experience.",
+    challenge: "The brand needed an online store that didn't just list products — it needed to make a statement. Competing in the crowded men's fashion space required a unique visual identity, lightning-fast browsing, and a seamless checkout experience. The store had to feel as premium as the clothing it sold, with dynamic product showcases that drive engagement.",
+    solution: "We built a high-performance e-commerce platform using Next.js with a custom design system inspired by luxury streetwear aesthetics. The storefront features dynamic hero sections with seasonal drops, an intelligent product filtering system, smooth cart management, and integrated payment processing via Stripe. The UI was designed with bold typography, aggressive silhouettes, and editorial-style product photography layouts.",
+    results: [
+      { label: "Products Listed", value: "120+", icon: Layers, color: "text-ekodrix-green" },
+      { label: "Monthly Visitors", value: "2,500+", icon: Shield, color: "text-blue-400" },
+      { label: "Conversion Rate", value: "3.2%", icon: TrendingUp, color: "text-purple-400" },
+      { label: "Performance", value: "95/100", icon: Zap, color: "text-orange-400" },
+    ],
+    techStack: [
+      { name: "Next.js", icon: Globe },
+      { name: "Tailwind CSS", icon: Layers },
+      { name: "Stripe", icon: Zap },
+      { name: "Vercel", icon: Cpu },
+      { name: "TypeScript", icon: Globe },
+      { name: "Framer Motion", icon: Cpu },
+    ],
+    testimonial: {
+      text: "Gen-Z isn't just a store — it's a statement. EKODRIX nailed the vibe and the tech behind it.",
+      author: "Gen-Z Team",
+      position: "Gen-Z Streetwear",
     },
     nextPath: "resellerpro"
   }
@@ -127,10 +156,10 @@ export default function CaseStudyPage() {
   return (
     <main className="min-h-screen bg-ekodrix-charcoal-dark overflow-hidden pt-28 pb-20">
       <ParticleBackground particleCount={40} className="fixed inset-0 opacity-20" />
-      
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <ScrollReveal type="fade-up" duration={0.4}>
-          <Link 
+          <Link
             href="/work"
             className="inline-flex items-center gap-2 text-white/60 hover:text-ekodrix-green transition-colors mb-12 group"
           >
@@ -149,14 +178,14 @@ export default function CaseStudyPage() {
               <span className="text-white/40">•</span>
               <span className="text-white/60 font-medium">{content.client}</span>
             </div>
-            
+
             <h1 className="text-5xl sm:text-7xl font-display font-bold text-white mb-8 tracking-tight">
               {content.title}
             </h1>
             <p className="text-2xl sm:text-3xl text-ekodrix-green font-medium mb-12 max-w-4xl tracking-tight leading-tight">
               {content.tagline}
             </p>
-            
+
             <div className="h-px w-full bg-gradient-to-r from-white/20 via-white/5 to-transparent" />
           </ScrollReveal>
         </section>
@@ -240,7 +269,7 @@ export default function CaseStudyPage() {
         {/* Footer Navigation */}
         <section className="mt-40 border-t border-white/10 pt-20">
           <ScrollReveal type="fade-up" threshold={0.1}>
-            <Link 
+            <Link
               href={`/work/${content.nextPath}`}
               className="group flex flex-col sm:flex-row sm:items-center justify-between gap-6"
             >

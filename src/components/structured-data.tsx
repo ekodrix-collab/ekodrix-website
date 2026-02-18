@@ -7,13 +7,13 @@ export function StructuredData() {
     logo: "https://ekodrix.com/logo.png",
     description: "Premium software studio crafting production-grade SaaS products for ambitious startups.",
     sameAs: [
-      "https://github.com/ekodrix",
+      "https://instagram.com/ekodrix",
       "https://twitter.com/ekodrix",
       "https://linkedin.com/company/ekodrix",
     ],
     contactPoint: {
       "@type": "ContactPoint",
-      telephone: "+91-123-456-7890",
+      telephone: "+91-77367-67759",
       contactType: "Customer Service",
       email: "hello@ekodrix.com",
     },

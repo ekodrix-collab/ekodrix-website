@@ -15,7 +15,7 @@ import Script from "next/script";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 
-const inter = Inter({ 
+const inter = Inter({
   subsets: ["latin"],
   variable: "--font-body",
   display: "swap",
@@ -115,7 +115,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={inter.variable}>
-      <head>
+      <body>
         {/* Google Analytics - Only load if GA_ID is set */}
         {GA_ID && (
           <>
@@ -135,8 +135,6 @@ export default function RootLayout({
             </Script>
           </>
         )}
-      </head>
-      <body>
         {/* Page view tracking for client-side navigation */}
         <Suspense fallback={null}>
           <GoogleAnalytics />
