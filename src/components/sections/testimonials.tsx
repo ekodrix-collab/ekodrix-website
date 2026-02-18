@@ -12,7 +12,7 @@ const testimonials = [
     location: "Delhi",
     quote: "Revenue growth was consistent in 6 months after switching to ResellerPro. The WhatsApp automation alone saves me hours daily.",
     rating: 5,
-    revenue: "Promising growth in 6 months",
+    revenue: "Steady growth in 3 months",
   },
   {
     name: "Priya Sharma",
@@ -20,15 +20,15 @@ const testimonials = [
     location: "Bangalore",
     quote: "EKODRIX built our SaaS platform with precision. The code quality is exceptional and the platform scales as we grow.",
     rating: 5,
-    revenue: "Scaled to 5,000+ users",
+    revenue: "Growing user base",
   },
   {
-    name: "Amit Shah",
-    business: "PayFlow",
-    location: "Mumbai",
-    quote: "They didn't just build our platform, they understood our vision. Best engineering partner we've had.",
+    name: "Habitek Team",
+    business: "Habitek Interiors",
+    location: "Kerala",
+    quote: "Our online presence finally matches the quality of our interior designs. EKODRIX captured our brand essence perfectly.",
     rating: 5,
-    revenue: "₹10Cr+ transactions",
+    revenue: "3x enquiry growth",
   },
 ];
 
@@ -64,7 +64,7 @@ export function Testimonials() {
               className="bg-[#111] rounded-xl p-6 border border-white/10 hover:border-ekodrix-green shadow-sm hover:shadow-lg transition-all"
             >
               <Quote className="w-8 h-8 text-ekodrix-green mb-4" />
-              
+
               <div className="flex gap-1 mb-4">
                 {Array.from({ length: testimonial.rating }).map((_, i) => (
                   <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
