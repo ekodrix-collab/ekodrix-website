@@ -10,25 +10,25 @@ const testimonials = [
     name: "Rajesh Kumar",
     business: "Kumar Electronics",
     location: "Delhi",
-    quote: "Revenue doubled in 6 months after switching to ResellerPro. The WhatsApp automation alone saves me 3 hours daily.",
+    quote: "Revenue growth was consistent in 6 months after switching to ResellerPro. The WhatsApp automation alone saves me hours daily.",
     rating: 5,
-    revenue: "₹50L to ₹1Cr",
+    revenue: "Promising growth in 6 months",
   },
   {
     name: "Priya Sharma",
     business: "TechSolutions Inc",
     location: "Bangalore",
-    quote: "EKODRIX built our SaaS platform in record time. The code quality is exceptional and the platform scales effortlessly.",
+    quote: "EKODRIX built our SaaS platform with precision. The code quality is exceptional and the platform scales as we grow.",
     rating: 5,
-    revenue: "10K to 1M users",
+    revenue: "Scaled to 5,000+ users",
   },
   {
     name: "Amit Shah",
     business: "PayFlow",
     location: "Mumbai",
-    quote: "They didn't just build our platform, they became our technical co-founders. Best decision we made.",
+    quote: "They didn't just build our platform, they understood our vision. Best engineering partner we've had.",
     rating: 5,
-    revenue: "₹500Cr+ transactions",
+    revenue: "₹10Cr+ transactions",
   },
 ];
 
@@ -37,7 +37,7 @@ export function Testimonials() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="py-24 bg-ekodrix-charcoal">
+    <section ref={ref} className="py-12 sm:py-16 md:py-24 bg-ekodrix-charcoal">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-16"

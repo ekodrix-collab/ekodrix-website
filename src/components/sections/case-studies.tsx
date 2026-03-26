@@ -9,39 +9,57 @@ import { Card3D } from "@/components/ui/Card3D";
 
 const caseStudies = [
   {
+    id: "resellerpro",
+    client: "ResellerPro",
+    industry: "E-commerce CRM",
+    challenge: "Scaling an automated CRM for 2,000+ high-volume resellers.",
+    solution: "A custom-built SaaS ecosystem with deep WhatsApp automation and real-time profitability tracking.",
+    results: [
+      { metric: "Monthly Volume", value: "₹5Cr+", change: "Flagship" },
+      { metric: "Active Sellers", value: "2,000+", change: "+120%" },
+      { metric: "Uptime", value: "99.9%", change: "Stable" },
+    ],
+    tech: ["Next.js", "Supabase", "WhatsApp API", "PostgreSQL"],
+    testimonial: {
+      text: "The most efficient CRM we've ever used. It transformed our manual operations into a scalable business.",
+      author: "Rajesh Kumar",
+      position: "Founder, ResellerPro User",
+    },
+  },
+  {
     id: "fintech-platform",
     client: "PayFlow",
-    industry: "Fintech",
-    challenge: "Build a payment platform handling 1M+ transactions daily",
-    solution: "Microservices architecture with 99.99% uptime",
+    industry: "FinTech",
+    challenge: "Architecture for a resilient digital payment gateway.",
+    solution: "Distributed microservices with near-instant transaction processing.",
     results: [
-      { metric: "Transaction Volume", value: "₹500Cr+", change: "+400%" },
-      { metric: "Processing Time", value: "< 2 seconds", change: "-80%" },
-      { metric: "Uptime", value: "99.99%", change: "+0.9%" },
+      { metric: "Transactions", value: "₹15Cr+", change: "+450%" },
+      { metric: "Latency", value: "< 1s", change: "-75%" },
+      { metric: "Success Rate", value: "99.95%", change: "Enterprise" },
     ],
-    tech: ["Node.js", "Kubernetes", "PostgreSQL", "Redis", "AWS"],
+    tech: ["Node.js", "Kubernetes", "Redis", "AWS"],
     testimonial: {
-      text: "EKODRIX didn't just build our platform, they became our technical co-founders",
+      text: "EKODRIX built a system that handles our volume effortlessly. Their engineering is world-class.",
       author: "Amit Shah",
       position: "CEO, PayFlow",
     },
   },
   {
-    id: "saas-platform",
-    client: "CloudSync",
-    industry: "SaaS",
-    challenge: "Scale from 10K to 1M users in 6 months",
-    solution: "Multi-tenant architecture with auto-scaling infrastructure",
+    id: "healthtech-saas",
+    client: "CareFlow",
+    industry: "HealthTech",
+    challenge: "Modernizing clinical workflows and appointment management.",
+    solution: "Secure, HIPAA-compliant scheduling platform with automated patient notifications.",
     results: [
-      { metric: "Users", value: "1M+", change: "+9900%" },
-      { metric: "Response Time", value: "< 100ms", change: "-90%" },
-      { metric: "Cost Efficiency", value: "60%", change: "-40%" },
+      { metric: "Providers", value: "350+", change: "+200%" },
+      { metric: "Appointments", value: "8,000/mo", change: "Steady" },
+      { metric: "Efficiency", value: "35%", change: "+35%" },
     ],
-    tech: ["Next.js", "PostgreSQL", "Redis", "AWS Lambda"],
+    tech: ["React", "Python", "AWS", "PostgreSQL"],
     testimonial: {
-      text: "The platform scales effortlessly. We've never had downtime.",
+      text: "Our providers now spend less time on paperwork and more time on patients. A game changer.",
       author: "Priya Sharma",
-      position: "CTO, CloudSync",
+      position: "CTO, CareFlow",
     },
   },
 ];
@@ -51,7 +69,7 @@ export function CaseStudies() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} id="work" className="py-24 bg-ekodrix-charcoal-dark">
+    <section ref={ref} id="work" className="py-12 sm:py-16 md:py-24 bg-ekodrix-charcoal-dark">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-16"
@@ -59,11 +77,11 @@ export function CaseStudies() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl sm:text-5xl font-display font-bold mb-4 text-ekodrix-charcoal">
-            Case Studies
+          <h2 className="text-4xl sm:text-5xl font-display font-bold mb-4 text-white">
+            Our Work
           </h2>
-          <p className="text-xl text-ekodrix-charcoal-light max-w-2xl mx-auto">
-            Real results from real products we've built
+          <p className="text-xl text-white/60 max-w-2xl mx-auto">
+            Grounded solutions for ambitious founders.
           </p>
         </motion.div>
 
