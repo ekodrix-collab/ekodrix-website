@@ -1,19 +1,34 @@
 import { Metadata } from "next";
-import { Code2, Rocket, Heart, Globe, ArrowRight, Zap, Target, Shield, Server, Brain, Cpu } from "lucide-react";
+import Link from "next/link";
 import { Card3D } from "@/components/ui/Card3D";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { TechSphere3D } from "@/components/ui/TechSphere3D";
+import { Code2, Rocket, Heart, Globe, ArrowRight, Zap, Target, Shield, Server, Brain, Cpu } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "About Us - EKODRIX",
   description: "Learn about EKODRIX - a premium software studio crafting production-grade SaaS products.",
 };
 
+const techRibbon = [
+  "Java", "Python", "AI", "LLM", "Next.js", "React", "Node.js", "AWS", "Docker", "Kubernetes", "TypeScript", "PostgreSQL", "Redis", "Spring Boot", "FastAPI"
+];
+
+const teamMembers = [
+  { name: "Muhammed Siyad", role: "CEO", image: "/team/siyad-2.PNG", color: "from-teal-500 to-cyan-500" },
+  { name: "Muhammed Rashid", role: "Co-founder", image: "/team/Muhammed_Rashid.png", color: "from-blue-500 to-cyan-500" },
+  { name: "Anaswar Mohanan", role: "Co-founder", image: "/team/Anaswar.JPG", color: "from-purple-500 to-pink-500" },
+  { name: "Mrithul", role: "Founding Engineer", image: "/team/Mrithul.jpeg", color: "from-orange-500 to-red-500", position: "center 28%", scale: 1.3 },
+  { name: "Unais Kuruniyan", role: "Founding Engineer", image: "/team/Unais.jpeg", color: "from-red-500 to-rose-500", position: "center 20%", scale: 1.05 },
+  { name: "BijuLal", role: "Founding Engineer", image: "/team/Bijulal.jpeg", color: "from-green-500 to-emerald-500", position: "center 5%", scale: 1.0 },
+  { name: "Sadiq Ameen", role: "Founding Engineer", image: "/team/Sadik-2.jpeg", color: "from-indigo-500 to-blue-500" },
+];
+
 export default function AboutPage() {
   return (
     <main className="min-h-screen pt-20 overflow-hidden">
       {/* Hero Section */}
-      <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[90vh] flex items-center overflow-hidden pt-28 pb-12 sm:pb-20">
         {/* Abstract Background Elements */}
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-ekodrix-green/20 rounded-full blur-[100px] animate-pulse-glow opacity-40" />
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-resellerpro-blue-medium/20 rounded-full blur-[100px] animate-pulse-glow opacity-40" style={{ animationDelay: '1s' }} />
@@ -160,7 +175,7 @@ export default function AboutPage() {
       </section>
 
       {/* Skills / Tech Stack Grid */}
-      <section className="py-32 relative overflow-hidden bg-ekodrix-charcoal-dark">
+      <section className="py-24 relative overflow-hidden bg-ekodrix-charcoal-dark border-t border-white/5">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(16,185,129,0.05),transparent_50%)]" />
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -180,35 +195,51 @@ export default function AboutPage() {
           </div>
           
           {/* Scrolling Tech Ribbon for "WOW" factor */}
-          <div className="mt-20 relative">
+          <div className="mt-24 relative">
             <div className="absolute inset-0 bg-gradient-to-r from-ekodrix-charcoal-dark via-transparent to-ekodrix-charcoal-dark z-10" />
-            <div className="flex gap-12 animate-scroll-left whitespace-nowrap opacity-30">
-              {[...techRibbon, ...techRibbon].map((tech, i) => (
-                <span key={i} className="text-5xl md:text-7xl font-display font-bold text-transparent stroke-text tracking-tighter uppercase italic">
-                  {tech}
-                </span>
+            <div className="flex gap-20 animate-scroll-left whitespace-nowrap py-10">
+              {[...techRibbon, ...techRibbon, ...techRibbon].map((tech, i) => (
+                <div key={i} className="relative group cursor-default">
+                  {/* Subtle Glow Background */}
+                  <div className="absolute inset-0 bg-white/5 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                  
+                  <span className="relative text-7xl md:text-9xl font-display font-black tracking-tighter uppercase italic flex flex-col items-center">
+                    {/* Main Metallic Text with moving shine */}
+                    <span className="bg-clip-text text-transparent bg-[linear-gradient(110deg,#939393,45%,#fff,55%,#939393)] bg-[length:200%_100%] animate-[shimmer_3s_linear_infinite] opacity-30 group-hover:opacity-100 transition-opacity duration-500 drop-shadow-2xl">
+                      {tech}
+                    </span>
+                    
+                    {/* Reflection / Secondary Layer */}
+                    <span className="absolute top-full -mt-4 bg-clip-text text-transparent bg-gradient-to-b from-white/10 to-transparent scale-y-[-1] blur-[1px] select-none pointer-events-none opacity-20 group-hover:opacity-40 transition-opacity duration-500">
+                      {tech}
+                    </span>
+                  </span>
+                </div>
               ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* CTA Section to close the page */}
+      <section className="py-24 bg-gradient-to-b from-ekodrix-charcoal-dark to-black text-center">
+        <div className="max-w-4xl mx-auto px-4">
+          <ScrollReveal type="scale-in">
+            <h2 className="text-4xl md:text-5xl font-bold mb-8">Ready to build something <span className="gradient-text">legendary</span>?</h2>
+            <Link 
+              href="/contact" 
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-ekodrix-green text-ekodrix-charcoal-dark font-bold text-xl hover:scale-105 transition-all shadow-xl shadow-ekodrix-green/20"
+            >
+              Let's Talk
+              <ArrowRight className="w-6 h-6" />
+            </Link>
+          </ScrollReveal>
         </div>
       </section>
     </main>
   );
 }
 
-const techRibbon = [
-  "Java", "Python", "AI", "LLM", "Next.js", "React", "Node.js", "AWS", "Docker", "Kubernetes", "TypeScript", "PostgreSQL", "Redis", "Spring Boot", "FastAPI"
-];
-
-const teamMembers = [
-  { name: "Muhammed Siyad", role: "CEO", image: "/team/siyad-2.PNG", color: "from-teal-500 to-cyan-500" },
-  { name: "Muhammed Rashid", role: "Co-founder", image: "/team/Muhammed_Rashid.png", color: "from-blue-500 to-cyan-500" },
-  { name: "Anaswar Mohanan", role: "Co-founder", image: "/team/Anaswar.JPG", color: "from-purple-500 to-pink-500" },
-  { name: "Mrithul", role: "Founding Engineer", image: "/team/Mrithul.jpeg", color: "from-orange-500 to-red-500", position: "center 28%", scale: 1.3 },
-  { name: "Unais Kuruniyan", role: "Founding Engineer", image: "/team/Unais.jpeg", color: "from-red-500 to-rose-500", position: "center 20%", scale: 1.05 },
-  { name: "BijuLal", role: "Founding Engineer", image: "/team/Bijulal.jpeg", color: "from-green-500 to-emerald-500", position: "center 5%", scale: 1.0 },
-  { name: "Sadiq Ameen", role: "Founding Engineer", image: "/team/Sadik-2.jpeg", color: "from-indigo-500 to-blue-500" },
-];
 
 function TeamCard({ member }: { member: typeof teamMembers[0] }) {
   return (

@@ -3,7 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, ReactNode, useState, useEffect } from "react";
 
-type RevealType = "fade-up" | "fade-down" | "slide-left" | "slide-right" | "scale-in" | "blur-in";
+type RevealType = "fade-up" | "fade-down" | "slide-down" | "slide-up" | "slide-left" | "slide-right" | "scale-in" | "blur-in";
 
 interface ScrollRevealProps {
   children: ReactNode;
@@ -42,6 +42,14 @@ export function ScrollReveal({
       hidden: { opacity: 0, y: -40 },
       visible: { opacity: 1, y: 0 },
     },
+    "slide-up": {
+      hidden: { opacity: 0, y: 50 },
+      visible: { opacity: 1, y: 0 },
+    },
+    "slide-down": {
+      hidden: { opacity: 0, y: -50 },
+      visible: { opacity: 1, y: 0 },
+    },
     "slide-left": {
       hidden: { opacity: 0, x: 50 },
       visible: { opacity: 1, x: 0 },
@@ -60,25 +68,16 @@ export function ScrollReveal({
     },
   };
 
-  // On mobile, just render children without animation to prevent empty space issues
-  if (isMobile) {
-    return (
-      <div ref={ref} className={className}>
-        {children}
-      </div>
-    );
-  }
-
   return (
     <motion.div
       ref={ref}
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
+      initial={isMobile ? "visible" : "hidden"}
+      animate={isMobile || isInView ? "visible" : "hidden"}
       variants={variants[type]}
       transition={{
         duration,
         delay,
-        ease: [0.22, 1, 0.36, 1], // Custom cinematic cubic-bezier
+        ease: [0.22, 1, 0.36, 1],
       }}
       className={className}
     >

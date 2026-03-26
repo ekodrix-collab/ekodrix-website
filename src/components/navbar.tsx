@@ -20,29 +20,40 @@ const navItems = [
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
+    setMounted(true);
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll(); // Initial check
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  if (!mounted) {
+    return (
+      <nav className="fixed top-0 left-0 right-0 z-50 h-20 bg-transparent" />
+    );
+  }
+
   return (
     <motion.nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-md ${
-        isScrolled ? "shadow-md border-b border-gray-200" : "border-b border-transparent"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled 
+          ? "bg-ekodrix-charcoal-dark/80 backdrop-blur-xl shadow-2xl border-b border-white/5 py-0" 
+          : "bg-transparent py-2"
       }`}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          <Link href="/" className="flex items-center">
-            <EkodrixLogo size="md" />
+          <Link href="/" className="flex items-center group">
+            <EkodrixLogo size="md" variant="light" className="group-hover:scale-105 transition-transform" />
           </Link>
 
           {/* Desktop Menu */}
@@ -51,30 +62,36 @@ export function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`text-sm font-medium transition-colors ${
+                className={`text-sm font-medium transition-all duration-300 relative group py-2 ${
                   pathname === item.href
                     ? "text-ekodrix-green"
-                    : "text-ekodrix-charcoal hover:text-ekodrix-green"
+                    : "text-white/70 hover:text-white"
                 }`}
               >
                 {item.label}
+                <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-ekodrix-green transform origin-left transition-transform duration-300 ${
+                  pathname === item.href ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                }`} />
               </Link>
             ))}
             <Link
               href="/start-project"
-              className="px-4 py-2 rounded-lg bg-accent-gradient text-white text-sm font-semibold hover:scale-105 transition-transform"
+              className="px-5 py-2.5 rounded-full bg-ekodrix-green text-ekodrix-charcoal-dark text-sm font-bold hover:scale-105 hover:shadow-lg hover:shadow-ekodrix-green/20 transition-all active:scale-95"
             >
               Start Project
             </Link>
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            className="md:hidden text-ekodrix-charcoal hover:text-ekodrix-green transition-colors"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          <div className="md:hidden flex items-center gap-4">
+            <button
+              className="p-2 text-white/70 hover:text-white transition-colors"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -82,20 +99,21 @@ export function Navbar() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white border-t border-gray-200 shadow-lg"
+            initial={{ opacity: 0, height: 0, y: -20 }}
+            animate={{ opacity: 1, height: "auto", y: 0 }}
+            exit={{ opacity: 0, height: 0, y: -20 }}
+            transition={{ duration: 0.4, ease: "circOut" }}
+            className="md:hidden bg-ekodrix-charcoal-dark border-t border-white/5 shadow-2xl overflow-hidden"
           >
-            <div className="px-4 py-4 space-y-2">
+            <div className="px-4 py-6 space-y-4">
               {navItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`block py-3 px-2 text-base font-medium rounded-lg transition-colors min-h-[44px] flex items-center ${
+                  className={`block py-3 px-4 text-lg font-medium rounded-xl transition-all ${
                     pathname === item.href
-                      ? "text-ekodrix-green bg-ekodrix-green/5"
-                      : "text-ekodrix-charcoal hover:bg-gray-100"
+                      ? "text-ekodrix-green bg-ekodrix-green/10"
+                      : "text-white/70 hover:text-white hover:bg-white/5"
                   }`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
@@ -104,7 +122,7 @@ export function Navbar() {
               ))}
               <Link
                 href="/start-project"
-                className="block w-full text-center px-4 py-3 rounded-lg bg-accent-gradient text-white font-semibold min-h-[44px] flex items-center justify-center mt-2"
+                className="block w-full text-center px-4 py-4 rounded-xl bg-ekodrix-green text-ekodrix-charcoal-dark font-bold text-lg mt-4 shadow-lg shadow-ekodrix-green/10"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Start Project

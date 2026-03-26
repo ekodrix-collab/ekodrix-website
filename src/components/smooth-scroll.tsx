@@ -1,15 +1,16 @@
 "use client";
 
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import Lenis from "lenis";
 
-export function SmoothScroll() {
+export function SmoothScroll({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     // Disable smooth scroll on mobile/touch devices to prevent scroll issues
-    const isMobile = window.matchMedia("(max-width: 768px)").matches || 
-                     'ontouchstart' in window || 
-                     navigator.maxTouchPoints > 0;
-    
+    const isMobile =
+      window.matchMedia("(max-width: 768px)").matches ||
+      "ontouchstart" in window ||
+      navigator.maxTouchPoints > 0;
+
     if (isMobile) {
       return; // Don't initialize Lenis on mobile
     }
@@ -37,5 +38,5 @@ export function SmoothScroll() {
     };
   }, []);
 
-  return null;
+  return <>{children}</>;
 }

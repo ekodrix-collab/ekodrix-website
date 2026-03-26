@@ -46,7 +46,7 @@ export function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden pt-28">
+    <section className="relative min-h-[90vh] flex items-center overflow-hidden pt-28 pb-12 sm:pb-20">
       {/* Particle Background Layer */}
       <ParticleBackground particleCount={60} className="opacity-40" />
       

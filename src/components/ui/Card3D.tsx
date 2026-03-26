@@ -56,15 +56,6 @@ export function Card3D({
     setIsHovering(false);
   };
 
-  // On mobile, render without 3D effects to prevent scroll issues
-  if (isMobile) {
-    return (
-      <div className={className} ref={cardRef}>
-        {children}
-      </div>
-    );
-  }
-
   return (
     <div className="perspective-1000" ref={cardRef}>
       <motion.div
@@ -73,9 +64,9 @@ export function Card3D({
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         animate={{
-          rotateX,
-          rotateY,
-          scale: enableScale && isHovering ? 1.05 : 1,
+          rotateX: isMobile ? 0 : rotateX,
+          rotateY: isMobile ? 0 : rotateY,
+          scale: !isMobile && enableScale && isHovering ? 1.05 : 1,
         }}
         style={{
           transformStyle: "preserve-3d",

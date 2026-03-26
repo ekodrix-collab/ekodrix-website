@@ -180,15 +180,23 @@ function MobileTechGrid() {
 }
 
 export function TechSphere3D() {
+  const [mounted, setMounted] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     // Check for mobile on client side
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
+
+  if (!mounted) {
+    return (
+      <div className="h-[400px] md:h-[750px] w-full relative bg-[#010101] rounded-[24px] md:rounded-[48px] overflow-hidden border border-white/5 shadow-2xl animate-pulse" />
+    );
+  }
 
   // On mobile, render static grid instead of heavy 3D
   if (isMobile) {
