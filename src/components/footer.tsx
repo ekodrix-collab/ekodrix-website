@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Github, Twitter, Linkedin, Mail } from "lucide-react";
+import { Instagram, Twitter, Linkedin, Mail } from "lucide-react";
 import { EkodrixLogo } from "@/components/logos/ekodrix-logo";
 
 const footerLinks = {
@@ -25,8 +25,8 @@ const footerLinks = {
 };
 
 const socialLinks = [
-  { href: "https://github.com/ekodrix", icon: Github, label: "GitHub" },
-  { href: "https://twitter.com/ekodrix", icon: Twitter, label: "Twitter" },
+  { href: "https://instagram.com/ekodrix", icon: Instagram, label: "Instagram" },
+  // { href: "https://twitter.com/ekodrix", icon: Twitter, label: "Twitter" },
   { href: "https://linkedin.com/company/ekodrix", icon: Linkedin, label: "LinkedIn" },
   { href: "mailto:hello@ekodrix.com", icon: Mail, label: "Email" },
 ];

@@ -50,15 +50,15 @@ export default function ContactPage() {
                     hello@ekodrix.com
                   </a>
                 </div>
-                
+
                 <div>
                   <Phone className="w-6 h-6 text-accent-start mb-2" />
                   <h3 className="font-semibold mb-1">Phone</h3>
-                  <a href="tel:+911234567890" className="text-gray-400 hover:text-white transition-colors">
-                    +91 123 456 7890
+                  <a href="tel:+917736767759" className="text-gray-400 hover:text-white transition-colors">
+                    +91 77367 67759
                   </a>
                 </div>
-                
+
                 <div>
                   <MapPin className="w-6 h-6 text-accent-start mb-2" />
                   <h3 className="font-semibold mb-1">Location</h3>

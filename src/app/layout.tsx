@@ -11,6 +11,7 @@ import { PreloaderIntro } from "@/components/preloader/PreloaderIntro";
 import { FloatingContact } from "@/components/ui/FloatingContact";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { Toaster } from "sonner";
+import Script from "next/script";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 const inter = Inter({
@@ -18,6 +19,8 @@ const inter = Inter({
   variable: "--font-body",
   display: "swap",
 });
+
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -43,6 +46,25 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body className="antialiased selection:bg-ekodrix-green/30 selection:text-ekodrix-green overflow-x-hidden">
+        {/* Google Analytics - Load base script */}
+        {GA_ID && (
+          <>
+            <Script
+              strategy="afterInteractive"
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+            />
+            <Script id="ga-init" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_ID}', {
+                  page_path: window.location.pathname,
+                });
+              `}
+            </Script>
+          </>
+        )}
         <Suspense fallback={null}>
           <GoogleAnalytics />
         </Suspense>
