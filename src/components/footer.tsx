@@ -8,7 +8,7 @@ const footerLinks = {
   product: [
     { href: "/resellerpro", label: "ResellerPro" },
     { href: "/services", label: "Services" },
-    { href: "/work", label: "Case Studies" },
+    { href: "/work", label: "Portfolio" },
     { href: "/pricing", label: "Pricing" },
   ],
   company: [
@@ -38,8 +38,8 @@ export function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-8">
           <div>
             <EkodrixLogo size="sm" showTagline />
-            <p className="text-sm text-gray-400 mb-4 mt-4">
-              Elite engineering for ambitious brands.
+            <p className="text-[0.75rem] leading-relaxed text-gray-400/80 mb-6 mt-4 max-w-[280px]">
+              <strong className="text-gray-300 font-semibold">Ekodrix Software Company</strong> — The best software company in Kondotty, delivering elite engineering for ambitious global brands.
             </p>
             <div className="flex gap-4">
               {socialLinks.map((social) => {

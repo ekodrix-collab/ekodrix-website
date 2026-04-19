@@ -135,12 +135,16 @@ export function CaseStudies() {
                     </div>
 
                     {/* Metrics row */}
-                    <div className="grid grid-cols-3 gap-4 mb-8 pb-8 border-b border-white/5">
+                    <div className="grid grid-cols-3 gap-2 sm:gap-4 mb-8 pb-8 border-b border-white/5">
                       {study.results.map((result, i) => (
-                        <div key={i}>
-                          <p className="text-[0.65rem] text-white/40 uppercase tracking-widest mb-1">{result.metric}</p>
-                          <p className="text-2xl font-display font-bold text-white mb-1">{result.value}</p>
-                          <span className="text-[0.65rem] font-mono text-ekodrix-green bg-ekodrix-green/10 px-1.5 py-0.5 rounded">
+                        <div key={i} className="min-w-0">
+                          <p className="text-[0.6rem] sm:text-[0.65rem] text-white/40 uppercase tracking-[0.15em] mb-1.5 truncate">
+                            {result.metric}
+                          </p>
+                          <p className="text-xl sm:text-2xl font-display font-bold text-white mb-2 whitespace-nowrap tracking-tighter">
+                            {result.value}
+                          </p>
+                          <span className="inline-block text-[0.6rem] sm:text-[0.65rem] font-mono text-ekodrix-green bg-ekodrix-green/10 px-1.5 py-0.5 rounded leading-none">
                             {result.change}
                           </span>
                         </div>

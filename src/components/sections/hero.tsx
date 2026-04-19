@@ -52,7 +52,7 @@ export function Hero() {
               className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/5 bg-white/5 backdrop-blur-md mb-8 shadow-[0_0_15px_rgba(255,255,255,0.02)]"
             >
               <span className="w-2 h-2 rounded-full bg-ekodrix-green shadow-[0_0_8px_rgba(40,179,106,0.8)] animate-pulse" />
-              <span className="text-xs font-medium tracking-wide text-white/70 uppercase font-mono">Premium Business Solutions</span>
+              <span className="text-xs font-medium tracking-wide text-white/70 uppercase font-mono">Ekodrix Software Company — Best in Kondotty</span>
             </motion.div>
 
             {/* Headline with Clean Typography */}
@@ -123,7 +123,9 @@ export function Hero() {
                   {[1, 2, 3, 4, 5].map((s) => <Star key={s} className="w-3.5 h-3.5 fill-current" />)}
                   <span className="text-white/40 text-xs font-mono ml-1 top-0">5.0</span>
                 </div>
-                <span className="text-[0.8rem] text-white/50 tracking-wide">Trusted by <strong className="text-white/80 font-medium">1000+</strong> Business Clients</span>
+                <span className="text-[0.8rem] text-white/50 tracking-wide">
+                  The <strong className="text-white/80 font-medium whitespace-nowrap">Best Software Company in Kondotty</strong>, trusted by 100+ global brands.
+                </span>
               </div>
             </motion.div>
           </div>

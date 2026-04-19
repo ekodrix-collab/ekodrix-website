@@ -61,10 +61,17 @@ export default function ContactPage() {
 
                 <div>
                   <MapPin className="w-6 h-6 text-accent-start mb-2" />
-                  <h3 className="font-semibold mb-1">Location</h3>
-                  <p className="text-gray-400">
-                    Bangalore, India
-                  </p>
+                  <h3 className="font-semibold mb-1">Locations</h3>
+                  <div className="space-y-2 text-sm">
+                    <p className="text-gray-400">
+                      <strong className="text-white">Headquarters</strong><br />
+                      Kondotty, Malappuram, Kerala
+                    </p>
+                    <p className="text-gray-400">
+                      <strong className="text-white">Engineering Center</strong><br />
+                      Bangalore, India
+                    </p>
+                  </div>
                 </div>
               </div>
             </motion.div>

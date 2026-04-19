@@ -40,7 +40,7 @@ const techRibbon = [
 ];
 
 const teamMembers = [
-  { name: "Muhammed Siyad", role: "CEO", image: "/team/image.png", color: "from-teal-500 to-cyan-500" },
+  { name: "Siyad Aslam", role: "CEO", image: "/team/image.png", color: "from-teal-500 to-cyan-500" },
   { name: "Muhammed Rashid", role: "Co-founder", image: "/team/Muhammed_Rashid.png", color: "from-blue-500 to-cyan-500" },
   { name: "Anaswar Mohanan", role: "Co-founder", image: "/team/Anaswar.JPG", color: "from-purple-500 to-pink-500" },
   { name: "Mrithul", role: "Founding Engineer", image: "/team/Mrithul.jpeg", color: "from-orange-500 to-red-500", position: "center 28%", scale: 1.3 },
@@ -71,7 +71,7 @@ export default function AboutPage() {
               <span className="gradient-text">The Future</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto mb-12 leading-relaxed text-balance">
-              We are not just developers; we are craftsmen. EKODRIX is a premium software studio dedicated to shipping production-grade SaaS products that define the next generation of the web.
+              We are not just developers; we are craftsmen. <strong className="text-white font-medium">Ekodrix Software Company</strong> is the best software company in Kondotty, dedicated to shipping production-grade SaaS products that define the next generation of the web.
             </p>
           </ScrollReveal>
         </div>
@@ -112,7 +112,7 @@ export default function AboutPage() {
               <div className="grid grid-cols-2 gap-6 pt-4">
                 <div className="p-4 rounded-xl bg-white/5 border border-white/5 hover:border-ekodrix-green/30 hover:bg-white/[0.08] transition-all duration-300 cursor-default group">
                   <div className="text-3xl font-bold text-ekodrix-green mb-1 group-hover:scale-110 transition-transform duration-300">20+</div>
-                  <div className="text-sm text-gray-400">Years Experience</div>
+                  <div className="text-sm text-gray-400">Years Combined Expertise</div>
                 </div>
                 <div className="p-4 rounded-xl bg-white/5 border border-white/5 hover:border-resellerpro-blue-medium/30 hover:bg-white/[0.08] transition-all duration-300 cursor-default group">
                   <div className="text-3xl font-bold text-resellerpro-blue-medium mb-1 group-hover:scale-110 transition-transform duration-300">100%</div>

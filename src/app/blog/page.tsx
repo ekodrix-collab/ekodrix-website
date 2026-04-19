@@ -93,6 +93,16 @@ const blogPosts = [
     featured: false,
     image: "/images/blog/startup-velocity.png"
   },
+  {
+    slug: "solving-business-tech-challenges-2026",
+    title: "Solving Business Tech Challenges 2026: Custom Software & Digital Transformation",
+    excerpt: "As businesses hit the mid-2020s, complexity is at an all-time high. Explore how bespoke marketing websites and manufacturing flow automation are standardizing industry workflows.",
+    category: "Strategic IT",
+    date: "2026-04-19",
+    readTime: "14 min read",
+    featured: false,
+    image: "/images/blog/business-tech-2026.png"
+  },
 ];
 
 export default function BlogPage() {

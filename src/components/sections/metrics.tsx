@@ -7,7 +7,7 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 const metrics = [
   { value: 50, suffix: "+", label: "Enterprise Projects" },
   { value: 99, suffix: ".9%", label: "Uptime SLA" },
-  { value: 1000, suffix: "+", label: "Clients Scaled" },
+  { value: 1000, suffix: "+", label: "Projects Shipped" },
   { value: 48, suffix: "h", label: "Max MVP Delivery", prefix: "<" },
 ];
 

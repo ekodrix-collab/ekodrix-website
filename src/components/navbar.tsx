@@ -10,7 +10,7 @@ import { EkodrixLogo } from "@/components/logos/ekodrix-logo";
 const navItems = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
-  { href: "/work", label: "Work" },
+  { href: "/work", label: "Portfolio" },
   { href: "/resellerpro", label: "ResellerPro" },
   { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },
