@@ -227,6 +227,55 @@ export function StructuredData() {
     inLanguage: "en-IN",
   };
 
+  const siteNavigationSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@type": "SiteNavigationElement",
+        "position": 1,
+        "name": "Web Development",
+        "description": "Custom enterprise websites, React & Next.js applications, and corporate portals.",
+        "url": "https://ekodrix.com/services/web-development"
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "position": 2,
+        "name": "App Development",
+        "description": "High-performance iOS and Android applications built with Flutter and React Native.",
+        "url": "https://ekodrix.com/services/app-development"
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "position": 3,
+        "name": "Digital Marketing",
+        "description": "Data-driven SEO, Google Ads, and social media marketing to scale your business.",
+        "url": "https://ekodrix.com/services/digital-marketing"
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "position": 4,
+        "name": "Our Portfolio",
+        "description": "Explore successful projects and case studies delivered by the Ekodrix team.",
+        "url": "https://ekodrix.com/work"
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "position": 5,
+        "name": "Contact Us",
+        "description": "Get in touch for a free project consultation and tech strategy session.",
+        "url": "https://ekodrix.com/contact"
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "position": 6,
+        "name": "About Ekodrix",
+        "description": "Learn about Kondotty's leading IT solutions and software engineering firm.",
+        "url": "https://ekodrix.com/about"
+      }
+    ]
+  };
+
   return (
     <>
       <script
@@ -238,6 +287,11 @@ export function StructuredData() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        id="sitelinks-schema"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(siteNavigationSchema) }}
       />
     </>
   );
