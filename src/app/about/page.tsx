@@ -6,8 +6,33 @@ import { TechSphere3D } from "@/components/ui/TechSphere3D";
 import { Code2, Rocket, Heart, Globe, ArrowRight, Zap, Target, Shield, Server, Brain, Cpu } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "About Us - EKODRIX",
-  description: "Learn about EKODRIX - a premium software studio crafting production-grade SaaS products.",
+  title: "About Ekodrix | Best Software Company in Kondotty, Malappuram, Kerala",
+  description:
+    "Ekodrix is Kondotty's leading software company. Founded in 2026 by a team of passionate engineers. Expert in web development, app development, digital marketing & SEO. Learn our story, team & values.",
+  keywords: [
+    "about ekodrix",
+    "ekodrix team",
+    "ekodrix kondotty",
+    "software company kondotty about",
+    "ekodrix founders",
+    "best software company kondotty",
+    "it company malappuram about",
+    "software company malappuram team",
+    "ekodrix about us",
+    "ekodrix ceo",
+    "ekodrix history",
+    "top software company kerala",
+    "professional software developers kondotty",
+    "ekodrix mission vision",
+    "software company founded kerala",
+  ],
+  alternates: { canonical: "https://ekodrix.com/about" },
+  openGraph: {
+    title: "About Ekodrix — Software Company Kondotty, Kerala",
+    description: "Meet the team building Kondotty's leading software company. Our mission, values, and the engineers behind every project.",
+    url: "https://ekodrix.com/about",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
+  },
 };
 
 const techRibbon = [

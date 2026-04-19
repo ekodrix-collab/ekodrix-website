@@ -1,41 +1,239 @@
 export function StructuredData() {
-  const organizationSchema = {
+  const softwareCompanySchema = {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "EKODRIX",
+    "@type": ["SoftwareCompany", "LocalBusiness", "ProfessionalService"],
+    "@id": "https://ekodrix.com/#organization",
+    name: "Ekodrix",
+    legalName: "Ekodrix Software Solutions",
     url: "https://ekodrix.com",
-    logo: "https://ekodrix.com/logo.png",
-    description: "Premium software studio crafting production-grade SaaS products for ambitious startups.",
-    sameAs: [
-      "https://instagram.com/ekodrix",
-      "https://twitter.com/ekodrix",
-      "https://linkedin.com/company/ekodrix",
-    ],
-    contactPoint: {
-      "@type": "ContactPoint",
-      telephone: "+91-77367-67759",
-      contactType: "Customer Service",
-      email: "hello@ekodrix.com",
+    logo: {
+      "@type": "ImageObject",
+      url: "https://ekodrix.com/logo.png",
+      width: 600,
+      height: 600,
     },
+    image: [
+      "https://ekodrix.com/og-image.jpg",
+      "https://ekodrix.com/logo.png",
+    ],
+    description:
+      "Ekodrix is the leading software company in Kondotty, Malappuram, Kerala. We specialize in web development, mobile app development, digital marketing, SEO, custom software solutions, and IT consulting. Trusted by 100+ clients across Kerala and India.",
+    slogan: "Engineering Tomorrow's Software Today",
+    foundingDate: "2026",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Kondotty",
+      addressLocality: "Kondotty",
+      addressRegion: "Kerala",
+      postalCode: "673638",
+      addressCountry: "IN",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: "11.2188",
+      longitude: "75.9965",
+    },
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        telephone: "+91-77367-67759",
+        contactType: "customer service",
+        email: "hello@ekodrix.com",
+        areaServed: ["IN", "US", "GB", "AE", "SA"],
+        availableLanguage: ["English", "Malayalam", "Hindi", "Arabic"],
+      },
+      {
+        "@type": "ContactPoint",
+        telephone: "+91-77367-67759",
+        contactType: "sales",
+        email: "hello@ekodrix.com",
+        areaServed: "IN",
+        availableLanguage: ["English", "Malayalam"],
+      },
+    ],
+    telephone: "+91-77367-67759",
+    email: "hello@ekodrix.com",
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+        ],
+        opens: "09:00",
+        closes: "18:00",
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: "Saturday",
+        opens: "10:00",
+        closes: "16:00",
+      },
+    ],
+    priceRange: "$$",
+    areaServed: [
+      { "@type": "City", name: "Kondotty" },
+      { "@type": "City", name: "Malappuram" },
+      { "@type": "City", name: "Kozhikode" },
+      { "@type": "City", name: "Calicut" },
+      { "@type": "City", name: "Manjeri" },
+      { "@type": "City", name: "Perinthalmanna" },
+      { "@type": "City", name: "Nilambur" },
+      { "@type": "City", name: "Kochi" },
+      { "@type": "State", name: "Kerala" },
+      { "@type": "Country", name: "India" },
+    ],
+    serviceArea: {
+      "@type": "GeoCircle",
+      geoMidpoint: {
+        "@type": "GeoCoordinates",
+        latitude: "11.2188",
+        longitude: "75.9965",
+      },
+      geoRadius: "200000",
+    },
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Software & IT Services",
+      itemListElement: [
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Web Development",
+            description:
+              "Custom website development using React, Next.js, WordPress and more",
+            url: "https://ekodrix.com/services/web-development",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Mobile App Development",
+            description:
+              "Android, iOS, React Native and Flutter app development",
+            url: "https://ekodrix.com/services/app-development",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Digital Marketing",
+            description:
+              "SEO, Google Ads, Social Media Marketing and Content Marketing",
+            url: "https://ekodrix.com/services/digital-marketing",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "SEO Services",
+            description:
+              "Local SEO, technical SEO, on-page and off-page optimization",
+            url: "https://ekodrix.com/services/seo-services",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Custom Software Development",
+            description:
+              "ERP, CRM, SaaS and enterprise software development",
+            url: "https://ekodrix.com/services/software-development",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "E-commerce Development",
+            description:
+              "Shopify, WooCommerce, and custom online store development",
+            url: "https://ekodrix.com/services/ecommerce-development",
+          },
+        },
+      ],
+    },
+    knowsAbout: [
+      "Web Development",
+      "Mobile App Development",
+      "Digital Marketing",
+      "SEO",
+      "Software Development",
+      "E-commerce Solutions",
+      "UI/UX Design",
+      "Cloud Solutions",
+      "React",
+      "Next.js",
+      "Node.js",
+      "Python",
+      "Flutter",
+      "React Native",
+      "WordPress",
+    ],
+    sameAs: [
+      "https://www.facebook.com/ekodrix",
+      "https://www.instagram.com/ekodrix",
+      "https://www.linkedin.com/company/ekodrix",
+      "https://twitter.com/ekodrix",
+      "https://github.com/ekodrix",
+    ],
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.9",
+      reviewCount: "50",
+      bestRating: "5",
+      worstRating: "1",
+    },
+    makesOffer: [
+      {
+        "@type": "Offer",
+        name: "Free Consultation",
+        description:
+          "30-minute free consultation for all new clients. Discuss your project requirements.",
+        price: "0",
+        priceCurrency: "INR",
+        url: "https://ekodrix.com/contact",
+      },
+    ],
   };
 
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "EKODRIX",
+    "@id": "https://ekodrix.com/#website",
+    name: "Ekodrix",
     url: "https://ekodrix.com",
+    description:
+      "Best software company in Kondotty, Kerala — web development, app development, digital marketing & custom software solutions",
+    publisher: {
+      "@id": "https://ekodrix.com/#organization",
+    },
     potentialAction: {
       "@type": "SearchAction",
-      target: "https://ekodrix.com/search?q={search_term_string}",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: "https://ekodrix.com/blog?search={search_term_string}",
+      },
       "query-input": "required name=search_term_string",
     },
+    inLanguage: "en-IN",
   };
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(softwareCompanySchema),
+        }}
       />
       <script
         type="application/ld+json"

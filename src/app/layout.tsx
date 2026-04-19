@@ -25,14 +25,228 @@ const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
+  maximumScale: 5,
+  userScalable: true,
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+  ],
 };
 
 export const metadata: Metadata = {
-  title: "EKODRIX - Engineering Tomorrow's Software Today",
+  metadataBase: new URL("https://ekodrix.com"),
+
+  title: {
+    default:
+      "Ekodrix — Best Software Company in Kondotty | Web Development, App Development & Digital Marketing Kerala",
+    template: "%s | Ekodrix — Top IT Company Kondotty, Kerala",
+  },
+
   description:
-    "Premium software studio crafting production-grade SaaS products for ambitious startups.",
+    "Ekodrix is the #1 software company in Kondotty, Malappuram, Kerala. Expert web development, mobile app development, digital marketing, SEO, custom software & IT solutions. 100+ happy clients. Free consultation. Call +91-77367-67759.",
+
+  keywords: [
+    // Brand
+    "ekodrix",
+    "ekodrix kondotty",
+    "ekodrix software",
+    "ekodrix it solutions",
+    "ekodrix web development",
+    "ekodrix malappuram",
+    // Primary Local — Kondotty
+    "software company kondotty",
+    "it company kondotty",
+    "web development company kondotty",
+    "app development company kondotty",
+    "digital marketing company kondotty",
+    "best software company kondotty",
+    "top it company kondotty",
+    "software development kondotty",
+    "mobile app development kondotty",
+    "website design company kondotty",
+    "seo company kondotty",
+    "digital marketing agency kondotty",
+    "software solutions kondotty",
+    "it solutions kondotty",
+    "business solutions kondotty",
+    "software company near me kondotty",
+    "it company near kondotty",
+    "web developers near kondotty",
+    "app developers near kondotty",
+    // Malappuram
+    "software company malappuram",
+    "it company malappuram",
+    "web development malappuram",
+    "app development malappuram",
+    "best software company malappuram",
+    "top it company malappuram",
+    "digital marketing malappuram",
+    "seo services malappuram",
+    // Kozhikode/Calicut
+    "software company kozhikode",
+    "it company calicut",
+    "web development kozhikode",
+    "app development calicut",
+    // Kerala State
+    "software company kerala",
+    "it company kerala",
+    "best software company kerala",
+    "top it company kerala",
+    "web development company kerala",
+    "app development company kerala",
+    "digital marketing company kerala",
+    // Services
+    "web development company",
+    "website development kondotty",
+    "custom web development kondotty",
+    "react development kondotty",
+    "nextjs development kondotty",
+    "nodejs development kondotty",
+    "wordpress development kondotty",
+    "ecommerce website kondotty",
+    "responsive web design kondotty",
+    "mobile app development",
+    "android app development kondotty",
+    "ios app development kondotty",
+    "flutter app development kondotty",
+    "react native development kondotty",
+    "cross platform app development",
+    "digital marketing services kondotty",
+    "seo services kondotty",
+    "google ads management kondotty",
+    "social media marketing kondotty",
+    "content marketing kondotty",
+    "ecommerce development kondotty",
+    "shopify development kondotty",
+    "woocommerce development kondotty",
+    "online store development kondotty",
+    "software development company kondotty",
+    "custom software development kondotty",
+    "crm software development kondotty",
+    "erp software development kondotty",
+    "saas development kondotty",
+    "graphic design company kondotty",
+    "logo design kondotty",
+    "ui ux design kondotty",
+    "branding agency kondotty",
+    "it consulting kondotty",
+    "it services kondotty",
+    "cloud solutions kondotty",
+    "web hosting kondotty",
+    // Nearby Towns
+    "software company near malappuram",
+    "it company near kozhikode",
+    "web development angadipuram",
+    "software company perinthalmanna",
+    "it company manjeri",
+    "software company nilambur",
+    "web development tirur",
+    "software company ponnani",
+    "it company kottakkal",
+    // Buying Intent
+    "hire software developers kondotty",
+    "website development cost kerala",
+    "app development price kondotty",
+    "affordable web development kerala",
+    "professional app developers kerala",
+    "best web development company",
+    "top digital marketing company india",
+    // Industry
+    "software company in india",
+    "it company in south india",
+    "technology company kerala",
+    "startup software development",
+    "small business website kondotty",
+    "ecommerce solutions kerala",
+  ],
+
+  authors: [{ name: "Ekodrix", url: "https://ekodrix.com" }],
+  creator: "Ekodrix Software Solutions",
+  publisher: "Ekodrix",
+
+  formatDetection: {
+    email: true,
+    address: true,
+    telephone: true,
+  },
+
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "https://ekodrix.com",
+    siteName: "Ekodrix",
+    title:
+      "Ekodrix — Best Software Company in Kondotty, Kerala | Web Development, App Development",
+    description:
+      "Ekodrix is the #1 IT company in Kondotty, Kerala. Expert web development, app development, digital marketing & SEO. 100+ happy clients. Free consultation!",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Ekodrix — Software Company Kondotty, Kerala",
+        type: "image/jpeg",
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    site: "@ekodrix",
+    creator: "@ekodrix",
+    title: "Ekodrix — Best Software Company in Kondotty, Kerala",
+    description:
+      "Top IT company in Kondotty, Kerala. Web Development | App Development | Digital Marketing | SEO Services. Free Consultation!",
+    images: ["/og-image.jpg"],
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+    googleBot: {
+      index: true,
+      follow: true,
+      noimageindex: false,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+
+  alternates: {
+    canonical: "https://ekodrix.com",
+  },
+
+  verification: {
+    google: "34pmmJuoBHFNIS5y3uoIU3A-BwT82KgNASH9211j0No",
+    other: {
+      "msvalidate.01": process.env.NEXT_PUBLIC_BING_VERIFICATION || "",
+    },
+  },
+
+  category: "technology",
+
+  other: {
+    "mobile-web-app-capable": "yes",
+    "apple-mobile-web-app-capable": "yes",
+    "apple-mobile-web-app-status-bar-style": "black-translucent",
+    "apple-mobile-web-app-title": "Ekodrix",
+    "application-name": "Ekodrix",
+    "msapplication-TileColor": "#10b981",
+    "theme-color": "#0a0a0a",
+    "geo.region": "IN-KL",
+    "geo.placename": "Kondotty, Malappuram, Kerala",
+    "geo.position": "11.2188;75.9965",
+    ICBM: "11.2188, 75.9965",
+    "DC.title":
+      "Ekodrix - Best Software Company in Kondotty, Malappuram, Kerala",
+    "DC.description":
+      "Leading software and IT company in Kondotty offering web development, app development, digital marketing and SEO services",
+    "DC.creator": "Ekodrix",
+    "DC.language": "en",
+    "DC.coverage": "Kondotty, Malappuram, Kerala, India",
+  },
 };
 
 export default function RootLayout({
@@ -41,12 +255,25 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} scroll-smooth`}>
+    <html lang="en-IN" className={`${inter.variable} scroll-smooth`}>
       <head>
+        {/* Favicons */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="apple-touch-icon" href="/apple-icon.jpg" />
+
+        {/* Preconnect to speed up third-party resources */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link rel="preconnect" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
       </head>
       <body className="antialiased selection:bg-ekodrix-green/30 selection:text-ekodrix-green overflow-x-hidden">
-        {/* Google Analytics - Load base script */}
+        {/* Google Analytics — Load base script */}
         {GA_ID && (
           <>
             <Script

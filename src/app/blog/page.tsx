@@ -4,8 +4,32 @@ import { Calendar, Clock, ArrowRight, Sparkles, ChevronRight } from "lucide-reac
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export const metadata: Metadata = {
-  title: "Blog - EKODRIX",
-  description: "Insights on SaaS development, AI integration, and startup technology.",
+  title: "Blog | Web Development, App Dev & Digital Marketing Insights — Ekodrix",
+  description:
+    "Ekodrix's tech blog — expert insights on web development, mobile app development, digital marketing, SEO, SaaS architecture, and software development from Kondotty, Kerala.",
+  keywords: [
+    "ekodrix blog",
+    "software development blog kerala",
+    "web development blog kondotty",
+    "app development insights",
+    "digital marketing blog kerala",
+    "seo tips kerala",
+    "software company blog kondotty",
+    "tech blog malappuram",
+    "saas development blog",
+    "programming blog kerala",
+    "startup tech blog india",
+    "software engineering blog",
+    "nextjs blog tutorial",
+    "react development tips",
+  ],
+  alternates: { canonical: "https://ekodrix.com/blog" },
+  openGraph: {
+    title: "Ekodrix Blog — Tech Insights from Kondotty's Leading Software Company",
+    description: "Expert insights on web development, app development, digital marketing & SEO from the Ekodrix engineering team.",
+    url: "https://ekodrix.com/blog",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
+  },
 };
 
 const blogPosts = [

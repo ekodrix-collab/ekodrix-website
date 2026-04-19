@@ -2,6 +2,8 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Calendar, Clock } from "lucide-react";
+import { ArticleSchema } from "@/components/schemas/ArticleSchema";
+import { BreadcrumbSchema } from "@/components/schemas/BreadcrumbSchema";
 
 const blogPosts: Record<string, {
   title: string;
@@ -189,8 +191,33 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${post.title} - EKODRIX Blog`,
-    description: post.content.substring(0, 160),
+    title: `${post.title} | Ekodrix Blog — Software Company Kondotty`,
+    description: `${post.content.replace(/[#\n]/g, ' ').substring(0, 155).trim()}...`,
+    keywords: [
+      post.category.toLowerCase(),
+      "ekodrix blog",
+      "software development blog kerala",
+      "web development tips kondotty",
+      "digital marketing insights kerala",
+      "software company blog malappuram",
+      "tech blog kondotty",
+    ],
+    alternates: { canonical: `https://ekodrix.com/blog/${params.slug}` },
+    openGraph: {
+      title: `${post.title} | Ekodrix Blog`,
+      description: `${post.content.replace(/[#\n]/g, ' ').substring(0, 155).trim()}...`,
+      url: `https://ekodrix.com/blog/${params.slug}`,
+      type: "article",
+      publishedTime: post.date,
+      authors: ["Ekodrix Team"],
+      images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${post.title} | Ekodrix Blog`,
+      description: `${post.content.replace(/[#\n]/g, ' ').substring(0, 155).trim()}...`,
+    },
+    robots: { index: true, follow: true },
   };
 }
 
@@ -202,6 +229,21 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
   }
 
   return (
+    <>
+      <ArticleSchema
+        title={post.title}
+        description={post.content.replace(/[#\n]/g, ' ').substring(0, 155).trim()}
+        url={`https://ekodrix.com/blog/${params.slug}`}
+        datePublished={post.date}
+        category={post.category}
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://ekodrix.com" },
+          { name: "Blog", url: "https://ekodrix.com/blog" },
+          { name: post.title, url: `https://ekodrix.com/blog/${params.slug}` },
+        ]}
+      />
     <main className="min-h-screen pt-20">
       <article className="py-24 bg-void">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -240,5 +282,6 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         </div>
       </article>
     </main>
+    </>
   );
 }
