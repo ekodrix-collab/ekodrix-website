@@ -28,7 +28,7 @@ export function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-[#111111] pt-32 pb-16 lg:pt-40 lg:pb-24">
+    <section className="relative overflow-hidden bg-[#111111] pt-28 lg:pt-32 pb-8 lg:pb-16">
       
       {/* Refined Ambient Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
@@ -39,10 +39,10 @@ export function Hero() {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="grid lg:grid-cols-[1fr_1.1fr] gap-12 lg:gap-16 items-center">
+        <div className="grid lg:grid-cols-[1fr_1.1fr] gap-12 lg:gap-16 items-start">
           
           {/* Left Column: UI/UX Mastered Content */}
-          <div className="max-w-xl xl:max-w-2xl relative z-20">
+          <div className="max-w-xl xl:max-w-2xl relative z-20 pt-4 lg:pt-8">
             
             {/* Elegant Kicker Badge */}
             <motion.div

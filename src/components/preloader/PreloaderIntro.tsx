@@ -414,7 +414,7 @@ export function PreloaderIntro({ children }: { children: React.ReactNode }) {
                 transition={{ delay: 0.85, duration: 0.7 }}
                 className="text-[10px] tracking-[0.35em] text-white uppercase -mt-3"
               >
-                Engineering Tomorrow
+                Elite Engineering
               </motion.p>
 
               {/* Progress block */}

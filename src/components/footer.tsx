@@ -39,7 +39,7 @@ export function Footer() {
           <div>
             <EkodrixLogo size="sm" showTagline />
             <p className="text-sm text-gray-400 mb-4 mt-4">
-              Engineering Tomorrow's Software Today
+              Elite engineering for ambitious brands.
             </p>
             <div className="flex gap-4">
               {socialLinks.map((social) => {

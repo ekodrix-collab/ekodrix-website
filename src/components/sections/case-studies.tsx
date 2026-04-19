@@ -1,28 +1,26 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
-import { ArrowRight, TrendingUp, Zap, Shield, ExternalLink } from "lucide-react";
+import { ArrowRight, ExternalLink } from "lucide-react";
 import Link from "next/link";
-import { Card3D } from "@/components/ui/Card3D";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 const caseStudies = [
   {
     id: "resellerpro",
     client: "ResellerPro",
-    industry: "Online Sellers CRM",
+    industry: "SaaS CRM",
     demoUrl: "https://resellerpro.in",
-    challenge: "Scaling an automated CRM for 2,000+ small resellers selling via Instagram, WhatsApp, and social channels.",
-    solution: "A custom-built SaaS ecosystem with deep WhatsApp & Instagram automation and real-time profitability tracking for small online sellers.",
+    challenge: "Providing an automated online selling platform for growing retail businesses drowning in manual WhatsApp messages and lost orders.",
+    solution: "A high-velocity Next.js architecture with deeply integrated WhatsApp business APIs for zero-latency messaging and store creation.",
     results: [
-      { metric: "Monthly Volume", value: "₹25L+", change: "Growing" },
-      { metric: "Active Sellers", value: "150+", change: "+40%" },
-      { metric: "Uptime", value: "99.9%", change: "Stable" },
+      { metric: "Active Users", value: "50+", change: "Growing" },
+      { metric: "Order Mgt.", value: "Automated", change: "Tested" },
+      { metric: "Server Uptime", value: "99.9%", change: "Stable" },
     ],
-    tech: ["Next.js", "Supabase", "WhatsApp API", "PostgreSQL"],
+    tech: ["Next.js", "Supabase", "WhatsApp API"],
     testimonial: {
-      text: "The most efficient CRM we've ever used. It transformed our manual operations into a scalable business.",
+      text: "The infrastructure Ekodrix built completely removed our operational bottleneck.",
       author: "Rajesh Kumar",
       position: "Founder, ResellerPro User",
     },
@@ -30,206 +28,191 @@ const caseStudies = [
   {
     id: "vidya-academy",
     client: "Vidya Academy",
-    industry: "EdTech",
+    industry: "EdTech Platform",
     demoUrl: "https://vidyaacademy.ekodrix.com",
-    challenge: "Building a modern platform for expert-led professional training at scale.",
-    solution: "A sleek, conversion-optimized web platform with course management, batch scheduling, and enrollment tracking.",
+    challenge: "Traditional learning management systems were too clunky and slow for their modern student base.",
+    solution: "A bespoke NEXT.js web application built for instant load speeds, seamless video streaming, and mobile-first UX.",
     results: [
-      { metric: "Enrollments", value: "200+", change: "Growing" },
-      { metric: "Course Completion", value: "85%", change: "Strong" },
-      { metric: "Avg. Rating", value: "4.7/5", change: "50+ Reviews" },
+      { metric: "Page Spd Score", value: "99/100", change: "Blazing" },
+      { metric: "Course Starts", value: "500+", change: "+120%" },
+      { metric: "Completion", value: "85%", change: "Industry Avg" },
     ],
-    tech: ["Next.js", "Tailwind CSS", "Vercel", "Supabase"],
+    tech: ["React", "Tailwind", "Vercel"],
     testimonial: {
-      text: "EKODRIX transformed our vision into a platform that truly inspires students. The design and performance exceeded all expectations.",
+      text: "Our student engagement skyrocketed purely because the new system is so beautiful to use.",
       author: "Vidya Academy Team",
-      position: "Vidya Academy",
+      position: "Administration",
     },
   },
   {
-    id: "habitek-interiors",
-    client: "Habitek Interiors",
-    industry: "Interior Design & Realty",
-    demoUrl: "https://habitek.ekodrix.com",
-    challenge: "Creating a premium digital presence that reflects the elegance of bespoke interior design.",
-    solution: "A visually stunning portfolio website with immersive project galleries and seamless enquiry management.",
+    id: "kl59-mens-fashion",
+    client: "KL-59 Men's Fashion",
+    industry: "E-Commerce Retail",
+    demoUrl: "https://www.kl-59mensfashion.in/",
+    imageUrl: "/images/case-studies/kl59_mockup.png",
+    challenge: "Streamlining direct-to-customer fashion sales across WhatsApp without losing the premium storefront experience.",
+    solution: "A high-conversion digital catalog integrated directly with WhatsApp order triggers, allowing seamless browsing and instant purchasing.",
     results: [
-      { metric: "Client Reach", value: "Kerala", change: "Expanding" },
-      { metric: "Enquiries", value: "50+/mo", change: "+80%" },
-      { metric: "Bounce Rate", value: "-35%", change: "Improved" },
+      { metric: "Order Flow", value: "WhatsApp", change: "Direct" },
+      { metric: "Store Speed", value: "Sub-Second", change: "Blazing" },
+      { metric: "UI/UX", value: "Mobile-First", change: "Optimized" },
     ],
-    tech: ["Next.js", "Framer Motion", "Tailwind CSS", "Vercel"],
+    tech: ["Next.js", "WhatsApp API", "Tailwind"],
     testimonial: {
-      text: "Our online presence finally matches the quality of our designs. EKODRIX captured our brand essence perfectly.",
-      author: "Habitek Team",
-      position: "Habitek Interiors & Realty",
-    },
-  },
-  {
-    id: "genz-store",
-    client: "Gen-Z",
-    industry: "E-commerce",
-    demoUrl: "https://genzstore.ekodrix.com",
-    challenge: "Launching a bold men's streetwear brand with a cutting-edge online storefront.",
-    solution: "A high-performance e-commerce platform with dynamic product showcases, cart management, and a trend-forward UI.",
-    results: [
-      { metric: "Products Listed", value: "120+", change: "Curated" },
-      { metric: "Monthly Visitors", value: "2,500+", change: "Organic" },
-      { metric: "Conversion Rate", value: "3.2%", change: "Above Avg" },
-    ],
-    tech: ["Next.js", "Tailwind CSS", "Vercel", "Stripe"],
-    testimonial: {
-      text: "Gen-Z isn't just a store — it's a statement. EKODRIX nailed the vibe and the tech behind it.",
-      author: "Gen-Z Team",
-      position: "Gen-Z Streetwear",
+      text: "Having a premium digital catalog completely changed how we handle customer orders. It's fast, elegant, and directly tied to our WhatsApp.",
+      author: "KL-59 Team",
+      position: "Management",
     },
   },
 ];
 
 export function CaseStudies() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
   return (
-    <section ref={ref} id="work" className="py-12 sm:py-16 md:py-24 bg-ekodrix-charcoal-dark">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-        >
-          <h2 className="text-4xl sm:text-5xl font-display font-bold mb-4 text-white">
-            Our Work
-          </h2>
-          <p className="text-xl text-white/60 max-w-2xl mx-auto">
-            Grounded solutions for ambitious founders.
-          </p>
-        </motion.div>
+    <section id="work" className="relative py-24 lg:py-32 bg-[#0A0A0A] overflow-hidden">
+      
+      {/* Ambient background glows */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/2 left-1/4 w-[600px] h-[600px] bg-ekodrix-green/5 rounded-full blur-[150px] -translate-y-1/2 opacity-40" />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        {/* Header */}
+        <div className="text-center mb-16 lg:mb-24 flex flex-col items-center">
+          <ScrollReveal type="fade-up" threshold={0.1}>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/5 bg-white/5 backdrop-blur-md mb-6 shadow-[0_0_15px_rgba(255,255,255,0.02)]">
+              <span className="w-2 h-2 rounded-full bg-ekodrix-green shadow-[0_0_8px_rgba(40,179,106,0.8)] animate-pulse" />
+              <span className="text-xs font-medium tracking-wide text-white/70 uppercase font-mono">Portfolio</span>
+            </div>
+          </ScrollReveal>
+          
+          <ScrollReveal type="fade-up" delay={0.1} threshold={0.1}>
+            <h2 className="text-[2.5rem] md:text-5xl lg:text-[3.5rem] font-display font-bold leading-[1.15] tracking-tight text-[#FAFAFA] mb-6 max-w-3xl mx-auto">
+              Our proven engineering{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-ekodrix-green to-ekodrix-green-light">
+                track record
+              </span>
+            </h2>
+          </ScrollReveal>
+        </div>
 
         <div className="space-y-12">
           {caseStudies.map((study, index) => (
-            <motion.div
+            <ScrollReveal
               key={study.id}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: index * 0.2, duration: 0.6 }}
-              className="bg-transparent border-none p-0 shadow-none hover:shadow-none"
+              type="fade-up"
+              delay={index * 0.15}
+              threshold={0.1}
             >
-              <Card3D intensity={0.4} className="h-full">
-                <div className="bg-[#111] rounded-2xl p-8 md:p-12 border border-white/10 hover:border-ekodrix-green shadow-sm hover:shadow-lg transition-all h-full">
-                  <div className="grid lg:grid-cols-2 gap-8">
-                    <div>
-                      <div className="flex items-center gap-3 mb-4">
-                        <span className="px-3 py-1 rounded-full bg-ekodrix-green/15 text-ekodrix-green text-sm font-semibold">
-                          {study.industry}
-                        </span>
-                        <span className="text-white/70">{study.client}</span>
+              <div className="bg-[#111111]/80 backdrop-blur-sm rounded-[2.5rem] p-8 lg:p-12 border border-white/5 hover:border-ekodrix-green/30 shadow-2xl transition-all duration-500 overflow-hidden relative group">
+                
+                {/* Subtle card glow overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-ekodrix-green/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+
+                <div className="grid lg:grid-cols-2 gap-12 relative z-10 items-center">
+                  
+                  {/* Left content block */}
+                  <div className="flex flex-col h-full">
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="inline-flex items-center px-2.5 py-1 rounded-md bg-white/[0.03] border border-white/10 text-[0.65rem] font-bold tracking-widest text-ekodrix-green uppercase">
+                        {study.industry}
                       </div>
+                    </div>
 
-                      <h3 className="text-3xl font-bold mb-4 text-white">{study.client}</h3>
+                    <h3 className="text-4xl md:text-[2.5rem] leading-[1.1] font-display font-bold mb-6 text-[#FAFAFA] tracking-tight">
+                      {study.client}
+                    </h3>
 
-                      <div className="space-y-4 mb-6">
-                        <div>
-                          <p className="text-white/60 text-sm mb-1">Challenge</p>
-                          <p className="text-white/85">{study.challenge}</p>
-                        </div>
-                        <div>
-                          <p className="text-white/60 text-sm mb-1">Solution</p>
-                          <p className="text-white/85">{study.solution}</p>
-                        </div>
+                    <div className="space-y-5 mb-8">
+                      <div>
+                        <p className="text-[0.65rem] font-bold text-white/30 uppercase tracking-[0.2em] mb-2">Challenge</p>
+                        <p className="text-white/70 font-light leading-relaxed">{study.challenge}</p>
                       </div>
+                      <div>
+                        <p className="text-[0.65rem] font-bold text-white/30 uppercase tracking-[0.2em] mb-2">Engineering Solution</p>
+                        <p className="text-white/80 leading-relaxed">{study.solution}</p>
+                      </div>
+                    </div>
 
-                      <div className="flex flex-wrap gap-2 mb-6">
+                    {/* Metrics row */}
+                    <div className="grid grid-cols-3 gap-4 mb-8 pb-8 border-b border-white/5">
+                      {study.results.map((result, i) => (
+                        <div key={i}>
+                          <p className="text-[0.65rem] text-white/40 uppercase tracking-widest mb-1">{result.metric}</p>
+                          <p className="text-2xl font-display font-bold text-white mb-1">{result.value}</p>
+                          <span className="text-[0.65rem] font-mono text-ekodrix-green bg-ekodrix-green/10 px-1.5 py-0.5 rounded">
+                            {result.change}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="mt-auto flex flex-wrap items-center justify-between gap-4">
+                      <div className="flex gap-2">
                         {study.tech.map((tech) => (
                           <span
                             key={tech}
-                            className="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-sm text-white/80"
+                            className="px-2.5 py-1 text-[0.7rem] rounded-md bg-white/[0.03] border border-white/5 text-white/50 font-mono tracking-wide"
                           >
                             {tech}
                           </span>
                         ))}
                       </div>
-
-                      <Link
-                        href={`/work/${study.id}`}
-                        className="inline-flex items-center gap-2 text-ekodrix-green font-semibold hover:gap-3 transition-all"
-                      >
-                        Read Full Case Study
-                        <ArrowRight className="w-4 h-4" />
-                      </Link>
-
-                      {/* Live Demo Embed */}
-                      <div className="mt-6">
-                        <div className="flex items-center justify-between mb-3">
-                          <p className="text-white/60 text-sm font-medium">Live Preview</p>
-                          <a
-                            href={study.demoUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-ekodrix-green/10 border border-ekodrix-green/20 text-ekodrix-green text-xs font-semibold hover:bg-ekodrix-green/20 hover:border-ekodrix-green/40 transition-all"
-                          >
-                            Full View
-                            <ExternalLink className="w-3 h-3" />
-                          </a>
-                        </div>
-                        <div className="relative rounded-xl overflow-hidden border border-white/10 bg-white">
-                          <iframe
-                            src={study.demoUrl}
-                            title={`${study.client} Demo`}
-                            className="w-full h-[280px] pointer-events-auto"
-                            loading="lazy"
-                            sandbox="allow-scripts allow-same-origin allow-popups"
-                          />
-                        </div>
-                      </div>
-                    </div>
-
-                    <div>
-                      <h4 className="text-xl font-bold mb-6 text-white">Results</h4>
-                      <div className="space-y-4 mb-8">
-                        {study.results.map((result, i) => (
-                          <div key={i} className="bg-white/5 rounded-lg p-4 border border-white/10">
-                            <div className="flex items-center justify-between mb-2">
-                              <span className="text-sm text-white/70">{result.metric}</span>
-                              <span className="text-xs px-2 py-1 rounded-full bg-ekodrix-green/20 text-ekodrix-green">
-                                {result.change}
-                              </span>
-                            </div>
-                            <p className="text-2xl font-bold ekodrix-gradient-text">{result.value}</p>
-                          </div>
-                        ))}
-                      </div>
-
-                      <div className="bg-white/5 rounded-lg p-6 border border-white/10">
-                        <p className="text-white italic mb-4">"{study.testimonial.text}"</p>
-                        <div>
-                          <p className="font-semibold text-white">{study.testimonial.author}</p>
-                          <p className="text-sm text-white/70">{study.testimonial.position}</p>
-                        </div>
-                      </div>
                     </div>
                   </div>
+
+                  {/* Right side Iframe block */}
+                  <div className="relative">
+                    <div className="flex items-center justify-between mb-4 px-2">
+                       <p className="text-white/50 text-xs font-mono tracking-wide">Live Preview</p>
+                       <a
+                         href={study.demoUrl}
+                         target="_blank"
+                         rel="noopener noreferrer"
+                         className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/70 text-xs font-medium hover:bg-ekodrix-green hover:text-[#111] hover:border-ekodrix-green transition-all"
+                       >
+                         Open Application
+                         <ExternalLink className="w-3 h-3" />
+                       </a>
+                    </div>
+                    {study.imageUrl ? (
+                      <div className="relative w-full min-h-[300px] sm:min-h-[350px] lg:min-h-[400px] rounded-2xl overflow-hidden border-[4px] border-[#1a1a1a] bg-[#0A0A0A] shadow-[0_0_40px_rgba(0,0,0,0.5)] transform-gpu group-hover:scale-[1.01] transition-transform duration-500 cursor-pointer">
+                        <img 
+                          src={study.imageUrl} 
+                          alt={`${study.client} Preview`} 
+                          className="absolute inset-0 w-full h-full object-cover transform-gpu group-hover:scale-105 transition-transform duration-700" 
+                        />
+                        <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500" />
+                      </div>
+                    ) : (
+                      <div className="relative w-full min-h-[300px] sm:min-h-[350px] lg:min-h-[400px] rounded-2xl overflow-hidden border-[4px] border-[#1a1a1a] bg-[#0A0A0A] shadow-[0_0_40px_rgba(0,0,0,0.5)] transform-gpu group-hover:scale-[1.01] transition-transform duration-500">
+                        <iframe
+                          src={study.demoUrl}
+                          title={`${study.client} Demo`}
+                          className="absolute inset-0 w-full h-full pointer-events-auto"
+                          loading="lazy"
+                          sandbox="allow-scripts allow-same-origin allow-popups"
+                        />
+                      </div>
+                    )}
+                  </div>
+
                 </div>
-              </Card3D>
-            </motion.div>
+              </div>
+            </ScrollReveal>
           ))}
         </div>
 
-        <motion.div
-          className="text-center mt-12"
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.8 }}
-        >
+        <ScrollReveal type="fade-up" delay={0.4} threshold={0.1} className="mt-16 flex justify-center">
           <Link
             href="/work"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-white/5 border border-white/10 text-white font-semibold hover:border-ekodrix-green hover:shadow-lg transition-all"
+            className="group inline-flex items-center gap-2.5 px-8 py-4 rounded-full border border-white/10 bg-white/[0.02] text-white/90 font-medium text-[0.95rem] hover:bg-white/5 hover:border-white/20 hover:text-white backdrop-blur-sm transition-all duration-300"
           >
-            View All Case Studies
-            <ArrowRight className="w-5 h-5" />
+            View Entire Portfolio
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
-        </motion.div>
+        </ScrollReveal>
+
       </div>
     </section>
   );
