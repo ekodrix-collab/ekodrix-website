@@ -12,6 +12,8 @@ const nextConfig = {
       { protocol: 'https', hostname: 'res.cloudinary.com' },
       { protocol: 'https', hostname: 'ekodrix.com' },
       { protocol: 'https', hostname: 'picsum.photos' },
+      { protocol: 'https', hostname: 'i.pravatar.cc' },
+      { protocol: 'https', hostname: 'ui-avatars.com' },
     ],
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 31536000,
