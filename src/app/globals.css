@@ -64,13 +64,23 @@ body {
   }
 
   @keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
   }
 
   @keyframes reverse-spin {
-    from { transform: rotate(360deg); }
-    to { transform: rotate(0deg); }
+    from {
+      transform: rotate(360deg);
+    }
+
+    to {
+      transform: rotate(0deg);
+    }
   }
 
   .glass-card {
@@ -567,8 +577,8 @@ body {
     0 4px 20px rgba(0, 0, 0, 0.25),
     0 1px 3px rgba(0, 0, 0, 0.15);
   transition: box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-              border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-              transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   will-change: transform, box-shadow;
 }
@@ -688,12 +698,14 @@ body {
   height: 40px;
   background: linear-gradient(to top, rgba(13, 13, 13, 0.9), transparent);
   pointer-events: none;
-  opacity: 1; /* Show by default to indicate more content */
+  opacity: 1;
+  /* Show by default to indicate more content */
   transition: opacity 0.4s ease;
 }
 
 .portfolio-browser-card:hover .portfolio-preview-fade {
-  opacity: 0; /* Fade out on hover so the bottom is fully visible */
+  opacity: 0;
+  /* Fade out on hover so the bottom is fully visible */
 }
 
 /* --- Project Info --- */
