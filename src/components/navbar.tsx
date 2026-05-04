@@ -103,9 +103,9 @@ export function Navbar() {
             animate={{ opacity: 1, height: "auto", y: 0 }}
             exit={{ opacity: 0, height: 0, y: -20 }}
             transition={{ duration: 0.4, ease: "circOut" }}
-            className="md:hidden bg-ekodrix-charcoal-dark border-t border-white/5 shadow-2xl overflow-hidden"
+            className="md:hidden bg-ekodrix-charcoal-dark/95 backdrop-blur-2xl border-t border-white/5 shadow-2xl overflow-hidden"
           >
-            <div className="px-4 py-6 space-y-4">
+            <div className="px-6 py-8 space-y-4">
               {navItems.map((item) => (
                 <Link
                   key={item.href}

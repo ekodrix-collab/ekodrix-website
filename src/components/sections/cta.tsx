@@ -36,7 +36,7 @@ export function CTA() {
             </ScrollReveal>
 
             <ScrollReveal type="fade-up" delay={0.1} threshold={0.1}>
-              <h2 className="text-[2.5rem] md:text-5xl lg:text-[4rem] font-display font-bold leading-[1.1] tracking-tight text-[#FAFAFA] mb-6 max-w-3xl mx-auto">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[4rem] font-display font-bold leading-[1.1] tracking-tight text-[#FAFAFA] mb-6 max-w-3xl mx-auto">
                 Ready to build something{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-ekodrix-green to-emerald-400">
                   amazing?

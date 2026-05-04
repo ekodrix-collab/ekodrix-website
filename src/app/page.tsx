@@ -4,7 +4,7 @@ import { ResellerPro } from "@/components/sections/resellerpro";
 import { Metrics } from "@/components/sections/metrics";
 import { Process } from "@/components/sections/process";
 import { Testimonials } from "@/components/sections/testimonials";
-import { CaseStudies } from "@/components/sections/case-studies";
+import { Portfolio } from "@/components/sections/portfolio";
 import { CTA } from "@/components/sections/cta";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
@@ -24,9 +24,7 @@ export default function Home() {
       <ScrollReveal type="fade-up" threshold={0.1}>
         <Process />
       </ScrollReveal>
-      <ScrollReveal type="fade-up" threshold={0.1}>
-        <CaseStudies />
-      </ScrollReveal>
+      <Portfolio />
       <ScrollReveal type="fade-up" threshold={0.1}>
         <Testimonials />
       </ScrollReveal>

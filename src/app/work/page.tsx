@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { CaseStudies } from "@/components/sections/case-studies";
+import { Portfolio } from "@/components/sections/portfolio";
 
 export const metadata: Metadata = {
   title: "Portfolio & Case Studies | Software Projects — Ekodrix, Kondotty",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
 export default function WorkPage() {
   return (
     <main className="min-h-screen pt-20">
-      <CaseStudies />
+      <Portfolio />
     </main>
   );
 }
