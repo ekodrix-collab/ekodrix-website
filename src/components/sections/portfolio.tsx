@@ -70,9 +70,11 @@ const portfolioItems = [
 function PortfolioCard({
   item,
   index,
+  className = "",
 }: {
   item: (typeof portfolioItems)[0];
   index: number;
+  className?: string;
 }) {
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -87,6 +89,7 @@ function PortfolioCard({
         delay: index * 0.08,
         ease: [0.22, 1, 0.36, 1],
       }}
+      className={className}
     >
       <a 
         href={item.url.startsWith('http') ? item.url : `https://${item.url}`}
@@ -195,9 +198,14 @@ export function Portfolio() {
         </motion.div>
 
         {/* Portfolio grid */}
-        <div className="portfolio-grid">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16 mt-16">
           {portfolioItems.map((item, index) => (
-            <PortfolioCard key={item.id} item={item} index={index} />
+            <PortfolioCard 
+              key={item.title} 
+              item={item} 
+              index={index} 
+              className={index % 2 !== 0 ? "md:mt-24" : ""}
+            />
           ))}
         </div>
 

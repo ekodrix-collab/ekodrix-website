@@ -12,6 +12,7 @@ import {
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { InfiniteMarquee } from "@/components/ui/InfiniteMarquee";
 
 const services = [
   {
@@ -188,8 +189,28 @@ export function Services() {
               </ScrollReveal>
             );
           })}
+        <div className="mt-24 border-t border-white/5 pt-12 overflow-hidden">
+          <p className="text-center text-[0.65rem] font-bold text-white/30 uppercase tracking-[0.3em] mb-8">
+            Expertise across the stack
+          </p>
+          <InfiniteMarquee baseVelocity={-2}>
+            <span className="text-4xl md:text-6xl font-display font-black mx-4 text-white/10 hover:text-ekodrix-green/50 transition-colors cursor-default">NEXT.JS</span>
+            <span className="text-4xl md:text-6xl font-display font-black mx-4 text-white/10 hover:text-ekodrix-green/50 transition-colors cursor-default">REACT NATIVE</span>
+            <span className="text-4xl md:text-6xl font-display font-black mx-4 text-white/10 hover:text-ekodrix-green/50 transition-colors cursor-default">TYPESCRIPT</span>
+            <span className="text-4xl md:text-6xl font-display font-black mx-4 text-white/10 hover:text-ekodrix-green/50 transition-colors cursor-default">NODE.JS</span>
+            <span className="text-4xl md:text-6xl font-display font-black mx-4 text-white/10 hover:text-ekodrix-green/50 transition-colors cursor-default">PYTHON</span>
+            <span className="text-4xl md:text-6xl font-display font-black mx-4 text-white/10 hover:text-ekodrix-green/50 transition-colors cursor-default">AWS</span>
+            <span className="text-4xl md:text-6xl font-display font-black mx-4 text-white/10 hover:text-ekodrix-green/50 transition-colors cursor-default">DOCKER</span>
+          </InfiniteMarquee>
+          <InfiniteMarquee baseVelocity={2}>
+            <span className="text-4xl md:text-6xl font-display font-black mx-4 text-white/10 hover:text-ekodrix-green/50 transition-colors cursor-default">SUPABASE</span>
+            <span className="text-4xl md:text-6xl font-display font-black mx-4 text-white/10 hover:text-ekodrix-green/50 transition-colors cursor-default">POSTGRES</span>
+            <span className="text-4xl md:text-6xl font-display font-black mx-4 text-white/10 hover:text-ekodrix-green/50 transition-colors cursor-default">FRAMER MOTION</span>
+            <span className="text-4xl md:text-6xl font-display font-black mx-4 text-white/10 hover:text-ekodrix-green/50 transition-colors cursor-default">TAILWIND CSS</span>
+            <span className="text-4xl md:text-6xl font-display font-black mx-4 text-white/10 hover:text-ekodrix-green/50 transition-colors cursor-default">STRIPE</span>
+            <span className="text-4xl md:text-6xl font-display font-black mx-4 text-white/10 hover:text-ekodrix-green/50 transition-colors cursor-default">OPENAI</span>
+          </InfiniteMarquee>
         </div>
-        
       </div>
     </section>
   );

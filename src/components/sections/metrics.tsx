@@ -49,16 +49,25 @@ export function Metrics() {
               type="fade-up"
               delay={index * 0.15}
               threshold={0.1}
-              className="text-center group px-4 first:border-l-0"
+              className="text-center group px-4 first:border-l-0 relative"
             >
-               <div className="text-[3rem] sm:text-[4rem] lg:text-[4.5rem] font-display font-bold leading-none text-[#FAFAFA] tracking-tighter mb-4 group-hover:scale-105 transition-transform duration-500 will-change-transform drop-shadow-[0_0_25px_rgba(255,255,255,0.05)]">
-                 <span className="text-white/40 font-light">{metric.prefix}</span>
-                 <KineticNumber value={metric.value} />
-                 <span className="text-ekodrix-green">{metric.suffix}</span>
+               {/* High-tech ring background */}
+               <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-10 transition-opacity duration-700 pointer-events-none">
+                 <div className="w-32 h-32 rounded-full border border-ekodrix-green animate-spin-slow" />
+                 <div className="absolute w-40 h-40 rounded-full border border-ekodrix-green/50 animate-reverse-spin-slow" />
                </div>
-               <p className="text-white/60 font-medium tracking-wide uppercase text-xs lg:text-sm">
-                 {metric.label}
-               </p>
+
+               <div className="relative z-10">
+                 <div className="text-[3rem] sm:text-[4rem] lg:text-[4.5rem] font-display font-bold leading-none text-[#FAFAFA] tracking-tighter mb-4 group-hover:scale-105 transition-transform duration-500 will-change-transform drop-shadow-[0_0_25px_rgba(255,255,255,0.05)]">
+                   <span className="text-white/40 font-light">{metric.prefix}</span>
+                   <KineticNumber value={metric.value} />
+                   <span className="text-ekodrix-green">{metric.suffix}</span>
+                 </div>
+                 <p className="text-white/60 font-medium tracking-wide uppercase text-xs lg:text-sm flex items-center justify-center gap-2">
+                   <span className="w-1 h-1 rounded-full bg-ekodrix-green animate-pulse" />
+                   {metric.label}
+                 </p>
+               </div>
             </ScrollReveal>
           ))}
         </div>

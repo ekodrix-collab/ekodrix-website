@@ -12,25 +12,13 @@ export default function Home() {
   return (
     <main>
       <Hero />
-      <ScrollReveal type="fade-up" threshold={0.1}>
-        <Services />
-      </ScrollReveal>
-      <ScrollReveal type="fade-up" threshold={0.1}>
-        <ResellerPro />
-      </ScrollReveal>
-      <ScrollReveal type="fade-up" threshold={0.1}>
-        <Metrics />
-      </ScrollReveal>
-      <ScrollReveal type="fade-up" threshold={0.1}>
-        <Process />
-      </ScrollReveal>
+      <Services />
+      <ResellerPro />
+      <Metrics />
+      <Process />
       <Portfolio />
-      <ScrollReveal type="fade-up" threshold={0.1}>
-        <Testimonials />
-      </ScrollReveal>
-      <ScrollReveal type="slide-down" threshold={0.1}>
-        <CTA />
-      </ScrollReveal>
+      <Testimonials />
+      <CTA />
     </main>
   );
 }
