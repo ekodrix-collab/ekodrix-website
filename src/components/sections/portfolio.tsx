@@ -55,14 +55,14 @@ const portfolioItems = [
     title: "CarePro Health - Healthcare Platform",
     category: "Web Design & Development",
     image: "/images/portfolio/care-pro-health.vercel.app_.png",
-    url: "careprohealth.com",
+    url: "care-pro-health.vercel.app",
   },
   {
     id: "ekodrix-events",
     title: "Al Wafa - Event Management",
     category: "Web Design & Development",
     image: "/images/portfolio/ekodrix-event-management-demo.vercel.app_.png",
-    url: "alwafaevents.com",
+    url: "ekodrix-event-management-demo.vercel.app",
   },
 ];
 
@@ -70,26 +70,23 @@ const portfolioItems = [
 function PortfolioCard({
   item,
   index,
-  className = "",
 }: {
   item: (typeof portfolioItems)[0];
   index: number;
-  className?: string;
 }) {
   const cardRef = useRef<HTMLDivElement>(null);
 
   return (
     <motion.div
-      ref={cardRef}
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.1 }}
+      viewport={{ once: true }}
       transition={{
         duration: 0.6,
         delay: index * 0.08,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className={className}
+      className="group relative"
     >
       <a 
         href={item.url.startsWith('http') ? item.url : `https://${item.url}`}
@@ -130,18 +127,11 @@ function PortfolioCard({
 
           {/* Screenshot preview window */}
           <div className="portfolio-preview-window">
-            <Image
+            <img
               src={item.image}
               alt={item.title}
-              width={800}
-              height={5000}
               className="portfolio-preview-image group-hover:!translate-y-[calc(-100%+220px)] group-hover:!transition-transform group-hover:!duration-[6000ms] group-hover:!ease-in-out"
               loading="lazy"
-              quality={85}
-              style={{
-                width: '100%',
-                height: 'auto',
-              }}
             />
             {/* Subtle gradient overlay at bottom */}
             <div className="portfolio-preview-fade" />
@@ -198,14 +188,9 @@ export function Portfolio() {
         </motion.div>
 
         {/* Portfolio grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16 mt-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
           {portfolioItems.map((item, index) => (
-            <PortfolioCard 
-              key={item.title} 
-              item={item} 
-              index={index} 
-              className={index % 2 !== 0 ? "md:mt-24" : ""}
-            />
+            <PortfolioCard key={item.title} item={item} index={index} />
           ))}
         </div>
 

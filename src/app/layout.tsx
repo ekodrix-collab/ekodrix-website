@@ -10,7 +10,6 @@ import { StructuredData } from "@/components/structured-data";
 import { PreloaderIntro } from "@/components/preloader/PreloaderIntro";
 import { FloatingContact } from "@/components/ui/FloatingContact";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
-import { CustomCursor } from "@/components/ui/CustomCursor";
 import { Toaster } from "sonner";
 import Script from "next/script";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
@@ -213,8 +212,6 @@ export default function RootLayout({
         <ScrollProgress />
 
         <PreloaderIntro>
-          <div className="noise-overlay" />
-          <CustomCursor />
           <SmoothScroll>
             <Navbar />
             <main id="main-content">{children}</main>

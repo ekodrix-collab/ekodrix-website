@@ -5,7 +5,6 @@ import { ArrowRight, Star } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { Magnetic } from "@/components/ui/Magnetic";
 
 const heroImages = [
   "/images/hero/hero_office_team.png",
@@ -87,25 +86,21 @@ export function Hero() {
               transition={{ duration: 0.8, delay: 0.6 }}
               className="flex flex-col sm:flex-row items-center gap-5"
             >
-              <Magnetic>
-                <Link
-                  href="/start-project"
-                  className="group relative flex items-center justify-center gap-2.5 px-10 py-5 rounded-full bg-ekodrix-green text-[#0B150F] font-bold text-[1.05rem] tracking-tight hover:shadow-[0_0_40px_rgba(40,179,106,0.3)] transition-all duration-300 w-full sm:w-auto overflow-hidden"
-                >
-                  <span className="relative z-10">Start Your Project</span>
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform relative z-10" />
-                  <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-                </Link>
-              </Magnetic>
+              <Link
+                href="/start-project"
+                className="group relative flex items-center justify-center gap-2.5 px-10 py-5 rounded-full bg-ekodrix-green text-[#0B150F] font-bold text-[1.05rem] tracking-tight hover:shadow-[0_0_40px_rgba(40,179,106,0.3)] transition-all duration-300 w-full sm:w-auto overflow-hidden"
+              >
+                <span className="relative z-10">Start Your Project</span>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform relative z-10" />
+                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+              </Link>
 
-              <Magnetic>
-                <Link
-                  href="/work"
-                  className="group flex items-center justify-center gap-2.5 px-10 py-5 rounded-full border border-white/10 bg-white/[0.02] text-white/90 font-semibold text-[1.05rem] hover:bg-white/5 hover:border-white/20 hover:text-white transition-all duration-300 w-full sm:w-auto"
-                >
-                  Browse Portfolio
-                </Link>
-              </Magnetic>
+              <Link
+                href="/work"
+                className="group flex items-center justify-center gap-2.5 px-10 py-5 rounded-full border border-white/10 bg-white/[0.02] text-white/90 font-semibold text-[1.05rem] hover:bg-white/5 hover:border-white/20 hover:text-white transition-all duration-300 w-full sm:w-auto"
+              >
+                Browse Portfolio
+              </Link>
             </motion.div>
 
             {/* Social Proof: Clean & Trustworthy */}

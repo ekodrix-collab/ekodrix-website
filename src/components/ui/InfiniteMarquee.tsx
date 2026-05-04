@@ -2,14 +2,17 @@
 
 import React, { useRef, useEffect } from "react";
 import { motion, useScroll, useSpring, useTransform, useMotionValue, useVelocity, useAnimationFrame } from "framer-motion";
-import { wrap } from "@motionone/utils";
-
-interface ParqueeProps {
+interface MarqueeProps {
   children: React.ReactNode;
   baseVelocity: number;
 }
 
-export function InfiniteMarquee({ children, baseVelocity = 100 }: ParqueeProps) {
+const wrap = (min: number, max: number, v: number) => {
+  const rangeSize = max - min;
+  return ((((v - min) % rangeSize) + rangeSize) % rangeSize) + min;
+};
+
+export function InfiniteMarquee({ children, baseVelocity = 100 }: MarqueeProps) {
   const baseX = useMotionValue(0);
   const { scrollY } = useScroll();
   const scrollVelocity = useVelocity(scrollY);
