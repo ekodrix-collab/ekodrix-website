@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, MessageCircle, Send, ShieldCheck, MessageSquare } from "lucide-react";
+import Image from "next/image";
 
 export function FloatingContact() {
   const [isOpen, setIsOpen] = useState(false);
@@ -53,14 +54,12 @@ export function FloatingContact() {
               <div className="flex items-center gap-3">
                 <div className="relative">
                   <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-ekodrix-green to-ekodrix-green-light p-[1px]">
-                    <div className="w-full h-full rounded-2xl bg-black flex items-center justify-center overflow-hidden">
-                      <img 
+                    <div className="w-full h-full rounded-2xl bg-black flex items-center justify-center overflow-hidden relative">
+                      <Image 
                         src="/team/image.png" 
                         alt="CEO"
-                        className="w-full h-full object-cover"
-                        onError={(e) => {
-                          e.currentTarget.src = "https://ui-avatars.com/api/?name=Siyad+Aslam&background=10b981&color=fff";
-                        }}
+                        fill
+                        className="object-cover"
                       />
                     </div>
                   </div>

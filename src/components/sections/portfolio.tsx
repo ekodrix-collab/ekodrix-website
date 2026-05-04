@@ -1,9 +1,10 @@
 "use client";
 
-import { useRef, useCallback } from "react";
+import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 
 const portfolioItems = [
@@ -126,11 +127,18 @@ function PortfolioCard({
 
           {/* Screenshot preview window */}
           <div className="portfolio-preview-window">
-            <img
+            <Image
               src={item.image}
               alt={item.title}
+              width={800}
+              height={5000}
               className="portfolio-preview-image group-hover:!translate-y-[calc(-100%+220px)] group-hover:!transition-transform group-hover:!duration-[6000ms] group-hover:!ease-in-out"
               loading="lazy"
+              quality={85}
+              style={{
+                width: '100%',
+                height: 'auto',
+              }}
             />
             {/* Subtle gradient overlay at bottom */}
             <div className="portfolio-preview-fade" />

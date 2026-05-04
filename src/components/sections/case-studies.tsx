@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import Image from "next/image";
 
 const caseStudies = [
   {
@@ -181,10 +182,12 @@ export function CaseStudies() {
                     </div>
                     {study.imageUrl ? (
                       <div className="relative w-full min-h-[300px] sm:min-h-[350px] lg:min-h-[400px] rounded-2xl overflow-hidden border-[4px] border-[#1a1a1a] bg-[#0A0A0A] shadow-[0_0_40px_rgba(0,0,0,0.5)] transform-gpu group-hover:scale-[1.01] transition-transform duration-500 cursor-pointer">
-                        <img 
+                        <Image 
                           src={study.imageUrl} 
                           alt={`${study.client} Preview`} 
-                          className="absolute inset-0 w-full h-full object-cover transform-gpu group-hover:scale-105 transition-transform duration-700" 
+                          fill
+                          className="object-cover transform-gpu group-hover:scale-105 transition-transform duration-700" 
+                          sizes="(max-width: 768px) 100vw, 50vw"
                         />
                         <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500" />
                       </div>

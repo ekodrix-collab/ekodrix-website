@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Star } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 const heroImages = [
   "/images/hero/hero_office_team.png",
@@ -110,10 +111,11 @@ export function Hero() {
               <div className="flex -space-x-3">
                 {[4, 12, 33, 44].map((i) => (
                   <div key={i} className="w-9 h-9 rounded-full border-2 border-[#111111] overflow-hidden relative shadow-sm z-10 transition-transform hover:z-20 hover:scale-110">
-                    <img 
+                    <Image 
                       src={`https://i.pravatar.cc/100?img=${i}`} 
                       alt="Client Avatar"
-                      className="w-full h-full object-cover scale-110"
+                      fill
+                      className="object-cover scale-110"
                     />
                   </div>
                 ))}
@@ -165,16 +167,24 @@ export function Hero() {
                   transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
                 >
                   <AnimatePresence initial={false}>
-                    <motion.img
+                    <motion.div
                       key={currentImageIndex}
-                      src={heroImages[currentImageIndex]}
-                      alt="Professional Business Solutions Team"
-                      className="absolute inset-0 w-full h-full object-cover object-center"
+                      className="absolute inset-0 w-full h-full"
                       initial={{ opacity: 0, x: "30%", scale: 1.1 }}
                       animate={{ opacity: 1, x: "0%", scale: 1.03 }}
                       exit={{ opacity: 0, x: "-30%", scale: 0.9, filter: "blur(4px)" }}
                       transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-                    />
+                    >
+                      <Image
+                        src={heroImages[currentImageIndex]}
+                        alt="Professional Business Solutions Team"
+                        fill
+                        className="object-cover object-center"
+                        priority={true}
+                        quality={90}
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
+                    </motion.div>
                   </AnimatePresence>
                   
                   {/* Subtle outer dark overlay to maintain legibility */}

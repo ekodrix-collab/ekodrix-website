@@ -3,6 +3,7 @@
 import { ArrowRight, Mail } from "lucide-react";
 import Link from "next/link";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import Image from "next/image";
 
 export function CTA() {
   return (
@@ -21,14 +22,15 @@ export function CTA() {
           <div className="relative z-10 flex flex-col items-center">
             
             <ScrollReveal type="fade-up" threshold={0.1}>
-              {/* Overlapping Avatar Cluster */}
+                {/* Overlapping Avatar Cluster */}
               <div className="flex -space-x-4 mb-8 justify-center">
                 {[4, 12, 33, 44].map((i) => (
                   <div key={i} className="w-14 h-14 rounded-full border-4 border-[#111111] overflow-hidden relative shadow-lg z-10">
-                    <img 
+                    <Image 
                       src={`https://i.pravatar.cc/100?img=${i}`} 
                       alt="Team Avatar"
-                      className="w-full h-full object-cover"
+                      fill
+                      className="object-cover"
                     />
                   </div>
                 ))}
