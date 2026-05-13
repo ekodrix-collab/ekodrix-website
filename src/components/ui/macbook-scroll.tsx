@@ -34,46 +34,41 @@ export const MacbookScroll = ({
 
   const springCfg = { stiffness: 100, damping: 30, mass: 0.5 };
 
-  // --- FASTER OPENING & VISIBILITY ---
-  // Lid starts opening immediately at 0% scroll
-  const lidRotateRaw = useTransform(scrollYProgress, [0, 0.3], [-85, 0]);
+  // --- IMMEDIATE ACTION ---
+  const lidRotateRaw = useTransform(scrollYProgress, [0, 0.4], [-85, 0]);
   const lidRotate = useSpring(lidRotateRaw, springCfg);
 
-  // Initial Visibility: Start with a larger scale on mobile so it's not "missing"
+  // Aggressive Scale (Starts bigger to fill space)
   const scaleRaw = useTransform(
     scrollYProgress, 
-    [0, 0.7], 
-    [isMobile ? 1.5 : 1, isMobile ? 5 : 2.5]
+    [0, 0.8], 
+    [isMobile ? 1.6 : 1.1, isMobile ? 5.2 : 2.5]
   );
   const scale = useSpring(scaleRaw, springCfg);
 
-  // Locked Position: Ensure it's in the top half of the screen on mobile
+  // Vertical Position: Start HIGHER UP to eliminate the "empty top" space
   const translateYRaw = useTransform(
     scrollYProgress, 
-    [0, 0.7], 
-    [isMobile ? -50 : 0, isMobile ? -500 : -200]
+    [0, 0.8], 
+    [isMobile ? -100 : 0, isMobile ? -580 : -220]
   );
   const translateY = useSpring(translateYRaw, springCfg);
 
-  // Opacities & Blends
-  const baseOpacityRaw = useTransform(scrollYProgress, [0.5, 0.7], [1, 0]);
+  // Opacities
+  const baseOpacityRaw = useTransform(scrollYProgress, [0.55, 0.75], [1, 0]);
   const baseOpacity = useSpring(baseOpacityRaw, springCfg);
-  
-  // Aura intensity starts stronger on mobile
-  const auraOpacity = useTransform(scrollYProgress, [0, 0.5], [isMobile ? 0.6 : 0.4, 0.9]);
 
   return (
     <div 
       ref={containerRef} 
-      className="relative min-h-[350vh] sm:min-h-[300vh] isolate"
+      // Drastically reduced mobile scroll height to kill the "empty space" feeling
+      className="relative min-h-[220vh] sm:min-h-[300vh] isolate"
     >
-      <div className="sticky top-0 h-[100dvh] flex items-center justify-center overflow-hidden pointer-events-none">
+      {/* Align to TOP instead of center on mobile */}
+      <div className={`sticky top-0 h-[100dvh] flex ${isMobile ? "items-start pt-[15vh]" : "items-center"} justify-center overflow-hidden pointer-events-none`}>
         
-        {/* Dynamic Aura */}
-        <motion.div 
-          style={{ opacity: auraOpacity }}
-          className="absolute w-[800px] h-[800px] bg-blue-600/10 rounded-full blur-[140px] mix-blend-screen"
-        />
+        {/* Glow */}
+        <div className="absolute top-[20%] w-[800px] h-[600px] bg-blue-600/10 rounded-full blur-[120px] mix-blend-screen" />
 
         <motion.div
           style={{ 
@@ -86,7 +81,7 @@ export const MacbookScroll = ({
         >
           {/* === THE LID (SCREEN) === */}
           <div
-            className="relative w-[300px] sm:w-[400px] md:w-[680px]"
+            className="relative w-[320px] sm:w-[400px] md:w-[680px]"
             style={{ 
               perspective: "1800px",
               WebkitPerspective: "1800px",
@@ -103,7 +98,6 @@ export const MacbookScroll = ({
               }}
               className="relative w-full"
             >
-              {/* Back of lid */}
               <div
                 className="absolute inset-0 aspect-[16/10] rounded-t-2xl bg-[#111] border-[2px] border-white/10 border-b-0 flex items-center justify-center shadow-inner overflow-hidden"
                 style={{
@@ -117,7 +111,6 @@ export const MacbookScroll = ({
                 <AppleLogo />
               </div>
 
-              {/* Front of lid (screen) */}
               <div 
                 className="relative w-full aspect-[16/10] rounded-t-2xl bg-[#010101] border-[3px] border-white/20 border-b-0 overflow-hidden shadow-[0_80px_160px_-40px_rgba(0,0,0,1)]"
                 style={{
@@ -148,7 +141,7 @@ export const MacbookScroll = ({
           {/* === THE BASE === */}
           <motion.div
             style={{ opacity: baseOpacity }}
-            className="relative w-[300px] sm:w-[400px] md:w-[680px]"
+            className="relative w-[320px] sm:w-[400px] md:w-[680px]"
           >
             <div className="w-full h-[12px] bg-[#222] rounded-t-sm border-x border-white/10" />
             <div className="w-full aspect-[16/7] bg-[#0a0a0a] rounded-b-3xl relative overflow-hidden border-x-[3px] border-b-[3px] border-white/10 shadow-[0_60px_120px_-30px_rgba(0,0,0,1)]">
