@@ -32,55 +32,55 @@ export const MacbookScroll = ({
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  const springCfg = { stiffness: 100, damping: 30, mass: 0.5 };
+  const springCfg = { stiffness: 120, damping: 25, mass: 0.5 };
 
-  // Lid rotation: starts angled (closed), opens flat
-  const lidRotateRaw = useTransform(scrollYProgress, [0, 0.3], [-80, 0]);
+  // Lid rotation
+  const lidRotateRaw = useTransform(scrollYProgress, [0, 0.25], [-85, 0]);
   const lidRotate = useSpring(lidRotateRaw, springCfg);
 
-  // Aggressive Scale for Mobile (Fill the screen)
+  // Aggressive Scale (Filling every pixel of the mobile screen)
   const scaleRaw = useTransform(
     scrollYProgress, 
-    [0.2, 0.7], 
-    [1, isMobile ? 3.8 : 2.2]
+    [0.1, 0.65], 
+    [isMobile ? 1.1 : 1, isMobile ? 4.8 : 2.2]
   );
   const scale = useSpring(scaleRaw, springCfg);
 
-  // Translation to center the screen area perfectly
+  // Translation to lock the screen area to the center
   const translateYRaw = useTransform(
     scrollYProgress, 
-    [0.3, 0.7], 
-    [0, isMobile ? -380 : -180]
+    [0.2, 0.65], 
+    [0, isMobile ? -480 : -180]
   );
   const translateY = useSpring(translateYRaw, springCfg);
 
-  // Side Tilt on scroll for "Uneeq" feel
-  const tiltRaw = useTransform(scrollYProgress, [0, 0.5], [0, isMobile ? -5 : 0]);
-  const tilt = useSpring(tiltRaw, springCfg);
+  // Dynamic Aura Intensity
+  const auraOpacity = useTransform(scrollYProgress, [0, 0.5], [0.4, 0.9]);
+  const auraScale = useTransform(scrollYProgress, [0, 0.5], [0.8, 2]);
 
-  // Opacities
-  const baseOpacityRaw = useTransform(scrollYProgress, [0.5, 0.75], [1, 0]);
+  // Opacities - Fade out base completely to focus on screen
+  const baseOpacityRaw = useTransform(scrollYProgress, [0.45, 0.6], [1, 0]);
   const baseOpacity = useSpring(baseOpacityRaw, springCfg);
   
-  // 3D Perspective Shift
-  const perspectiveOriginRaw = useTransform(scrollYProgress, [0.3, 0.7], ["50% 50%", "50% 20%"]);
+  // Perspective origin shift
+  const perspectiveOriginRaw = useTransform(scrollYProgress, [0.2, 0.65], ["50% 50%", "50% 15%"]);
   const perspectiveOrigin = useSpring(perspectiveOriginRaw as any, springCfg);
 
   return (
     <div 
       ref={containerRef} 
-      className="relative min-h-[400vh] sm:min-h-[300vh] isolate"
+      className="relative min-h-[450vh] sm:min-h-[300vh] isolate"
       style={{ WebkitOverflowScrolling: "touch" }}
     >
       <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden pointer-events-none">
         
-        {/* Ambient Aura - More intense on mobile */}
+        {/* --- IMMERSIVE MOBILE AURA --- */}
         <motion.div 
           style={{ 
-            scale: useTransform(scrollYProgress, [0, 0.5], [1, 2]),
-            opacity: useTransform(scrollYProgress, [0, 0.5], [0.4, 0.8])
+            scale: auraScale,
+            opacity: auraOpacity
           }}
-          className="absolute w-[600px] h-[600px] bg-gradient-to-r from-blue-600/20 via-indigo-600/20 to-blue-600/20 rounded-full blur-[120px] mix-blend-screen"
+          className="absolute w-[800px] h-[800px] bg-gradient-to-r from-blue-600/30 via-indigo-600/20 to-blue-600/30 rounded-full blur-[140px] mix-blend-screen"
         />
 
         <motion.div
@@ -88,7 +88,6 @@ export const MacbookScroll = ({
             scale, 
             translateY,
             perspectiveOrigin,
-            rotateZ: tilt,
             transformStyle: "preserve-3d",
             WebkitTransformStyle: "preserve-3d"
           }}
@@ -96,10 +95,10 @@ export const MacbookScroll = ({
         >
           {/* === THE LID (SCREEN) === */}
           <div
-            className="relative w-[280px] sm:w-[400px] md:w-[520px] lg:w-[680px]"
+            className="relative w-[300px] sm:w-[400px] md:w-[520px] lg:w-[680px]"
             style={{ 
-              perspective: "1500px",
-              WebkitPerspective: "1500px",
+              perspective: "1800px",
+              WebkitPerspective: "1800px",
               transformStyle: "preserve-3d",
               WebkitTransformStyle: "preserve-3d"
             }}
@@ -115,7 +114,7 @@ export const MacbookScroll = ({
             >
               {/* Back of lid */}
               <div
-                className="absolute inset-0 aspect-[16/10] rounded-t-xl bg-[#151515] border-[2px] border-white/5 border-b-0 flex items-center justify-center shadow-inner overflow-hidden"
+                className="absolute inset-0 aspect-[16/10] rounded-t-2xl bg-[#111] border-[2px] border-white/10 border-b-0 flex items-center justify-center shadow-inner overflow-hidden"
                 style={{
                   backfaceVisibility: "visible",
                   WebkitBackfaceVisibility: "visible",
@@ -129,7 +128,7 @@ export const MacbookScroll = ({
 
               {/* Front of lid (screen) */}
               <div 
-                className="relative w-full aspect-[16/10] rounded-t-xl bg-[#030303] border-[3px] border-white/10 border-b-0 overflow-hidden shadow-[0_60px_120px_-20px_rgba(0,0,0,1)]"
+                className="relative w-full aspect-[16/10] rounded-t-2xl bg-[#010101] border-[3px] border-white/20 border-b-0 overflow-hidden shadow-[0_80px_160px_-40px_rgba(0,0,0,1)]"
                 style={{
                   backfaceVisibility: "hidden",
                   WebkitBackfaceVisibility: "hidden",
@@ -138,7 +137,7 @@ export const MacbookScroll = ({
                 }}
               >
                 {/* Screen content area */}
-                <div className="absolute inset-[2px] top-[10px] bg-[#000] rounded-sm overflow-hidden border border-white/5">
+                <div className="absolute inset-0 top-[12px] bg-[#000] rounded-t-sm overflow-hidden border-x border-t border-white/10">
                   {src ? (
                     <Image
                       src={src}
@@ -146,19 +145,19 @@ export const MacbookScroll = ({
                       fill
                       className="object-cover object-left-top opacity-100"
                       priority
-                      sizes="(max-width: 768px) 800px, 1200px"
+                      sizes="100vw"
                     />
                   ) : (
                     <div className="w-full h-full bg-gradient-to-br from-[#0a0a2e] to-[#000]" />
                   )}
 
-                  {/* Dynamic Reflection */}
+                  {/* High-End Glass Polish */}
                   <motion.div 
                     style={{ 
-                      y: useTransform(scrollYProgress, [0.3, 0.8], ["-30%", "30%"]),
-                      opacity: useTransform(scrollYProgress, [0.3, 0.6], [0.4, 0.1])
+                      y: useTransform(scrollYProgress, [0.3, 0.7], ["-40%", "40%"]),
+                      opacity: useTransform(scrollYProgress, [0.3, 0.6], [0.5, 0])
                     }}
-                    className="absolute inset-0 bg-gradient-to-br from-white/[0.1] via-transparent to-transparent pointer-events-none z-10 mix-blend-overlay" 
+                    className="absolute inset-0 bg-gradient-to-br from-white/[0.15] via-transparent to-transparent pointer-events-none z-10 mix-blend-overlay" 
                   />
                 </div>
               </div>
@@ -172,28 +171,19 @@ export const MacbookScroll = ({
               transformStyle: "preserve-3d",
               WebkitTransformStyle: "preserve-3d"
             }}
-            className="relative w-[280px] sm:w-[400px] md:w-[520px] lg:w-[680px]"
+            className="relative w-[300px] sm:w-[400px] md:w-[520px] lg:w-[680px]"
           >
-            {/* Hinge */}
-            <div className="w-full h-[10px] bg-gradient-to-b from-[#222] to-[#111] rounded-t-sm border-x border-white/5 relative z-10" />
+            <div className="w-full h-[12px] bg-gradient-to-b from-[#222] to-[#111] rounded-t-sm border-x border-white/10 relative z-10" />
 
-            {/* Base body */}
-            <div className="w-full aspect-[16/7] bg-[#111] rounded-b-2xl relative overflow-hidden border-x-[3px] border-b-[3px] border-white/10 shadow-[0_50px_100px_-20px_rgba(0,0,0,1)]">
-              {/* Screen Light Cast */}
+            <div className="w-full aspect-[16/7] bg-[#0a0a0a] rounded-b-3xl relative overflow-hidden border-x-[3px] border-b-[3px] border-white/10 shadow-[0_60px_120px_-30px_rgba(0,0,0,1)]">
               <motion.div 
-                style={{ 
-                  opacity: useTransform(scrollYProgress, [0.2, 0.6], [0, 0.8]),
-                }}
-                className="absolute inset-x-0 top-0 h-full bg-gradient-to-b from-blue-500/30 via-blue-500/5 to-transparent z-0 pointer-events-none mix-blend-screen" 
+                style={{ opacity: useTransform(scrollYProgress, [0.2, 0.5], [0, 1]) }}
+                className="absolute inset-x-0 top-0 h-full bg-gradient-to-b from-blue-500/40 via-blue-500/5 to-transparent z-0 mix-blend-screen" 
               />
-
-              {/* Keyboard area */}
-              <div className="absolute inset-x-0 top-[6%] mx-auto w-[92%] h-[50%] bg-[#030303] rounded-lg p-[5px] shadow-[inset_0_2px_15px_rgba(0,0,0,0.9)] border border-white/[0.05] relative z-10">
+              <div className="absolute inset-x-0 top-[6%] mx-auto w-[92%] h-[50%] bg-[#000] rounded-lg p-[5px] shadow-[inset_0_2px_20px_rgba(0,0,0,1)] border border-white/5 relative z-10">
                 <MacKeyboard scrollYProgress={scrollYProgress} />
               </div>
-
-              {/* Trackpad */}
-              <div className="absolute bottom-[10%] left-1/2 -translate-x-1/2 w-[38%] h-[32%] bg-gradient-to-b from-[#151515] to-[#080808] rounded-xl border border-white/5 shadow-inner" />
+              <div className="absolute bottom-[10%] left-1/2 -translate-x-1/2 w-[38%] h-[32%] bg-gradient-to-b from-[#111] to-[#050505] rounded-2xl border border-white/10 shadow-inner" />
             </div>
           </motion.div>
         </motion.div>
@@ -211,16 +201,15 @@ const Key = ({
   flex?: number;
   scrollYProgress: MotionValue<number>;
 }) => {
-  const backlightOpacity = useTransform(scrollYProgress, [0.2, 0.6], [0.3, 1]);
-  
+  const backlightOpacity = useTransform(scrollYProgress, [0.2, 0.6], [0.4, 1]);
   return (
     <div
       style={{ flex }}
-      className="h-full rounded-[4px] bg-gradient-to-b from-[#1a1a1a] to-[#080808] border border-white/10 flex items-center justify-center shadow-[0_2px_0_0_rgba(0,0,0,1)] relative overflow-hidden"
+      className="h-full rounded-[4px] bg-gradient-to-b from-[#151515] to-[#050505] border border-white/10 flex items-center justify-center shadow-[0_2.5px_0_0_rgba(0,0,0,1)] relative overflow-hidden"
     >
       <motion.span 
         style={{ opacity: backlightOpacity }}
-        className="text-[5px] text-white font-bold select-none leading-none tracking-tighter"
+        className="text-[6px] text-white font-black select-none leading-none tracking-tighter"
       >
         {keyLabels[label as keyof typeof keyLabels] || label}
       </motion.span>
@@ -274,7 +263,6 @@ const MacKeyboard = ({ scrollYProgress }: { scrollYProgress: MotionValue<number>
 
   return (
     <div className="h-full w-full flex flex-col gap-[2px]">
-      {/* Touch Bar area */}
       <div className="flex gap-[3px] h-[12%] px-[2px] mb-[1px]">
         <div className="w-[8%] bg-[#0a0a0a] rounded-sm flex items-center justify-center border border-white/5">
           <span className="text-[3px] text-white/30 font-medium">esc</span>
@@ -282,14 +270,13 @@ const MacKeyboard = ({ scrollYProgress }: { scrollYProgress: MotionValue<number>
         <div className="flex-1 bg-[#0a0a0a] rounded-sm relative overflow-hidden border border-white/5">
           <motion.div 
             style={{ x: useTransform(scrollYProgress, [0.3, 0.6], ["-100%", "100%"]) }}
-            className="absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-blue-500/50 to-transparent" 
+            className="absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-blue-500/60 to-transparent" 
           />
         </div>
         <div className="w-[8%] bg-[#0a0a0a] rounded-sm flex items-center justify-center border border-white/5">
           <div className="w-[7px] h-[7px] rounded-full bg-black border border-white/10" />
         </div>
       </div>
-
       {rows.map((row, rowIdx) => (
         <div key={rowIdx} className="flex gap-[2px] flex-1 px-[1px]">
           {row.map((key, keyIdx) => (
@@ -308,7 +295,7 @@ const AppleLogo = () => (
     viewBox="0 0 814 1000"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    className="opacity-10"
+    className="opacity-20"
   >
     <path
       d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76.5 0-103.7 40.8-165.9 40.8s-105.6-57.4-155.5-127.4c-58.6-81.4-106-207.7-106-327.2C-1.4 308.3 86.9 159.3 225.1 159.3c63.6 0 116.6 41.6 156.5 41.6 38 0 97.6-44.1 170.2-44.1 27.5 0 126.4 2.7 190.3 103.1zM554.1 0c8.1 41.6-11.2 83.9-37.4 113.8-26.3 30-71.2 53.3-114.5 53.3-4.5-2.7-7.7-33.9.5-65.8 8.2-31.8 43-70.9 73.4-93.3C505.7-14.5 545.7-4.5 554.1 0z"
