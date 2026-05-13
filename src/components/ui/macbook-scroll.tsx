@@ -121,13 +121,70 @@ export const MacbookScroll = ({
           <motion.div style={{ opacity: baseOpacity }} className="relative w-[600px]">
             <div className="w-full h-[8px] bg-[#222] rounded-t-sm border-x border-white/10" />
             <div className="w-full aspect-[16/7] bg-[#0a0a0a] rounded-b-2xl relative overflow-hidden border-x-[2px] border-b-[2px] border-white/10 shadow-2xl">
-              <div className="absolute inset-x-0 top-[6%] mx-auto w-[92%] h-[50%] bg-[#000] rounded-lg p-[4px] border border-white/5 relative z-10" />
-              <div className="absolute bottom-[10%] left-1/2 -translate-x-1/2 w-[35%] h-[30%] bg-[#111] rounded-xl border border-white/5" />
+              {/* BACKLIGHT / GLOW */}
+              <KybGlow progress={scrollYProgress} />
+              
+              {/* KEYBOARD AREA */}
+              <div className="absolute inset-x-0 top-[6%] mx-auto w-[92%] h-[55%] bg-[#050505] rounded-lg p-[4px] border border-white/5 relative z-10 overflow-hidden shadow-2xl">
+                <Keyboard progress={scrollYProgress} />
+              </div>
+              
+              {/* TRACKPAD */}
+              <div className="absolute bottom-[10%] left-1/2 -translate-x-1/2 w-[35%] h-[30%] bg-[#111] rounded-xl border border-white/5 shadow-inner" />
             </div>
           </motion.div>
         </motion.div>
       </div>
     </div>
+  );
+};
+
+const KybGlow = ({ progress }: { progress: any }) => {
+  const glowOpacity = useTransform(progress, [0, 0.4], [0, 1]);
+  return (
+    <motion.div 
+      style={{ opacity: glowOpacity }}
+      className="absolute inset-0 bg-gradient-to-t from-blue-500/10 via-transparent to-transparent pointer-events-none z-0" 
+    />
+  );
+};
+
+const Keyboard = ({ progress }: { progress: any }) => {
+  const keyOpacity = useTransform(progress, [0, 0.4], [0.1, 1]);
+  
+  const rows = [
+    ["~", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "delete"],
+    ["tab", "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "[", "]", "\\"],
+    ["caps", "A", "S", "D", "F", "G", "H", "J", "K", "L", ";", "'", "enter"],
+    ["shift", "Z", "X", "C", "V", "B", "N", "M", ",", ".", "/", "shift"],
+    ["ctrl", "opt", "cmd", "space", "cmd", "opt", "←", "↓", "→"]
+  ];
+
+  return (
+    <motion.div style={{ opacity: keyOpacity }} className="w-full h-full flex flex-col gap-[2px] p-[2px]">
+      {rows.map((row, i) => (
+        <div key={i} className="flex gap-[2px] w-full h-full">
+          {row.map((key, j) => {
+            const isWide = ["tab", "caps", "enter", "shift", "delete"].includes(key);
+            const isSpace = key === "space";
+            return (
+              <div
+                key={j}
+                style={{ flex: isSpace ? 5 : isWide ? 1.5 : 1 }}
+                className="group relative flex items-center justify-center bg-[#151515] rounded-[2px] border-[0.5px] border-white/10 shadow-[0_1px_0_rgba(255,255,255,0.05)_inset]"
+              >
+                {/* KEY BACKLIGHT */}
+                <div className="absolute inset-0 bg-blue-500/5 group-hover:bg-blue-500/10 transition-colors rounded-[2px]" />
+                
+                <span className="text-[5px] uppercase font-medium text-white/30 group-hover:text-white/80 transition-colors pointer-events-none select-none drop-shadow-[0_0_1px_rgba(59,130,246,0.5)]">
+                  {key === "space" ? "" : key}
+                </span>
+              </div>
+            );
+          })}
+        </div>
+      ))}
+    </motion.div>
   );
 };
 
