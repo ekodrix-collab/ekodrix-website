@@ -209,15 +209,15 @@ export default function RootLayout({
           <GoogleAnalytics />
         </Suspense>
         <StructuredData />
+        <Navbar />
         <ScrollProgress />
+        <Toaster position="top-center" theme="dark" />
 
         <PreloaderIntro>
           <SmoothScroll>
-            <Navbar />
             <main id="main-content">{children}</main>
             <Footer />
             <FloatingContact />
-            <Toaster position="top-center" theme="dark" />
           </SmoothScroll>
         </PreloaderIntro>
 
