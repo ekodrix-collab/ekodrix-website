@@ -34,42 +34,43 @@ export const MacbookScroll = ({
 
   const springCfg = { stiffness: 80, damping: 25, mass: 1 };
 
-  // 1. LID OPENING: Opens from -80deg to 0deg (perfectly flat)
-  const lidRotateRaw = useTransform(scrollYProgress, [0.1, 0.5], [-80, 0]);
+  // --- PERFECT MOBILE TIMING ---
+  
+  // 1. LID OPENING: Happens in the first 40% of scroll
+  const lidRotateRaw = useTransform(scrollYProgress, [0, 0.4], [-80, 0]);
   const lidRotate = useSpring(lidRotateRaw, springCfg);
 
-  // 2. ZOOM: Starts at normal size, zooms into the screen
+  // 2. ZOOM: Starts as the lid is opening, continues to 90%
   const scaleRaw = useTransform(
     scrollYProgress, 
-    [0.2, 0.8], 
-    [isMobile ? 1.2 : 1, isMobile ? 4.5 : 2.4]
+    [0.1, 0.9], 
+    [isMobile ? 1.4 : 1.1, isMobile ? 5.5 : 2.5]
   );
   const scale = useSpring(scaleRaw, springCfg);
 
-  // 3. VERTICAL POSITION: Center the screen area on zoom
+  // 3. VERTICAL POSITION: Very subtle movement to keep the screen area centered
   const yRaw = useTransform(
     scrollYProgress, 
-    [0.2, 0.8], 
-    [0, isMobile ? -350 : -180]
+    [0.1, 0.9], 
+    [0, isMobile ? -140 : -180] // Reduced mobile Y to prevent "going to top"
   );
   const y = useSpring(yRaw, springCfg);
 
-  // 4. BASE FADE: Hide the keyboard as we zoom into the screen
-  const baseOpacityRaw = useTransform(scrollYProgress, [0.5, 0.75], [1, 0]);
+  // 4. BASE FADE: Hide keyboard later to avoid "empty base"
+  const baseOpacityRaw = useTransform(scrollYProgress, [0.6, 0.85], [1, 0]);
   const baseOpacity = useSpring(baseOpacityRaw, springCfg);
 
   return (
     <div 
       ref={containerRef} 
-      className="relative min-h-[250vh] sm:min-h-[300vh] w-full"
-      style={{ isolation: "isolate" }}
+      className="relative min-h-[300vh] w-full isolate"
     >
-      {/* Sticky container - Forced visibility on mobile */}
-      <div className="sticky top-0 h-screen w-full flex items-center justify-center pointer-events-none">
+      {/* Sticky container - Stay centered */}
+      <div className="sticky top-0 h-screen w-full flex items-center justify-center pointer-events-none overflow-hidden">
         
-        {/* Simple Background Glow */}
+        {/* Glow */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[120px]" />
+          <div className="w-[800px] h-[800px] bg-blue-600/5 rounded-full blur-[140px]" />
         </div>
 
         <motion.div
@@ -79,14 +80,14 @@ export const MacbookScroll = ({
             transformStyle: "preserve-3d",
             WebkitTransformStyle: "preserve-3d"
           }}
-          className="relative flex flex-col items-center pointer-events-auto z-20"
+          className="relative flex flex-col items-center pointer-events-auto"
         >
           {/* === THE LID === */}
           <div
-            className="relative w-[280px] sm:w-[450px] md:w-[600px]"
+            className="relative w-[300px] sm:w-[450px] md:w-[600px]"
             style={{ 
-              perspective: "1200px",
-              WebkitPerspective: "1200px",
+              perspective: "1500px",
+              WebkitPerspective: "1500px",
               transformStyle: "preserve-3d",
               WebkitTransformStyle: "preserve-3d"
             }}
@@ -102,7 +103,7 @@ export const MacbookScroll = ({
             >
               {/* Lid Back */}
               <div
-                className="absolute inset-0 aspect-[16/10] rounded-t-xl bg-[#1a1a1a] border border-white/10 flex items-center justify-center overflow-hidden"
+                className="absolute inset-0 aspect-[16/10] rounded-t-xl bg-[#151515] border border-white/10 flex items-center justify-center"
                 style={{
                   backfaceVisibility: "visible",
                   WebkitBackfaceVisibility: "visible",
@@ -116,7 +117,7 @@ export const MacbookScroll = ({
 
               {/* Screen Front */}
               <div 
-                className="relative w-full aspect-[16/10] rounded-t-xl bg-[#000] border-[2px] border-white/20 border-b-0 overflow-hidden shadow-2xl"
+                className="relative w-full aspect-[16/10] rounded-t-xl bg-[#000] border-[2px] border-white/20 border-b-0 overflow-hidden"
                 style={{
                   backfaceVisibility: "hidden",
                   WebkitBackfaceVisibility: "hidden",
@@ -124,7 +125,7 @@ export const MacbookScroll = ({
                   WebkitTransform: "translateZ(1px)"
                 }}
               >
-                <div className="absolute inset-0 top-[10px] bg-[#000] rounded-t-sm overflow-hidden border-x border-t border-white/10">
+                <div className="absolute inset-0 top-[10px] bg-[#000] rounded-t-sm overflow-hidden">
                   {src ? (
                     <Image
                       src={src}
@@ -145,14 +146,14 @@ export const MacbookScroll = ({
           {/* === THE BASE === */}
           <motion.div
             style={{ opacity: baseOpacity }}
-            className="relative w-[280px] sm:w-[450px] md:w-[600px]"
+            className="relative w-[300px] sm:w-[450px] md:w-[600px]"
           >
             <div className="w-full h-[8px] bg-[#222] rounded-t-sm border-x border-white/10" />
-            <div className="w-full aspect-[16/7] bg-[#0f0f0f] rounded-b-2xl relative overflow-hidden border-x-[2px] border-b-[2px] border-white/10 shadow-xl">
+            <div className="w-full aspect-[16/7] bg-[#0a0a0a] rounded-b-2xl relative overflow-hidden border-x-[2px] border-b-[2px] border-white/10 shadow-2xl">
               <div className="absolute inset-x-0 top-[6%] mx-auto w-[92%] h-[50%] bg-[#000] rounded-lg p-[4px] border border-white/5 relative z-10">
                 <MacKeyboard scrollYProgress={scrollYProgress} />
               </div>
-              <div className="absolute bottom-[10%] left-1/2 -translate-x-1/2 w-[35%] h-[30%] bg-[#151515] rounded-xl border border-white/5" />
+              <div className="absolute bottom-[10%] left-1/2 -translate-x-1/2 w-[35%] h-[30%] bg-[#111] rounded-xl border border-white/5" />
             </div>
           </motion.div>
         </motion.div>
@@ -170,7 +171,7 @@ const Key = ({
   flex?: number;
   scrollYProgress: MotionValue<number>;
 }) => {
-  const backlightOpacity = useTransform(scrollYProgress, [0.2, 0.6], [0.3, 1]);
+  const backlightOpacity = useTransform(scrollYProgress, [0.1, 0.5], [0.3, 1]);
   return (
     <div
       style={{ flex }}
