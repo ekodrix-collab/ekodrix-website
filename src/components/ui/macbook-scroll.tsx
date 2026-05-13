@@ -32,59 +32,61 @@ export const MacbookScroll = ({
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  const springCfg = { stiffness: 100, damping: 30, mass: 0.5 };
+  const springCfg = { stiffness: 80, damping: 25, mass: 1 };
 
-  // --- IMMEDIATE ACTION ---
-  const lidRotateRaw = useTransform(scrollYProgress, [0, 0.4], [-85, 0]);
+  // 1. LID OPENING: Opens from -80deg to 0deg (perfectly flat)
+  const lidRotateRaw = useTransform(scrollYProgress, [0.1, 0.5], [-80, 0]);
   const lidRotate = useSpring(lidRotateRaw, springCfg);
 
-  // Aggressive Scale (Starts bigger to fill space)
+  // 2. ZOOM: Starts at normal size, zooms into the screen
   const scaleRaw = useTransform(
     scrollYProgress, 
-    [0, 0.8], 
-    [isMobile ? 1.6 : 1.1, isMobile ? 5.2 : 2.5]
+    [0.2, 0.8], 
+    [isMobile ? 1.2 : 1, isMobile ? 4.5 : 2.4]
   );
   const scale = useSpring(scaleRaw, springCfg);
 
-  // Vertical Position: Start HIGHER UP to eliminate the "empty top" space
-  const translateYRaw = useTransform(
+  // 3. VERTICAL POSITION: Center the screen area on zoom
+  const yRaw = useTransform(
     scrollYProgress, 
-    [0, 0.8], 
-    [isMobile ? -100 : 0, isMobile ? -580 : -220]
+    [0.2, 0.8], 
+    [0, isMobile ? -350 : -180]
   );
-  const translateY = useSpring(translateYRaw, springCfg);
+  const y = useSpring(yRaw, springCfg);
 
-  // Opacities
-  const baseOpacityRaw = useTransform(scrollYProgress, [0.55, 0.75], [1, 0]);
+  // 4. BASE FADE: Hide the keyboard as we zoom into the screen
+  const baseOpacityRaw = useTransform(scrollYProgress, [0.5, 0.75], [1, 0]);
   const baseOpacity = useSpring(baseOpacityRaw, springCfg);
 
   return (
     <div 
       ref={containerRef} 
-      // Drastically reduced mobile scroll height to kill the "empty space" feeling
-      className="relative min-h-[220vh] sm:min-h-[300vh] isolate"
+      className="relative min-h-[250vh] sm:min-h-[300vh] w-full"
+      style={{ isolation: "isolate" }}
     >
-      {/* Align to TOP instead of center on mobile */}
-      <div className={`sticky top-0 h-[100dvh] flex ${isMobile ? "items-start pt-[15vh]" : "items-center"} justify-center overflow-hidden pointer-events-none`}>
+      {/* Sticky container - Forced visibility on mobile */}
+      <div className="sticky top-0 h-screen w-full flex items-center justify-center pointer-events-none">
         
-        {/* Glow */}
-        <div className="absolute top-[20%] w-[800px] h-[600px] bg-blue-600/10 rounded-full blur-[120px] mix-blend-screen" />
+        {/* Simple Background Glow */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[120px]" />
+        </div>
 
         <motion.div
           style={{ 
             scale, 
-            translateY,
+            y,
             transformStyle: "preserve-3d",
             WebkitTransformStyle: "preserve-3d"
           }}
-          className="relative flex flex-col items-center pointer-events-auto"
+          className="relative flex flex-col items-center pointer-events-auto z-20"
         >
-          {/* === THE LID (SCREEN) === */}
+          {/* === THE LID === */}
           <div
-            className="relative w-[320px] sm:w-[400px] md:w-[680px]"
+            className="relative w-[280px] sm:w-[450px] md:w-[600px]"
             style={{ 
-              perspective: "1800px",
-              WebkitPerspective: "1800px",
+              perspective: "1200px",
+              WebkitPerspective: "1200px",
               transformStyle: "preserve-3d",
               WebkitTransformStyle: "preserve-3d"
             }}
@@ -98,8 +100,9 @@ export const MacbookScroll = ({
               }}
               className="relative w-full"
             >
+              {/* Lid Back */}
               <div
-                className="absolute inset-0 aspect-[16/10] rounded-t-2xl bg-[#111] border-[2px] border-white/10 border-b-0 flex items-center justify-center shadow-inner overflow-hidden"
+                className="absolute inset-0 aspect-[16/10] rounded-t-xl bg-[#1a1a1a] border border-white/10 flex items-center justify-center overflow-hidden"
                 style={{
                   backfaceVisibility: "visible",
                   WebkitBackfaceVisibility: "visible",
@@ -111,8 +114,9 @@ export const MacbookScroll = ({
                 <AppleLogo />
               </div>
 
+              {/* Screen Front */}
               <div 
-                className="relative w-full aspect-[16/10] rounded-t-2xl bg-[#010101] border-[3px] border-white/20 border-b-0 overflow-hidden shadow-[0_80px_160px_-40px_rgba(0,0,0,1)]"
+                className="relative w-full aspect-[16/10] rounded-t-xl bg-[#000] border-[2px] border-white/20 border-b-0 overflow-hidden shadow-2xl"
                 style={{
                   backfaceVisibility: "hidden",
                   WebkitBackfaceVisibility: "hidden",
@@ -120,18 +124,18 @@ export const MacbookScroll = ({
                   WebkitTransform: "translateZ(1px)"
                 }}
               >
-                <div className="absolute inset-0 top-[12px] bg-[#000] rounded-t-sm overflow-hidden">
+                <div className="absolute inset-0 top-[10px] bg-[#000] rounded-t-sm overflow-hidden border-x border-t border-white/10">
                   {src ? (
                     <Image
                       src={src}
                       alt="Macbook Screen"
                       fill
-                      className="object-cover object-left-top"
+                      className="object-cover object-top"
                       priority
                       sizes="100vw"
                     />
                   ) : (
-                    <div className="w-full h-full bg-gradient-to-br from-[#0a0a2e] to-[#000]" />
+                    <div className="w-full h-full bg-[#050505]" />
                   )}
                 </div>
               </div>
@@ -141,14 +145,14 @@ export const MacbookScroll = ({
           {/* === THE BASE === */}
           <motion.div
             style={{ opacity: baseOpacity }}
-            className="relative w-[320px] sm:w-[400px] md:w-[680px]"
+            className="relative w-[280px] sm:w-[450px] md:w-[600px]"
           >
-            <div className="w-full h-[12px] bg-[#222] rounded-t-sm border-x border-white/10" />
-            <div className="w-full aspect-[16/7] bg-[#0a0a0a] rounded-b-3xl relative overflow-hidden border-x-[3px] border-b-[3px] border-white/10 shadow-[0_60px_120px_-30px_rgba(0,0,0,1)]">
-              <div className="absolute inset-x-0 top-[6%] mx-auto w-[92%] h-[50%] bg-[#000] rounded-lg p-[5px] border border-white/5 relative z-10">
+            <div className="w-full h-[8px] bg-[#222] rounded-t-sm border-x border-white/10" />
+            <div className="w-full aspect-[16/7] bg-[#0f0f0f] rounded-b-2xl relative overflow-hidden border-x-[2px] border-b-[2px] border-white/10 shadow-xl">
+              <div className="absolute inset-x-0 top-[6%] mx-auto w-[92%] h-[50%] bg-[#000] rounded-lg p-[4px] border border-white/5 relative z-10">
                 <MacKeyboard scrollYProgress={scrollYProgress} />
               </div>
-              <div className="absolute bottom-[10%] left-1/2 -translate-x-1/2 w-[38%] h-[32%] bg-[#111] rounded-2xl border border-white/10" />
+              <div className="absolute bottom-[10%] left-1/2 -translate-x-1/2 w-[35%] h-[30%] bg-[#151515] rounded-xl border border-white/5" />
             </div>
           </motion.div>
         </motion.div>
@@ -166,15 +170,15 @@ const Key = ({
   flex?: number;
   scrollYProgress: MotionValue<number>;
 }) => {
-  const backlightOpacity = useTransform(scrollYProgress, [0.2, 0.6], [0.4, 1]);
+  const backlightOpacity = useTransform(scrollYProgress, [0.2, 0.6], [0.3, 1]);
   return (
     <div
       style={{ flex }}
-      className="h-full rounded-[4px] bg-[#151515] border border-white/10 flex items-center justify-center shadow-[0_2.5px_0_0_rgba(0,0,0,1)]"
+      className="h-full rounded-[3px] bg-[#1a1a1a] border border-white/5 flex items-center justify-center shadow-[0_1.5px_0_0_rgba(0,0,0,1)]"
     >
       <motion.span 
         style={{ opacity: backlightOpacity }}
-        className="text-[6px] text-white font-black"
+        className="text-[5px] text-white/80 font-bold"
       >
         {keyLabels[label as keyof typeof keyLabels] || label}
       </motion.span>
@@ -187,7 +191,7 @@ const keyLabels = {
   "⇥": "tab",
   "⇪": "caps",
   "⏎": "ret",
-  "⇧": "shift",
+  "⇧": "shft",
   "fn": "fn",
   "⌃": "ctrl",
   "⌥": "opt",
@@ -196,54 +200,22 @@ const keyLabels = {
 
 const MacKeyboard = ({ scrollYProgress }: { scrollYProgress: MotionValue<number> }) => {
   const rows = [
-    [
-      { l: "~", w: 1 }, { l: "1", w: 1 }, { l: "2", w: 1 }, { l: "3", w: 1 },
-      { l: "4", w: 1 }, { l: "5", w: 1 }, { l: "6", w: 1 }, { l: "7", w: 1 },
-      { l: "8", w: 1 }, { l: "9", w: 1 }, { l: "0", w: 1 }, { l: "-", w: 1 },
-      { l: "=", w: 1 }, { l: "⌫", w: 1.8 },
-    ],
-    [
-      { l: "⇥", w: 1.5 }, { l: "Q", w: 1 }, { l: "W", w: 1 }, { l: "E", w: 1 },
-      { l: "R", w: 1 }, { l: "T", w: 1 }, { l: "Y", w: 1 }, { l: "U", w: 1 },
-      { l: "I", w: 1 }, { l: "O", w: 1 }, { l: "P", w: 1 }, { l: "[", w: 1 },
-      { l: "]", w: 1 }, { l: "\\", w: 1.2 },
-    ],
-    [
-      { l: "⇪", w: 1.9 }, { l: "A", w: 1 }, { l: "S", w: 1 }, { l: "D", w: 1 },
-      { l: "F", w: 1 }, { l: "G", w: 1 }, { l: "H", w: 1 }, { l: "J", w: 1 },
-      { l: "K", w: 1 }, { l: "L", w: 1 }, { l: ";", w: 1 }, { l: "'", w: 1 },
-      { l: "⏎", w: 1.9 },
-    ],
-    [
-      { l: "⇧", w: 2.4 }, { l: "Z", w: 1 }, { l: "X", w: 1 }, { l: "C", w: 1 },
-      { l: "V", w: 1 }, { l: "B", w: 1 }, { l: "N", w: 1 }, { l: "M", w: 1 },
-      { l: ",", w: 1 }, { l: ".", w: 1 }, { l: "/", w: 1 }, { l: "⇧", w: 2.4 },
-    ],
-    [
-      { l: "fn", w: 1 }, { l: "⌃", w: 1 }, { l: "⌥", w: 1 }, { l: "⌘", w: 1.3 },
-      { l: "", w: 5 }, { l: "⌘", w: 1.3 }, { l: "⌥", w: 1 },
-      { l: "◀", w: 0.7 }, { l: "▶", w: 0.7 },
-    ],
+    [{l:"~",w:1},{l:"1",w:1},{l:"2",w:1},{l:"3",w:1},{l:"4",w:1},{l:"5",w:1},{l:"6",w:1},{l:"7",w:1},{l:"8",w:1},{l:"9",w:1},{l:"0",w:1},{l:"-",w:1},{l:"=",w:1},{l:"⌫",w:1.8}],
+    [{l:"⇥",w:1.5},{l:"Q",w:1},{l:"W",w:1},{l:"E",w:1},{l:"R",w:1},{l:"T",w:1},{l:"Y",w:1},{l:"U",w:1},{l:"I",w:1},{l:"O",w:1},{l:"P",w:1},{l:"[",w:1},{l:"]",w:1},{l:"\\",w:1.2}],
+    [{l:"⇪",w:1.9},{l:"A",w:1},{l:"S",w:1},{l:"D",w:1},{l:"F",w:1},{l:"G",w:1},{l:"H",w:1},{l:"J",w:1},{l:"K",w:1},{l:"L",w:1},{l:";",w:1},{l:"'",w:1},{l:"⏎",w:1.9}],
+    [{l:"⇧",w:2.4},{l:"Z",w:1},{l:"X",w:1},{l:"C",w:1},{l:"V",w:1},{l:"B",w:1},{l:"N",w:1},{l:"M",w:1},{l:",",w:1},{l:".",w:1},{l:"/",w:1},{l:"⇧",w:2.4}],
+    [{l:"fn",w:1},{l:"⌃",w:1},{l:"⌥",w:1},{l:"⌘",w:1.3},{l:"",w:5},{l:"⌘",w:1.3},{l:"⌥",w:1},{l:"◀",w:0.7},{l:"▶",w:0.7}]
   ];
 
   return (
-    <div className="h-full w-full flex flex-col gap-[2px]">
-      <div className="flex gap-[3px] h-[12%] px-[2px] mb-[1px]">
-        <div className="w-[8%] bg-[#0a0a0a] rounded-sm flex items-center justify-center border border-white/5">
-          <span className="text-[3px] text-white/30 font-medium">esc</span>
-        </div>
-        <div className="flex-1 bg-[#0a0a0a] rounded-sm relative overflow-hidden border border-white/5">
-          <motion.div 
-            style={{ x: useTransform(scrollYProgress, [0.3, 0.6], ["-100%", "100%"]) }}
-            className="absolute inset-y-0 left-0 w-1/4 bg-blue-500/50" 
-          />
-        </div>
-        <div className="w-[8%] bg-[#0a0a0a] rounded-sm flex items-center justify-center border border-white/5">
-          <div className="w-[7px] h-[7px] rounded-full bg-black border border-white/10" />
-        </div>
+    <div className="h-full w-full flex flex-col gap-[1.5px]">
+      <div className="flex gap-[2px] h-[12%] px-[1px] mb-[1px]">
+        <div className="w-[8%] bg-[#0a0a0a] rounded-sm border border-white/5" />
+        <div className="flex-1 bg-[#0a0a0a] rounded-sm border border-white/5" />
+        <div className="w-[8%] bg-[#0a0a0a] rounded-sm border border-white/5" />
       </div>
       {rows.map((row, rowIdx) => (
-        <div key={rowIdx} className="flex gap-[2px] flex-1 px-[1px]">
+        <div key={rowIdx} className="flex gap-[1.5px] flex-1 px-[1px]">
           {row.map((key, keyIdx) => (
             <Key key={keyIdx} label={key.l} flex={key.w} scrollYProgress={scrollYProgress} />
           ))}
@@ -254,17 +226,7 @@ const MacKeyboard = ({ scrollYProgress }: { scrollYProgress: MotionValue<number>
 };
 
 const AppleLogo = () => (
-  <svg
-    width="45"
-    height="45"
-    viewBox="0 0 814 1000"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className="opacity-20"
-  >
-    <path
-      d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76.5 0-103.7 40.8-165.9 40.8s-105.6-57.4-155.5-127.4c-58.6-81.4-106-207.7-106-327.2C-1.4 308.3 86.9 159.3 225.1 159.3c63.6 0 116.6 41.6 156.5 41.6 38 0 97.6-44.1 170.2-44.1 27.5 0 126.4 2.7 190.3 103.1zM554.1 0c8.1 41.6-11.2 83.9-37.4 113.8-26.3 30-71.2 53.3-114.5 53.3-4.5-2.7-7.7-33.9.5-65.8 8.2-31.8 43-70.9 73.4-93.3C505.7-14.5 545.7-4.5 554.1 0z"
-      fill="white"
-    />
+  <svg width="40" height="40" viewBox="0 0 814 1000" fill="white" className="opacity-10">
+    <path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76.5 0-103.7 40.8-165.9 40.8s-105.6-57.4-155.5-127.4c-58.6-81.4-106-207.7-106-327.2C-1.4 308.3 86.9 159.3 225.1 159.3c63.6 0 116.6 41.6 156.5 41.6 38 0 97.6-44.1 170.2-44.1 27.5 0 126.4 2.7 190.3 103.1zM554.1 0c8.1 41.6-11.2 83.9-37.4 113.8-26.3 30-71.2 53.3-114.5 53.3-4.5-2.7-7.7-33.9.5-65.8 8.2-31.8 43-70.9 73.4-93.3C505.7-14.5 545.7-4.5 554.1 0z" />
   </svg>
 );
