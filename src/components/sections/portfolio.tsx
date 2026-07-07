@@ -15,6 +15,45 @@ const portfolioItems = [
     image: "/images/portfolio/www.resellerpro.in_.png",
     url: "resellerpro.in",
   },
+    {
+    id: "axion-technology-co",
+    title: "Axion Technology Company - Business Website",
+    category: "Web Design & Development",
+    image: "/images/portfolio/axiontechgroup.com_ (1).png",
+    url: "axiontechgroup.com",
+  },
+      {
+    id: "wcc-fashions",
+    title: "WCC Fashions-western clothing co",
+    category: "B2B-Website",
+    image: "/images/portfolio/www.wccfashions.com_.png",
+    url: "wccfashions.com",
+  },
+
+  {
+    id: "nexa-network",
+    title: "Nexa Network Solutions",
+    category: "Web Design & Development",
+    image: "/images/portfolio/nexa.com.qa_ (1).png",
+    url: "nexa.com.qa",
+  },
+
+  {
+    id: "griva",
+    title: "The Griva - Electronics",
+    category: "Web Design & E-Commerce", 
+    image: "/images/portfolio/www.thegriva.com1_.png",
+    url: "thegriva.com",
+  },
+
+    {
+    id: "ambiayu-natureproducts",
+    title: "Ambiayu - Ayurvedic products",
+    category: "Web Design & Shopify", 
+    image: "/images/portfolio/ambiayu.com_.png",
+    url: "ambiayu.com",
+  },
+  
   {
     id: "editron-studio",
     title: "Editron Studio - Creative Agency",
