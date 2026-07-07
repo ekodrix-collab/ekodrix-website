@@ -12,6 +12,7 @@ import {
 import Link from "next/link";
 import { ResellerProLogo } from "@/components/logos/resellerpro-logo";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import Image from "next/image";
 
 const features = [
   {
@@ -112,11 +113,12 @@ export function ResellerPro() {
                 <div className="mt-12 flex items-center gap-4 text-sm font-medium text-white/40">
                   <div className="flex -space-x-2">
                     {[65, 47, 33].map(i => (
-                      <div key={i} className="w-8 h-8 rounded-full border border-[#0A0A0A] overflow-hidden">
-                        <img 
+                      <div key={i} className="w-8 h-8 rounded-full border border-[#0A0A0A] overflow-hidden relative">
+                        <Image 
                           src={`https://i.pravatar.cc/100?img=${i}`} 
                           alt="User avatar" 
-                          className="w-full h-full object-cover"
+                          fill
+                          className="object-cover"
                         />
                       </div>
                     ))}

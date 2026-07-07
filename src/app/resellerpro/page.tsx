@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { ResellerPro } from "@/components/sections/resellerpro";
+import { ResellerProScroll } from "@/components/sections/ResellerProScroll";
 
 export const metadata: Metadata = {
   title: "ResellerPro - Flagship SaaS Product | EKODRIX",
@@ -9,6 +10,7 @@ export const metadata: Metadata = {
 export default function ResellerProPage() {
   return (
     <main className="min-h-screen pt-20">
+      <ResellerProScroll />
       <ResellerPro />
     </main>
   );

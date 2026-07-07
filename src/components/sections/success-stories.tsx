@@ -79,7 +79,7 @@ export function SuccessStories() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-display font-bold mb-6 text-white italic tracking-tight">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold mb-6 text-white italic tracking-tight">
             Success Stories
           </h2>
           <p className="text-xl text-white/70 max-w-3xl mx-auto">

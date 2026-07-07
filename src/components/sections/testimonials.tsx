@@ -50,7 +50,7 @@ export function Testimonials() {
           </ScrollReveal>
           
           <ScrollReveal type="fade-up" delay={0.1} threshold={0.1}>
-            <h2 className="text-[2.5rem] md:text-5xl lg:text-[3.5rem] font-display font-bold leading-[1.15] tracking-tight text-[#FAFAFA] mb-6 max-w-3xl mx-auto">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-display font-bold leading-[1.15] tracking-tight text-[#FAFAFA] mb-6 max-w-3xl mx-auto">
               Trusted by ambitious{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-ekodrix-green to-ekodrix-green-light">
                 founders

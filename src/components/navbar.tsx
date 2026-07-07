@@ -41,11 +41,17 @@ export function Navbar() {
 
   return (
     <motion.nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 isolate ${
         isScrolled 
           ? "bg-ekodrix-charcoal-dark/80 backdrop-blur-xl shadow-2xl border-b border-white/5 py-0" 
           : "bg-transparent py-2"
       }`}
+      style={{ 
+        transformStyle: "preserve-3d",
+        WebkitTransformStyle: "preserve-3d",
+        transform: "translateZ(1000px)",
+        WebkitTransform: "translateZ(1000px)"
+      }}
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
@@ -103,9 +109,9 @@ export function Navbar() {
             animate={{ opacity: 1, height: "auto", y: 0 }}
             exit={{ opacity: 0, height: 0, y: -20 }}
             transition={{ duration: 0.4, ease: "circOut" }}
-            className="md:hidden bg-ekodrix-charcoal-dark border-t border-white/5 shadow-2xl overflow-hidden"
+            className="md:hidden bg-ekodrix-charcoal-dark/95 backdrop-blur-2xl border-t border-white/5 shadow-2xl overflow-hidden"
           >
-            <div className="px-4 py-6 space-y-4">
+            <div className="px-6 py-8 space-y-4">
               {navItems.map((item) => (
                 <Link
                   key={item.href}

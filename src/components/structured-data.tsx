@@ -30,9 +30,10 @@ export function StructuredData() {
     },
     geo: {
       "@type": "GeoCoordinates",
-      latitude: "11.2188",
-      longitude: "75.9965",
+      latitude: "11.1444",
+      longitude: "75.9610",
     },
+    hasMap: "https://www.google.com/maps?cid=6666666666666666", // Placeholder CID, user should replace with actual if they have GBP
     contactPoint: [
       {
         "@type": "ContactPoint",
@@ -184,6 +185,7 @@ export function StructuredData() {
       "https://www.linkedin.com/company/ekodrix",
       "https://twitter.com/ekodrix",
       "https://github.com/ekodrix",
+      "https://share.google/yvUulZGGd8pqPi9cv",
     ],
     aggregateRating: {
       "@type": "AggregateRating",

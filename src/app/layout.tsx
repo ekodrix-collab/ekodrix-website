@@ -150,8 +150,8 @@ export const metadata: Metadata = {
     "theme-color": "#0a0a0a",
     "geo.region": "IN-KL",
     "geo.placename": "Kondotty, Malappuram, Kerala",
-    "geo.position": "11.2188;75.9965",
-    ICBM: "11.2188, 75.9965",
+    "geo.position": "11.1444;75.9610",
+    ICBM: "11.1444, 75.9610",
     "DC.title":
       "Ekodrix - Best Software Company in Kondotty, Malappuram, Kerala",
     "DC.description":
@@ -209,15 +209,15 @@ export default function RootLayout({
           <GoogleAnalytics />
         </Suspense>
         <StructuredData />
+        <Navbar />
         <ScrollProgress />
+        <Toaster position="top-center" theme="dark" />
 
         <PreloaderIntro>
           <SmoothScroll>
-            <Navbar />
             <main id="main-content">{children}</main>
             <Footer />
             <FloatingContact />
-            <Toaster position="top-center" theme="dark" />
           </SmoothScroll>
         </PreloaderIntro>
 

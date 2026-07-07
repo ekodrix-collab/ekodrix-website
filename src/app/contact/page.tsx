@@ -20,7 +20,7 @@ export default function ContactPage() {
 
   return (
     <main className="min-h-screen pt-20">
-      <section className="py-24 bg-void">
+      <section className="py-24 bg-[#0A0A0A]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-12"
@@ -28,7 +28,7 @@ export default function ContactPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-5xl font-display font-bold mb-4 gradient-text">
+            <h1 className="text-5xl font-display font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-ekodrix-green to-ekodrix-green-light">
               Get in Touch
             </h1>
             <p className="text-xl text-gray-400">
@@ -42,9 +42,9 @@ export default function ContactPage() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <div className="glass rounded-2xl p-8 border border-glass-border space-y-6">
+              <div className="glass rounded-2xl p-8 border border-white/10 space-y-6">
                 <div>
-                  <Mail className="w-6 h-6 text-accent-start mb-2" />
+                  <Mail className="w-6 h-6 text-ekodrix-green mb-2" />
                   <h3 className="font-semibold mb-1">Email</h3>
                   <a href="mailto:hello@ekodrix.com" className="text-gray-400 hover:text-white transition-colors">
                     hello@ekodrix.com
@@ -52,7 +52,7 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <Phone className="w-6 h-6 text-accent-start mb-2" />
+                  <Phone className="w-6 h-6 text-ekodrix-green mb-2" />
                   <h3 className="font-semibold mb-1">Phone</h3>
                   <a href="tel:+917736767759" className="text-gray-400 hover:text-white transition-colors">
                     +91 77367 67759
@@ -60,9 +60,9 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <MapPin className="w-6 h-6 text-accent-start mb-2" />
+                  <MapPin className="w-6 h-6 text-ekodrix-green mb-2" />
                   <h3 className="font-semibold mb-1">Locations</h3>
-                  <div className="space-y-2 text-sm">
+                  <div className="space-y-4 text-sm">
                     <p className="text-gray-400">
                       <strong className="text-white">Headquarters</strong><br />
                       Kondotty, Malappuram, Kerala
@@ -71,6 +71,15 @@ export default function ContactPage() {
                       <strong className="text-white">Engineering Center</strong><br />
                       Bangalore, India
                     </p>
+                    <a 
+                      href="https://share.google/yvUulZGGd8pqPi9cv"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-ekodrix-green hover:underline mt-2 font-medium"
+                    >
+                      <MapPin className="w-4 h-4" />
+                      Get Directions
+                    </a>
                   </div>
                 </div>
               </div>
@@ -78,7 +87,7 @@ export default function ContactPage() {
 
             <motion.form
               onSubmit={handleSubmit}
-              className="glass rounded-2xl p-8 border border-glass-border space-y-6"
+              className="glass rounded-2xl p-8 border border-white/10 space-y-6"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
@@ -93,7 +102,7 @@ export default function ContactPage() {
                   required
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-3 rounded-lg bg-cosmic border border-glass-border text-white focus:outline-none focus:border-accent-start transition-colors"
+                  className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white focus:outline-none focus:border-ekodrix-green transition-colors"
                 />
               </div>
 
@@ -107,7 +116,7 @@ export default function ContactPage() {
                   required
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-4 py-3 rounded-lg bg-cosmic border border-glass-border text-white focus:outline-none focus:border-accent-start transition-colors"
+                  className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white focus:outline-none focus:border-ekodrix-green transition-colors"
                 />
               </div>
 
@@ -120,7 +129,7 @@ export default function ContactPage() {
                   id="company"
                   value={formData.company}
                   onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                  className="w-full px-4 py-3 rounded-lg bg-cosmic border border-glass-border text-white focus:outline-none focus:border-accent-start transition-colors"
+                  className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white focus:outline-none focus:border-ekodrix-green transition-colors"
                 />
               </div>
 
@@ -134,19 +143,37 @@ export default function ContactPage() {
                   rows={5}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full px-4 py-3 rounded-lg bg-cosmic border border-glass-border text-white focus:outline-none focus:border-accent-start transition-colors resize-none"
+                  className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white focus:outline-none focus:border-ekodrix-green transition-colors resize-none"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full px-6 py-3 rounded-lg bg-accent-gradient text-white font-semibold hover:scale-105 hover:shadow-lg hover:shadow-accent-glow transition-all flex items-center justify-center gap-2"
+                className="w-full px-6 py-4 rounded-xl bg-ekodrix-green text-[#0a0a0a] font-bold hover:scale-[1.02] hover:shadow-lg hover:shadow-ekodrix-green/20 transition-all flex items-center justify-center gap-2 active:scale-[0.98]"
               >
                 Send Message
                 <Send className="w-5 h-5" />
               </button>
             </motion.form>
           </div>
+          {/* Map Section */}
+          <motion.div
+            className="mt-16 rounded-3xl overflow-hidden border border-white/5 shadow-2xl h-[450px] relative"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+          >
+            <iframe
+              src="https://maps.google.com/maps?q=Ekodrix%20Software%20Solutions%20Kondotty&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              width="100%"
+              height="100%"
+              style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg) contrast(90%)' }}
+              allowFullScreen={true}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Ekodrix Location Map"
+            />
+          </motion.div>
         </div>
       </section>
     </main>

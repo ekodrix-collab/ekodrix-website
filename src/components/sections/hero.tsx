@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Star } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 const heroImages = [
   "/images/hero/hero_office_team.png",
@@ -57,7 +58,7 @@ export function Hero() {
 
             {/* Headline with Clean Typography */}
             <motion.h1
-              className="text-[2.75rem] md:text-5xl lg:text-[3.5rem] font-display font-bold leading-[1.15] tracking-tight text-[#FAFAFA] mb-6"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-display font-bold leading-[1.15] tracking-tight text-[#FAFAFA] mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
@@ -79,24 +80,26 @@ export function Hero() {
             </motion.p>
 
             {/* Polished Call to Action Buttons */}
-            <motion.div
-              className="flex flex-col sm:flex-row gap-4 mb-14"
-              initial={{ opacity: 0, y: 15 }}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="flex flex-col sm:flex-row items-center gap-5"
             >
               <Link
-                href="/contact"
-                className="group relative inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-full bg-ekodrix-green text-[#0B150F] font-semibold text-[0.95rem] tracking-wide hover:shadow-[0_0_20px_rgba(40,179,106,0.3)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
+                href="/start-project"
+                className="group relative flex items-center justify-center gap-2.5 px-10 py-5 rounded-full bg-ekodrix-green text-[#0B150F] font-bold text-[1.05rem] tracking-tight hover:shadow-[0_0_40px_rgba(40,179,106,0.3)] transition-all duration-300 w-full sm:w-auto overflow-hidden"
               >
-                Start Your Project
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                <span className="relative z-10">Start Your Project</span>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform relative z-10" />
+                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
               </Link>
+
               <Link
                 href="/work"
-                className="inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-full border border-white/10 bg-white/[0.02] text-white/90 font-medium text-[0.95rem] hover:bg-white/5 hover:border-white/20 hover:text-white backdrop-blur-sm transition-all duration-300"
+                className="group flex items-center justify-center gap-2.5 px-10 py-5 rounded-full border border-white/10 bg-white/[0.02] text-white/90 font-semibold text-[1.05rem] hover:bg-white/5 hover:border-white/20 hover:text-white transition-all duration-300 w-full sm:w-auto"
               >
-                View Case Studies
+                Browse Portfolio
               </Link>
             </motion.div>
 
@@ -110,10 +113,11 @@ export function Hero() {
               <div className="flex -space-x-3">
                 {[4, 12, 33, 44].map((i) => (
                   <div key={i} className="w-9 h-9 rounded-full border-2 border-[#111111] overflow-hidden relative shadow-sm z-10 transition-transform hover:z-20 hover:scale-110">
-                    <img 
+                    <Image 
                       src={`https://i.pravatar.cc/100?img=${i}`} 
                       alt="Client Avatar"
-                      className="w-full h-full object-cover scale-110"
+                      fill
+                      className="object-cover scale-110"
                     />
                   </div>
                 ))}
@@ -165,16 +169,24 @@ export function Hero() {
                   transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
                 >
                   <AnimatePresence initial={false}>
-                    <motion.img
+                    <motion.div
                       key={currentImageIndex}
-                      src={heroImages[currentImageIndex]}
-                      alt="Professional Business Solutions Team"
-                      className="absolute inset-0 w-full h-full object-cover object-center"
+                      className="absolute inset-0 w-full h-full"
                       initial={{ opacity: 0, x: "30%", scale: 1.1 }}
                       animate={{ opacity: 1, x: "0%", scale: 1.03 }}
                       exit={{ opacity: 0, x: "-30%", scale: 0.9, filter: "blur(4px)" }}
                       transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-                    />
+                    >
+                      <Image
+                        src={heroImages[currentImageIndex]}
+                        alt="Professional Business Solutions Team"
+                        fill
+                        className="object-cover object-center"
+                        priority={true}
+                        quality={90}
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
+                    </motion.div>
                   </AnimatePresence>
                   
                   {/* Subtle outer dark overlay to maintain legibility */}
