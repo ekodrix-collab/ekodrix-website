@@ -23,6 +23,8 @@ export function Navbar() {
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
 
+  if (pathname?.startsWith("/ekodrix-panel")) return null;
+
   useEffect(() => {
     setMounted(true);
     const handleScroll = () => {
