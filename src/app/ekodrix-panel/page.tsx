@@ -128,17 +128,7 @@ export default function AdminPanelPage() {
     }
   };
 
-  const handleDemoLogin = async () => {
-    setLoginLoading(true);
-    const res = await AuthService.login("admin@ekodrix.com", "admin123");
-    setLoginLoading(false);
-    if (res.success && res.user) {
-      setIsAuthenticated(true);
-      setUser(res.user);
-      toast.success("Demo Admin access granted!");
-      loadData();
-    }
-  };
+
 
   const handleLogout = () => {
     AuthService.logout();
@@ -284,22 +274,7 @@ export default function AdminPanelPage() {
             </button>
           </form>
 
-          <div className="relative my-6 text-center">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-white/10" />
-            </div>
-            <span className="relative px-4 bg-[#121622] text-xs text-gray-500 uppercase tracking-widest">
-              Integration Preview
-            </span>
-          </div>
 
-          <button
-            onClick={handleDemoLogin}
-            className="w-full py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white font-medium text-sm transition-colors flex items-center justify-center gap-2 group"
-          >
-            <UserCheck className="w-4 h-4 text-ekodrix-green group-hover:scale-110 transition-transform" />
-            One-Click Demo Admin Login
-          </button>
 
           <div className="mt-6 text-center">
             <p className="text-[0.7rem] text-gray-500 leading-relaxed">
@@ -471,56 +446,56 @@ export default function AdminPanelPage() {
         {/* TAB 1: DASHBOARD OVERVIEW */}
         {activeTab === "dashboard" && (
           <div className="space-y-8">
-            {/* Stat Summary Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-              <div className="bg-[#121624] border border-white/10 rounded-2xl p-5 hover:border-white/20 transition-all">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Total Submissions</span>
-                  <div className="p-2 rounded-xl bg-blue-500/10 text-blue-400 border border-blue-500/20">
-                    <FileText className="w-4 h-4" />
+            {/* Stat Summary Cards — 2x2 grid on mobile (2 on top, 2 on bottom), 4 in a row on desktop */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
+              <div className="bg-[#121624] border border-white/10 rounded-2xl p-4 sm:p-5 hover:border-white/20 transition-all">
+                <div className="flex items-center justify-between mb-2 sm:mb-3">
+                  <span className="text-[0.65rem] sm:text-xs font-semibold text-gray-400 uppercase tracking-wider">Total Submissions</span>
+                  <div className="p-1.5 sm:p-2 rounded-xl bg-blue-500/10 text-blue-400 border border-blue-500/20 flex-shrink-0">
+                    <FileText className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                   </div>
                 </div>
-                <div className="text-3xl font-extrabold text-white mb-1">{stats.total}</div>
-                <div className="text-[0.75rem] text-gray-400 flex items-center gap-1">
-                  <TrendingUp className="w-3 h-3 text-ekodrix-green" /> All-time submissions
+                <div className="text-2xl sm:text-3xl font-extrabold text-white mb-1">{stats.total}</div>
+                <div className="text-[0.7rem] sm:text-[0.75rem] text-gray-400 flex items-center gap-1">
+                  <TrendingUp className="w-3 h-3 text-ekodrix-green flex-shrink-0" /> All-time submissions
                 </div>
               </div>
 
-              <div className="bg-[#121624] border border-white/10 rounded-2xl p-5 hover:border-white/20 transition-all">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-xs font-semibold text-emerald-400 uppercase tracking-wider">New Requests</span>
-                  <div className="p-2 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                    <AlertCircle className="w-4 h-4" />
+              <div className="bg-[#121624] border border-white/10 rounded-2xl p-4 sm:p-5 hover:border-white/20 transition-all">
+                <div className="flex items-center justify-between mb-2 sm:mb-3">
+                  <span className="text-[0.65rem] sm:text-xs font-semibold text-emerald-400 uppercase tracking-wider">New Requests</span>
+                  <div className="p-1.5 sm:p-2 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex-shrink-0">
+                    <AlertCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                   </div>
                 </div>
-                <div className="text-3xl font-extrabold text-white mb-1">{stats.new}</div>
-                <div className="text-[0.75rem] text-emerald-400 font-medium">
+                <div className="text-2xl sm:text-3xl font-extrabold text-white mb-1">{stats.new}</div>
+                <div className="text-[0.7rem] sm:text-[0.75rem] text-emerald-400 font-medium">
                   Requires response
                 </div>
               </div>
 
-              <div className="bg-[#121624] border border-white/10 rounded-2xl p-5 hover:border-white/20 transition-all">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-xs font-semibold text-amber-400 uppercase tracking-wider">In Progress</span>
-                  <div className="p-2 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20">
-                    <Clock className="w-4 h-4" />
+              <div className="bg-[#121624] border border-white/10 rounded-2xl p-4 sm:p-5 hover:border-white/20 transition-all">
+                <div className="flex items-center justify-between mb-2 sm:mb-3">
+                  <span className="text-[0.65rem] sm:text-xs font-semibold text-amber-400 uppercase tracking-wider">In Progress</span>
+                  <div className="p-1.5 sm:p-2 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20 flex-shrink-0">
+                    <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                   </div>
                 </div>
-                <div className="text-3xl font-extrabold text-white mb-1">{stats.inProgress}</div>
-                <div className="text-[0.75rem] text-gray-400">
+                <div className="text-2xl sm:text-3xl font-extrabold text-white mb-1">{stats.inProgress}</div>
+                <div className="text-[0.7rem] sm:text-[0.75rem] text-gray-400">
                   Active negotiations & dev
                 </div>
               </div>
 
-              <div className="bg-[#121624] border border-white/10 rounded-2xl p-5 hover:border-white/20 transition-all">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-xs font-semibold text-purple-400 uppercase tracking-wider">Completed</span>
-                  <div className="p-2 rounded-xl bg-purple-500/10 text-purple-400 border border-purple-500/20">
-                    <CheckCircle2 className="w-4 h-4" />
+              <div className="bg-[#121624] border border-white/10 rounded-2xl p-4 sm:p-5 hover:border-white/20 transition-all">
+                <div className="flex items-center justify-between mb-2 sm:mb-3">
+                  <span className="text-[0.65rem] sm:text-xs font-semibold text-purple-400 uppercase tracking-wider">Completed</span>
+                  <div className="p-1.5 sm:p-2 rounded-xl bg-purple-500/10 text-purple-400 border border-purple-500/20 flex-shrink-0">
+                    <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                   </div>
                 </div>
-                <div className="text-3xl font-extrabold text-white mb-1">{stats.completed}</div>
-                <div className="text-[0.75rem] text-gray-400">
+                <div className="text-2xl sm:text-3xl font-extrabold text-white mb-1">{stats.completed}</div>
+                <div className="text-[0.7rem] sm:text-[0.75rem] text-gray-400">
                   Successfully closed
                 </div>
               </div>
@@ -940,8 +915,8 @@ ADMIN_NOTIFICATION_EMAIL=leads@ekodrix.com`}
                 </div>
               </div>
 
-              {/* Request Parameters Grid */}
-              <div className="grid grid-cols-3 gap-4 mb-6 bg-white/5 p-4 rounded-2xl border border-white/5">
+              {/* Request Parameters Grid — Mobile responsive grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-6 bg-white/5 p-4 rounded-2xl border border-white/5">
                 <div>
                   <span className="text-[0.65rem] uppercase tracking-wider text-gray-400 font-semibold block mb-1">
                     Project Type
@@ -1012,29 +987,31 @@ ADMIN_NOTIFICATION_EMAIL=leads@ekodrix.com`}
                 />
                 <button
                   onClick={handleSaveNotes}
-                  className="mt-2 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-semibold transition-all"
+                  className="mt-2 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-semibold transition-all w-full sm:w-auto"
                 >
                   Save Internal Notes
                 </button>
               </div>
 
-              {/* Action Buttons */}
-              <div className="flex items-center justify-between pt-4 border-t border-white/10">
+              {/* Action Buttons — Mobile Responsive */}
+              <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-6 border-t border-white/10">
                 <button
                   onClick={() => handleDeleteRequest(selectedRequest.id)}
-                  className="text-xs text-rose-400 hover:text-rose-300 font-semibold flex items-center gap-1.5"
+                  className="px-4 py-2.5 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/20 text-xs font-semibold transition-all flex items-center justify-center gap-1.5"
                 >
-                  <Trash2 className="w-3.5 h-3.5" /> Delete Submission
+                  <Trash2 className="w-4 h-4" /> Delete Submission
                 </button>
 
-                <div className="flex items-center gap-3">
-                  <a
-                    href={`mailto:${selectedRequest.email}?subject=Regarding your project request with EKODRIX`}
-                    className="px-4 py-2.5 rounded-xl bg-ekodrix-green text-ekodrix-charcoal-dark font-bold text-xs hover:bg-ekodrix-green-light transition-all flex items-center gap-2"
-                  >
-                    <Send className="w-3.5 h-3.5" /> Reply to Client
-                  </a>
-                </div>
+                <button
+                  onClick={() => {
+                    navigator.clipboard.writeText(selectedRequest.email);
+                    toast.success(`Copied ${selectedRequest.email} to clipboard!`);
+                  }}
+                  className="px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-gray-300 border border-white/10 text-xs font-semibold transition-all flex items-center justify-center gap-1.5"
+                  title="Copy client email address"
+                >
+                  <Mail className="w-3.5 h-3.5 text-gray-400" /> Copy Client Email
+                </button>
               </div>
             </motion.div>
           </div>
