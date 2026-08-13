@@ -37,6 +37,37 @@ function mapRowToProjectRequest(row: SupabaseDbRow): ProjectRequest {
 }
 
 /**
+ * Trigger Supabase Edge Function to send email notification to admin via Nodemailer.
+ * Fire-and-forget: Runs asynchronously after successful DB record creation.
+ */
+async function triggerEmailNotification(data: Omit<ProjectRequest, "id" | "status" | "created_at">) {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
+  const key =
+    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+    "";
+
+  if (!url || !key) return;
+
+  try {
+    const functionUrl = `${url}/functions/v1/send-enquiry-email`;
+    fetch(functionUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${key}`,
+        apikey: key,
+      },
+      body: JSON.stringify(data),
+    }).catch((err) => {
+      console.warn("[ProjectRequestService] Async email notification warning:", err);
+    });
+  } catch (err) {
+    console.warn("[ProjectRequestService] Could not trigger email notification function:", err);
+  }
+}
+
+/**
  * Service Layer for EKODRIX Project Requests.
  * Fully wired to Supabase database (`project_requests` table).
  * Zero dummy data.
@@ -169,7 +200,12 @@ export const ProjectRequestService = {
       return { success: false, error: error || "Failed to insert record into Supabase." };
     }
 
-    return { success: true, data: mapRowToProjectRequest(result[0]) };
+    const created = mapRowToProjectRequest(result[0]);
+
+    // Trigger Supabase Edge Function to send email notification to admin (fire-and-forget)
+    triggerEmailNotification(data);
+
+    return { success: true, data: created };
   },
 
   /**
