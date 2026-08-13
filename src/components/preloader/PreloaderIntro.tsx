@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import React, { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { EkodrixLogo } from "@/components/logos/ekodrix-logo";
 
 /* ═══════════════════════════════════════════════════════════════
@@ -279,6 +280,7 @@ const STAGES = [
    MAIN COMPONENT
 ═══════════════════════════════════════════════════════════════ */
 export function PreloaderIntro({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
   const [isLoading, setIsLoading]       = useState(true);
   const [hasSeenIntro, setHasSeenIntro] = useState(false);
   const [progress, setProgress]         = useState(0);
@@ -319,6 +321,9 @@ export function PreloaderIntro({ children }: { children: React.ReactNode }) {
     window.addEventListener("keydown", fn);
     return () => window.removeEventListener("keydown", fn);
   }, []);
+
+  // Skip preloader entirely on admin panel route
+  if (pathname?.startsWith("/ekodrix-panel")) return <>{children}</>;
 
   if (hasSeenIntro && mounted) return <>{children}</>;
 

@@ -52,7 +52,7 @@ export function CustomCursor() {
       window.removeEventListener("mousedown", handleMouseDown);
       window.removeEventListener("mouseup", handleMouseUp);
     };
-  }, []);
+  }, [cursorX, cursorY]);
 
   if (!mounted) return null;
 
