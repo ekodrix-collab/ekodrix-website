@@ -12,8 +12,6 @@ export function FloatingContact() {
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
 
-  if (pathname?.startsWith("/ekodrix-panel")) return null;
-
   useEffect(() => {
     setMounted(true);
     
@@ -27,6 +25,8 @@ export function FloatingContact() {
       return () => clearTimeout(timer);
     }
   }, []);
+
+  if (pathname?.startsWith("/ekodrix-panel")) return null;
 
   const handleCloseTeaser = (e: React.MouseEvent) => {
     e.stopPropagation();

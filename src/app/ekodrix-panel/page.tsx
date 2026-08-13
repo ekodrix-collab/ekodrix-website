@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   LayoutDashboard,
@@ -74,19 +74,7 @@ export default function AdminPanelPage() {
   const [selectedRequest, setSelectedRequest] = useState<ProjectRequest | null>(null);
   const [editingNotes, setEditingNotes] = useState("");
 
-  // Check Auth state on load
-  useEffect(() => {
-    const isAuth = AuthService.isAuthenticated();
-    setIsAuthenticated(isAuth);
-    if (isAuth) {
-      setUser(AuthService.getCurrentUser());
-      loadData();
-    } else {
-      setLoading(false);
-    }
-  }, []);
-
-  const loadData = async () => {
+  const loadData = useCallback(async () => {
     setLoading(true);
     try {
       const [reqList, reqStats] = await Promise.all([
@@ -104,13 +92,25 @@ export default function AdminPanelPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [statusFilter, typeFilter, searchQuery]);
+
+  // Check Auth state on load
+  useEffect(() => {
+    const isAuth = AuthService.isAuthenticated();
+    setIsAuthenticated(isAuth);
+    if (isAuth) {
+      setUser(AuthService.getCurrentUser());
+      loadData();
+    } else {
+      setLoading(false);
+    }
+  }, [loadData]);
 
   useEffect(() => {
     if (isAuthenticated) {
       loadData();
     }
-  }, [statusFilter, typeFilter, searchQuery, isAuthenticated]);
+  }, [loadData, isAuthenticated]);
 
   // Handle Login
   const handleLoginSubmit = async (e: React.FormEvent) => {

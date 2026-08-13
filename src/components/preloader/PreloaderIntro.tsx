@@ -287,9 +287,6 @@ export function PreloaderIntro({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted]           = useState(false);
   const [stage, setStage]               = useState(0);
 
-  // Skip preloader entirely on admin panel route
-  if (pathname?.startsWith("/ekodrix-panel")) return <>{children}</>;
-
   useEffect(() => {
     setMounted(true);
     if (sessionStorage.getItem("ekodrix_seen_intro") === "true") {
@@ -324,6 +321,9 @@ export function PreloaderIntro({ children }: { children: React.ReactNode }) {
     window.addEventListener("keydown", fn);
     return () => window.removeEventListener("keydown", fn);
   }, []);
+
+  // Skip preloader entirely on admin panel route
+  if (pathname?.startsWith("/ekodrix-panel")) return <>{children}</>;
 
   if (hasSeenIntro && mounted) return <>{children}</>;
 
