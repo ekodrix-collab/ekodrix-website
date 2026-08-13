@@ -1,10 +1,16 @@
 "use client";
 
 import React, { useEffect } from "react";
+import { usePathname } from "next/navigation";
 import Lenis from "lenis";
 
 export function SmoothScroll({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+
   useEffect(() => {
+    // Skip Lenis on admin panel route — it has its own scroll context
+    if (pathname?.startsWith("/ekodrix-panel")) return;
+
     // Disable smooth scroll on mobile/touch devices to prevent scroll issues
     const isMobile =
       window.matchMedia("(max-width: 768px)").matches ||
@@ -36,7 +42,7 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
     return () => {
       lenis.destroy();
     };
-  }, []);
+  }, [pathname]);
 
   return <>{children}</>;
 }
