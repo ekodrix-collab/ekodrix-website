@@ -41,7 +41,7 @@ const blogPosts = [
     date: "2026-01-20",
     readTime: "12 min read",
     featured: true,
-    image: "/images/blog/saas-scalability.png"
+    image: "https://cdn.sanity.io/images/3sq1n5yp/production/d5292f087506c55af5698417b68faa77794ab3b1-1024x1024.jpg?auto=format&w=1200&q=85"
   },
   {
     slug: "ai-production-workflows",
@@ -51,7 +51,7 @@ const blogPosts = [
     date: "2026-01-18",
     readTime: "10 min read",
     featured: false,
-    image: "/images/blog/ai-production.png"
+    image: "https://cdn.sanity.io/images/3sq1n5yp/production/2857a2dab2b6b76340d82ef7545f98168c1c91f9-1024x1024.jpg?auto=format&w=800&q=85"
   },
   {
     slug: "art-of-premium-ux",
@@ -61,7 +61,7 @@ const blogPosts = [
     date: "2026-01-15",
     readTime: "8 min read",
     featured: false,
-    image: "/images/blog/ux-design.png"
+    image: "https://cdn.sanity.io/images/3sq1n5yp/production/84f0df6e5203d2e376added8272cc0f4084ab645-1024x1024.jpg?auto=format&w=800&q=85"
   },
   {
     slug: "modern-tech-stack-2026",
@@ -71,7 +71,7 @@ const blogPosts = [
     date: "2026-01-12",
     readTime: "15 min read",
     featured: false,
-    image: "/images/blog/tech-stack.png"
+    image: "https://cdn.sanity.io/images/3sq1n5yp/production/586255cd8e41e568f73876e13cccfa57be6f2057-1024x1024.jpg?auto=format&w=800&q=85"
   },
   {
     slug: "engineering-the-future",
@@ -81,7 +81,7 @@ const blogPosts = [
     date: "2026-01-08",
     readTime: "9 min read",
     featured: false,
-    image: "/images/blog/engineering-future.png"
+    image: "https://cdn.sanity.io/images/3sq1n5yp/production/1340c45d0df84a4427ad7432ff35f1a4407e9eb0-1024x1024.jpg?auto=format&w=800&q=85"
   },
   {
     slug: "startup-velocity-mvp-to-scale",
@@ -91,7 +91,7 @@ const blogPosts = [
     date: "2026-01-05",
     readTime: "11 min read",
     featured: false,
-    image: "/images/blog/startup-velocity.png"
+    image: "https://cdn.sanity.io/images/3sq1n5yp/production/a5b8374fc71c9d82ff348270c715be73e1ef0056-1024x1024.jpg?auto=format&w=800&q=85"
   },
   {
     slug: "solving-business-tech-challenges-2026",
@@ -101,7 +101,7 @@ const blogPosts = [
     date: "2026-04-19",
     readTime: "14 min read",
     featured: false,
-    image: "/images/blog/business-tech-2026.png"
+    image: "https://cdn.sanity.io/images/3sq1n5yp/production/175f502ee15e3f261dbe9458531a019fd01b38b7-1024x1024.jpg?auto=format&w=800&q=85"
   },
 ];
 

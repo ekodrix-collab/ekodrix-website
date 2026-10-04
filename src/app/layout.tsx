@@ -37,13 +37,12 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://ekodrix.com"),
 
   title: {
-    default:
-      "Ekodrix — Best Software Company in Kondotty | Web Development, App Development & Digital Marketing Kerala",
-    template: "%s | Ekodrix — Top IT Company Kondotty, Kerala",
+    default: "Ekodrix — Software & Web Development Company in Kerala",
+    template: "%s | Ekodrix Technologies",
   },
 
   description:
-    "Ekodrix is the #1 software company in Kondotty, Malappuram, Kerala. Expert web development, mobile app development, digital marketing, SEO, custom software & IT solutions. 100+ happy clients. Free consultation. Call +91-77367-67759.",
+    "Ekodrix is a premier software development company in Kondotty, Kerala. We build custom web apps, mobile solutions, and SaaS platforms like ResellerPro.",
 
   keywords: [
     // Brand
@@ -88,16 +87,15 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: "https://ekodrix.com",
     siteName: "Ekodrix",
-    title:
-      "Ekodrix — Best Software Company in Kondotty, Kerala | Web Development, App Development",
+    title: "Ekodrix — Software & Web Development Company in Kerala",
     description:
-      "Ekodrix is the #1 IT company in Kondotty, Kerala. Expert web development, app development, digital marketing & SEO. 100+ happy clients. Free consultation!",
+      "Premier software development company in Kondotty, Kerala. Custom web applications, mobile apps, SaaS platforms & enterprise digital solutions.",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Ekodrix — Software Company Kondotty, Kerala",
+        alt: "Ekodrix — Software & Web Development Company in Kerala",
         type: "image/jpeg",
       },
     ],
@@ -107,9 +105,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@ekodrix",
     creator: "@ekodrix",
-    title: "Ekodrix — Best Software Company in Kondotty, Kerala",
+    title: "Ekodrix — Software & Web Development Company in Kerala",
     description:
-      "Top IT company in Kondotty, Kerala. Web Development | App Development | Digital Marketing | SEO Services. Free Consultation!",
+      "Premier software development company in Kondotty, Kerala. Custom web applications, mobile apps, SaaS platforms & enterprise digital solutions.",
     images: ["/og-image.jpg"],
   },
 

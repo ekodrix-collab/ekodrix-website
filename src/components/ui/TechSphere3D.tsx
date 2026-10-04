@@ -62,20 +62,22 @@ function TechNode({ tech, position }: { tech: typeof techStack[0], position: THR
              style={{ background: tech.color }}
            />
            
-           {/* Premium Glassmorphism Container */}
-           <div className={`relative w-16 h-16 md:w-20 md:h-20 rounded-[32px] bg-white/[0.08] border border-white/10 flex items-center justify-center p-4 transition-all duration-500 shadow-2xl backdrop-blur-2xl overflow-hidden ${hovered ? 'border-white/40 bg-white/[0.15] -translate-y-3' : ''}`}>
+           {/* Premium Container without heavy backdrop-blur lag */}
+           <div className={`relative w-16 h-16 md:w-20 md:h-20 rounded-[24px] bg-[#161616]/95 border border-white/10 flex items-center justify-center p-3.5 transition-all duration-300 shadow-xl overflow-hidden ${hovered ? 'border-white/40 bg-[#222222] -translate-y-2' : ''}`}>
               <img 
                 src={iconUrl} 
                 alt={tech.name}
-                className="w-full h-full object-contain pointer-events-none transition-all duration-500 group-hover:scale-110 drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]"
-                loading="eager"
+                className="w-full h-full object-contain pointer-events-none transition-all duration-300 group-hover:scale-110"
+                loading="lazy"
+                width={64}
+                height={64}
               />
            </div>
         </div>
 
         {/* Cinematic Label */}
         <div 
-          className={`mt-4 px-5 py-2 rounded-full text-[10px] font-display font-black tracking-[0.3em] uppercase transition-all duration-500 border border-white/10 shadow-2xl ${hovered ? 'bg-white text-black border-white translate-y-2' : 'bg-black/60 text-white/50 backdrop-blur-md'}`}
+          className={`mt-3 px-4 py-1.5 rounded-full text-[10px] font-display font-bold tracking-[0.2em] uppercase transition-all duration-300 border border-white/10 shadow-lg ${hovered ? 'bg-white text-black border-white translate-y-1' : 'bg-[#121212]/90 text-white/70'}`}
         >
           {tech.name}
         </div>
@@ -230,10 +232,10 @@ export function TechSphere3D() {
         <pointLight position={[10, 20, 10]} intensity={3} color="#10b981" />
         <spotLight position={[0, 0, 30]} intensity={1} angle={0.5} />
 
-        <Suspense fallback={null}>
-          <TechEcosystem />
-          <Stars radius={100} depth={50} count={3000} factor={5} saturation={0} fade speed={1.5} />
-        </Suspense>
+          <Suspense fallback={null}>
+            <TechEcosystem />
+            <Stars radius={80} depth={40} count={600} factor={4} saturation={0} fade speed={1.0} />
+          </Suspense>
 
         <fog attach="fog" args={["#010101", 10, 50]} />
       </Canvas>

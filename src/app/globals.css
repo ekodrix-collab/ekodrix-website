@@ -683,10 +683,13 @@ body {
   display: block;
   width: 100%;
   height: auto;
-  transform: translateY(0);
+  transform: translate3d(0, 0, 0);
   will-change: transform;
-  /* Default transition for reset (mouse leave handled by JS) */
-  transition: transform 1s ease-in-out;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  contain: paint;
+  /* Default transition for reset */
+  transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .portfolio-preview-fade {

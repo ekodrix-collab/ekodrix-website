@@ -56,7 +56,7 @@ export function FloatingContact() {
                   <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-ekodrix-green to-ekodrix-green-light p-[1px]">
                     <div className="w-full h-full rounded-2xl bg-black flex items-center justify-center overflow-hidden relative">
                       <Image 
-                        src="/team/image.png" 
+                        src="https://cdn.sanity.io/images/3sq1n5yp/production/7912555a6e49b893da054692929d8538997a1d64-640x640.png?auto=format&w=128&q=85" 
                         alt="CEO"
                         fill
                         className="object-cover"
@@ -73,6 +73,7 @@ export function FloatingContact() {
               <button 
                 onClick={() => setIsOpen(false)}
                 className="p-2 hover:bg-white/5 rounded-full transition-colors text-white/40 hover:text-white"
+                aria-label="Minimize chat window"
               >
                 <Minimize2 className="w-4 h-4" />
               </button>
@@ -139,6 +140,7 @@ export function FloatingContact() {
                     <button 
                       onClick={handleCloseTeaser}
                       className="absolute -top-2 -right-2 w-5 h-5 bg-black text-white rounded-full flex items-center justify-center text-[10px] border border-white/10 shadow-lg hover:bg-gray-800 transition-colors"
+                      aria-label="Close message teaser"
                     >
                       <X className="w-3 h-3" />
                     </button>

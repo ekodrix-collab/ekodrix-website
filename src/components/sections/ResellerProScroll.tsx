@@ -12,7 +12,7 @@ export function ResellerProScroll() {
       </div>
 
       <MacbookScroll
-        src="/images/resellerpro-dashboard.png"
+        src="https://cdn.sanity.io/images/3sq1n5yp/production/0cb788970b0a0ca839d3e749b7da7686a2d78c0f-1024x1024.jpg?auto=format&w=1200&q=85"
         showGradient={false}
       />
     </section>

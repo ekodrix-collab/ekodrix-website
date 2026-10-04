@@ -6,13 +6,13 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/api/', '/admin/', '/_next/'],
+        disallow: ['/api/', '/admin/', '/cms/'],
       },
       {
         // Ensure Googlebot can crawl everything
         userAgent: 'Googlebot',
         allow: '/',
-        disallow: ['/api/', '/admin/'],
+        disallow: ['/api/', '/admin/', '/cms/'],
       },
     ],
     sitemap: 'https://ekodrix.com/sitemap.xml',

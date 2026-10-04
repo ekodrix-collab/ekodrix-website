@@ -10,6 +10,7 @@ const nextConfig = {
     remotePatterns: [
       { protocol: 'https', hostname: 'images.unsplash.com' },
       { protocol: 'https', hostname: 'res.cloudinary.com' },
+      { protocol: 'https', hostname: 'cdn.sanity.io' },
       { protocol: 'https', hostname: 'ekodrix.com' },
       { protocol: 'https', hostname: 'picsum.photos' },
       { protocol: 'https', hostname: 'i.pravatar.cc' },
@@ -68,6 +69,12 @@ const nextConfig = {
 
   async redirects() {
     return [
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'www.ekodrix.com' }],
+        destination: 'https://ekodrix.com/:path*',
+        permanent: true,
+      },
       { source: '/home', destination: '/', permanent: true },
       { source: '/index', destination: '/', permanent: true },
       { source: '/service', destination: '/services', permanent: true },

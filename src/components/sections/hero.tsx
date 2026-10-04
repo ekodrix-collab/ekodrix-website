@@ -7,10 +7,22 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 
 const heroImages = [
-  "/images/hero/hero_office_team.png",
-  "/images/hero/team-collaboration.png",
-  "/images/hero/developer-workspace.png",
-  "/images/hero/female-engineer.png",
+  {
+    src: "https://cdn.sanity.io/images/3sq1n5yp/production/73fe1452b244532008dbf27405958c770f53c31c-1024x1024.jpg?auto=format&w=1200&q=85",
+    alt: "Ekodrix software development team building custom web apps and digital solutions in Kerala",
+  },
+  {
+    src: "https://cdn.sanity.io/images/3sq1n5yp/production/d76b89f80e6d2db5f02fa8f251cdda9ee7c994f1-1024x1024.jpg?auto=format&w=1200&q=85",
+    alt: "Ekodrix software engineers collaborating on full-stack web and mobile application architecture",
+  },
+  {
+    src: "https://cdn.sanity.io/images/3sq1n5yp/production/c7814551b02a48f8ac7c7878f1f1aab684d01f83-1024x1024.jpg?auto=format&w=1200&q=85",
+    alt: "High performance software engineering and SaaS product development workspace at Ekodrix",
+  },
+  {
+    src: "https://cdn.sanity.io/images/3sq1n5yp/production/6b1a0885cde985f21ecd28fa1f6e9ca77a0fa00e-1024x1024.jpg?auto=format&w=1200&q=85",
+    alt: "Senior software engineer designing modern cloud and UI UX digital experiences at Ekodrix",
+  },
 ];
 
 export function Hero() {
@@ -63,9 +75,9 @@ export function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
             >
-              We Provide Tech Solutions to{" "}
+              Custom Software & Digital Tech Solutions Built to{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-ekodrix-green to-ekodrix-green-light pb-1">
-                Grow Your Business
+                Scale Your Business
               </span>
             </motion.h1>
 
@@ -178,8 +190,8 @@ export function Hero() {
                       transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                     >
                       <Image
-                        src={heroImages[currentImageIndex]}
-                        alt="Professional Business Solutions Team"
+                        src={heroImages[currentImageIndex].src}
+                        alt={heroImages[currentImageIndex].alt}
                         fill
                         className="object-cover object-center"
                         priority={true}

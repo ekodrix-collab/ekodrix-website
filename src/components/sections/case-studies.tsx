@@ -50,7 +50,7 @@ const caseStudies = [
     client: "KL-59 Men's Fashion",
     industry: "E-Commerce Retail",
     demoUrl: "https://www.kl-59mensfashion.in/",
-    imageUrl: "/images/case-studies/kl59_mockup.png",
+    imageUrl: "https://cdn.sanity.io/images/3sq1n5yp/production/ee414633dd98e861edea4904d32b41e517e8c42d-1024x1024.jpg?auto=format&w=1200&q=85",
     challenge: "Streamlining direct-to-customer fashion sales across WhatsApp without losing the premium storefront experience.",
     solution: "A high-conversion digital catalog integrated directly with WhatsApp order triggers, allowing seamless browsing and instant purchasing.",
     results: [

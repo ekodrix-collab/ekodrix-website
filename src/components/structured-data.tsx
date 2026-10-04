@@ -19,7 +19,24 @@ export function StructuredData() {
     description:
       "Ekodrix is the leading software company in Kondotty, Malappuram, Kerala. We specialize in web development, mobile app development, digital marketing, SEO, custom software solutions, and IT consulting. Trusted by 100+ clients across Kerala and India.",
     slogan: "Engineering Tomorrow's Software Today",
-    foundingDate: "2026",
+    foundingDate: "2024",
+    founder: {
+      "@type": "Person",
+      name: "Muhammed Siyad",
+      jobTitle: "Founder & CEO",
+    },
+    employee: [
+      {
+        "@type": "Person",
+        name: "Muhammed Rashid",
+        jobTitle: "Chief Technology Officer",
+      },
+      {
+        "@type": "Person",
+        name: "Anaswar Mohanan",
+        jobTitle: "Co-Founder",
+      },
+    ],
     address: {
       "@type": "PostalAddress",
       streetAddress: "Kondotty",
@@ -278,6 +295,26 @@ export function StructuredData() {
     ]
   };
 
+  const softwareApplicationSchema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "ResellerPro",
+    operatingSystem: "Web, iOS, Android",
+    applicationCategory: "BusinessApplication",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "INR",
+    },
+    creator: {
+      "@type": "Organization",
+      name: "Ekodrix",
+      url: "https://ekodrix.com",
+    },
+    url: "https://ekodrix.com/resellerpro",
+    description: "All-in-one SaaS CRM and reseller automation platform engineered by Ekodrix Technologies.",
+  };
+
   return (
     <>
       <script
@@ -294,6 +331,11 @@ export function StructuredData() {
         type="application/ld+json"
         id="sitelinks-schema"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(siteNavigationSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        id="software-application-schema"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareApplicationSchema) }}
       />
     </>
   );
