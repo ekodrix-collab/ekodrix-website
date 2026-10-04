@@ -69,12 +69,6 @@ const nextConfig = {
 
   async redirects() {
     return [
-      {
-        source: '/:path*',
-        has: [{ type: 'host', value: 'www.ekodrix.com' }],
-        destination: 'https://ekodrix.com/:path*',
-        permanent: true,
-      },
       { source: '/home', destination: '/', permanent: true },
       { source: '/index', destination: '/', permanent: true },
       { source: '/service', destination: '/services', permanent: true },
