@@ -98,9 +98,9 @@ export default async function LocationPage({ params }: Props) {
   const districtStr = isInternational ? location.state : `${location.district}, Kerala`;
 
   const priceAnswer = isGCC
-    ? `Software and website development costs for ${location.name} businesses: Modern responsive corporate website: AED 3,500 – AED 8,500 (or SAR/QAR equivalent). High-traffic E-commerce & Web Portals: AED 9,000 – AED 25,000. Custom iOS/Android mobile apps & enterprise software: AED 20,000+. Includes bilingual Arabic/English support, UAE/GCC payment gateway integration (Stripe, Telr, HyperPay), and cloud infrastructure setup. Free quote available via WhatsApp.`
+    ? `Software and website development costs for ${location.name} businesses: High-converting Starter Websites & Landing Pages start from just AED 799 – AED 1,800 ($200 - $490). Professional Corporate Web Apps & E-Commerce: AED 2,200 – AED 6,500. Custom iOS/Android Mobile Apps, ERP Systems & Enterprise SaaS: AED 8,000 – AED 22,000+. Includes bilingual Arabic/English UX, UAE/GCC payment gateway integration (Stripe, Telr, HyperPay), and free post-launch support. Contact us on WhatsApp for a fast estimate.`
     : isGlobal
-    ? `Software development pricing for ${location.name} businesses: Professional web applications: $1,500 – $4,500. Advanced SaaS and mobile applications: $5,000 – $25,000+. Enterprise cloud systems and custom AI integrations: tailored to scope. All projects include full source code IP ownership, Agile sprints, and timezone overlap for ${location.name} teams.`
+    ? `Software development pricing for ${location.name} businesses: High-performance Starter Websites & MVPs start from just $199 – $490. Custom Web Applications & E-Commerce: $750 – $2,200. Advanced SaaS Platforms, Mobile Apps & Enterprise Cloud Software: $2,500 – $9,000+. You get silicon-grade Next.js architecture, 100% source code ownership, and flexible timezone overlap at 1/5th of local agency rates.`
     : `Website development costs for ${location.name} businesses: Basic business website: ₹15,000-₹35,000. Professional corporate website: ₹40,000-₹80,000. E-commerce website: ₹60,000-₹2,00,000. Custom web application: ₹1,00,000+. All websites include responsive design, basic SEO setup, and Google Analytics integration. Contact us for a free, accurate quote.`;
 
   const localFaqs = [

@@ -162,10 +162,10 @@ export default function StartProjectPage() {
                   className="w-full px-4 py-3 rounded-lg bg-cosmic border border-glass-border text-white focus:outline-none focus:border-accent-start transition-colors"
                 >
                   <option value="">Select budget tier...</option>
-                  <option value="starter">$1,000 – $3,000 / AED 4,000 – 11,000 (₹50K - ₹1.5L)</option>
-                  <option value="growth">$3,000 – $7,000 / AED 11,000 – 25,000 (₹1.5L - ₹3.5L)</option>
-                  <option value="scale">$7,000 – $15,000 / AED 25,000 – 55,000 (₹3.5L - ₹8L)</option>
-                  <option value="enterprise">$15,000+ / AED 55,000+ (₹8L+ Enterprise Scale)</option>
+                  <option value="starter-hook">$199 – $499 / AED 750 – AED 1,800 (Starter Website / MVP Launch)</option>
+                  <option value="growth">$500 – $1,500 / AED 1,800 – AED 5,500 (Web App / E-Commerce)</option>
+                  <option value="scale">$1,500 – $4,500 / AED 5,500 – AED 16,000 (Custom SaaS & Mobile App)</option>
+                  <option value="enterprise">$4,500+ / AED 16,000+ (Enterprise Platform & Custom Scale)</option>
                 </select>
               </div>
             </div>
