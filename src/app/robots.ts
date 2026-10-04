@@ -15,7 +15,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/api/', '/admin/', '/cms/'],
       },
     ],
-    sitemap: 'https://ekodrix.com/sitemap.xml',
-    host: 'https://ekodrix.com',
+    sitemap: 'https://www.ekodrix.com/sitemap.xml',
+    host: 'https://www.ekodrix.com',
   }
 }

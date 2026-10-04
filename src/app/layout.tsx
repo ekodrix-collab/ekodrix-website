@@ -126,7 +126,7 @@ export const metadata: Metadata = {
   },
 
   alternates: {
-    canonical: "https://ekodrix.com",
+    canonical: "https://www.ekodrix.com",
   },
 
   verification: {
