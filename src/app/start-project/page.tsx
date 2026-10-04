@@ -152,7 +152,7 @@ export default function StartProjectPage() {
 
               <div>
                 <label htmlFor="budget" className="block text-sm font-medium mb-2">
-                  Budget Range *
+                  Budget Range (USD / AED / INR) *
                 </label>
                 <select
                   id="budget"
@@ -161,12 +161,11 @@ export default function StartProjectPage() {
                   onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
                   className="w-full px-4 py-3 rounded-lg bg-cosmic border border-glass-border text-white focus:outline-none focus:border-accent-start transition-colors"
                 >
-                  <option value="">Select...</option>
-                  <option value="30k-50k">₹30K - ₹50K</option>
-                  <option value="50k-100k">₹50K - ₹100K</option>
-                  <option value="100k-250k">₹100K - ₹250K</option>
-                  <option value="250k-500k">₹250K - ₹500K</option>
-                  <option value="500k+">₹500K+</option>
+                  <option value="">Select budget tier...</option>
+                  <option value="starter">$1,000 – $3,000 / AED 4,000 – 11,000 (₹50K - ₹1.5L)</option>
+                  <option value="growth">$3,000 – $7,000 / AED 11,000 – 25,000 (₹1.5L - ₹3.5L)</option>
+                  <option value="scale">$7,000 – $15,000 / AED 25,000 – 55,000 (₹3.5L - ₹8L)</option>
+                  <option value="enterprise">$15,000+ / AED 55,000+ (₹8L+ Enterprise Scale)</option>
                 </select>
               </div>
             </div>

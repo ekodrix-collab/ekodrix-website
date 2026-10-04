@@ -29,11 +29,11 @@ export const metadata: Metadata = {
     "all software services kerala",
     "complete it solutions kondotty",
   ],
-  alternates: { canonical: "https://ekodrix.com/services" },
+  alternates: { canonical: "https://www.ekodrix.com/services" },
   openGraph: {
     title: "Software Development Services in Kondotty — Ekodrix",
     description: "Complete IT services in Kondotty: Web Dev, Apps, Marketing, SEO, Software. Free consultation!",
-    url: "https://ekodrix.com/services",
+    url: "https://www.ekodrix.com/services",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
 };

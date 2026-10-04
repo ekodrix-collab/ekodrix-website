@@ -16,7 +16,7 @@ export function ArticleSchema({
   datePublished,
   dateModified,
   authorName = "Ekodrix Team",
-  image = "https://ekodrix.com/og-image.jpg",
+  image = "https://www.ekodrix.com/og-image.jpg",
   category,
 }: ArticleSchemaProps) {
   const schema = {
@@ -30,15 +30,15 @@ export function ArticleSchema({
     "author": {
       "@type": "Person",
       "name": authorName,
-      "url": "https://ekodrix.com/about",
+      "url": "https://www.ekodrix.com/about",
     },
     "publisher": {
       "@type": "Organization",
-      "@id": "https://ekodrix.com/#organization",
+      "@id": "https://www.ekodrix.com/#organization",
       "name": "Ekodrix",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://ekodrix.com/logo.png",
+        "url": "https://www.ekodrix.com/logo.png",
       },
     },
     "image": {

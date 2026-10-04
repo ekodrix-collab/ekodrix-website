@@ -16,14 +16,14 @@ export function ServiceSchema({ name, description, url, areaServed = "Kondotty, 
     "url": url,
     "provider": {
       "@type": "SoftwareCompany",
-      "@id": "https://ekodrix.com/#organization",
+      "@id": "https://www.ekodrix.com/#organization",
       "name": "Ekodrix",
-      "url": "https://ekodrix.com",
+      "url": "https://www.ekodrix.com",
     },
     "areaServed": areaServed,
     "availableChannel": {
       "@type": "ServiceChannel",
-      "serviceUrl": "https://ekodrix.com/contact",
+      "serviceUrl": "https://www.ekodrix.com/contact",
       "servicePhone": {
         "@type": "ContactPoint",
         "telephone": "+91-77367-67759",

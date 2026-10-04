@@ -17,12 +17,26 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const location = getLocation(slug);
   if (!location) return {};
 
-  const isGulf = location.state !== "Kerala";
-  const locationStr = isGulf ? `${location.name}, ${location.state}` : `${location.name}, ${location.district}, Kerala`;
+  const isGCC = ["UAE", "Saudi Arabia", "Qatar", "Kuwait", "Oman", "Bahrain"].includes(location.state);
+  const isGlobal = ["United States", "United Kingdom", "Australia", "Canada", "Singapore"].includes(location.state);
+  const isInternational = isGCC || isGlobal;
+  const locationStr = isInternational ? `${location.name}, ${location.state}` : `${location.name}, ${location.district}, Kerala`;
+
+  const metaTitle = isGCC
+    ? `Best Software Company in ${location.name} (${location.state}) | Web & App Development — Ekodrix`
+    : isGlobal
+    ? `Software & Web Development Company ${location.name} | Ekodrix Global`
+    : `Software Company in ${location.name} | Web Development, App Development — Ekodrix`;
+
+  const metaDescription = isGCC
+    ? `Leading software development company serving ${location.name}, ${location.state}. Custom web apps, mobile apps, ERP systems, digital marketing & SEO in ${location.name}. Dedicated GCC desk. Call/WhatsApp +91-77367-67759.`
+    : isGlobal
+    ? `Elite software engineering and web development agency serving businesses in ${location.name}, ${location.state}. Modern Next.js, mobile apps, SaaS & cloud engineering with full IP ownership.`
+    : `Leading software company serving ${location.name}, ${location.district}. Expert web development, mobile app development, digital marketing & SEO services in ${location.name}. Call +91-77367-67759.`;
 
   return {
-    title: `Software Company in ${location.name} | Web Development, App Development — Ekodrix`,
-    description: `Leading software company serving ${location.name}, ${location.district}. Expert web development, mobile app development, digital marketing & SEO services in ${location.name}. Best IT company${isGulf ? ` for ${location.state} clients` : ` near ${location.name}`}. Call +91-77367-67759.`,
+    title: metaTitle,
+    description: metaDescription,
     keywords: [
       `software company ${location.slug}`,
       `it company ${location.slug}`,
@@ -31,10 +45,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       `digital marketing ${location.slug}`,
       `seo services ${location.slug}`,
       `best software company ${location.slug}`,
-      `software company near ${location.slug}`,
-      `it company near ${location.slug}`,
-      `web designers ${location.slug}`,
-      `app developers ${location.slug}`,
       `software company in ${location.name}`,
       `it company in ${location.name}`,
       `web development company in ${location.name}`,
@@ -45,21 +55,32 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       `ekodrix ${location.name}`,
       `software solutions ${location.name}`,
       `website design ${location.name}`,
-      `website development ${location.name}`,
-      `it solutions ${location.name}`,
       `technology company ${location.name}`,
+      ...(isGCC ? [
+        `software company uae`,
+        `web development gcc`,
+        `mobile app developers middle east`,
+        `it solutions ${location.state}`,
+        `erp software ${location.name}`,
+      ] : []),
+      ...(isGlobal ? [
+        `software engineering agency ${location.name}`,
+        `hire remote developers ${location.name}`,
+        `saas development company ${location.name}`,
+        `nextjs agency ${location.name}`,
+      ] : []),
     ],
     alternates: {
-      canonical: `https://ekodrix.com/locations/${location.slug}`,
+      canonical: `https://www.ekodrix.com/locations/${location.slug}`,
     },
     openGraph: {
-      title: `Software Company in ${location.name} | Ekodrix`,
-      description: `Best IT company for ${location.name} businesses. Web development, app development, digital marketing & SEO. Call +91-77367-67759.`,
-      url: `https://ekodrix.com/locations/${location.slug}`,
+      title: metaTitle,
+      description: metaDescription,
+      url: `https://www.ekodrix.com/locations/${location.slug}`,
       siteName: "Ekodrix",
       images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: `Ekodrix — Software Company serving ${location.name}` }],
       type: "website",
-      locale: "en_IN",
+      locale: isGCC ? "en_AE" : isGlobal ? "en_US" : "en_IN",
     },
     robots: { index: true, follow: true },
   };
@@ -70,44 +91,54 @@ export default async function LocationPage({ params }: Props) {
   const location = getLocation(slug);
   if (!location) notFound();
 
-  const isGulf = location.state !== "Kerala";
-  const locationStr = isGulf ? `${location.name}, ${location.state}` : `${location.name}`;
-  const districtStr = isGulf ? location.state : `${location.district}, Kerala`;
+  const isGCC = ["UAE", "Saudi Arabia", "Qatar", "Kuwait", "Oman", "Bahrain"].includes(location.state);
+  const isGlobal = ["United States", "United Kingdom", "Australia", "Canada", "Singapore"].includes(location.state);
+  const isInternational = isGCC || isGlobal;
+  const locationStr = isInternational ? `${location.name}, ${location.state}` : `${location.name}`;
+  const districtStr = isInternational ? location.state : `${location.district}, Kerala`;
+
+  const priceAnswer = isGCC
+    ? `Software and website development costs for ${location.name} businesses: Modern responsive corporate website: AED 3,500 – AED 8,500 (or SAR/QAR equivalent). High-traffic E-commerce & Web Portals: AED 9,000 – AED 25,000. Custom iOS/Android mobile apps & enterprise software: AED 20,000+. Includes bilingual Arabic/English support, UAE/GCC payment gateway integration (Stripe, Telr, HyperPay), and cloud infrastructure setup. Free quote available via WhatsApp.`
+    : isGlobal
+    ? `Software development pricing for ${location.name} businesses: Professional web applications: $1,500 – $4,500. Advanced SaaS and mobile applications: $5,000 – $25,000+. Enterprise cloud systems and custom AI integrations: tailored to scope. All projects include full source code IP ownership, Agile sprints, and timezone overlap for ${location.name} teams.`
+    : `Website development costs for ${location.name} businesses: Basic business website: ₹15,000-₹35,000. Professional corporate website: ₹40,000-₹80,000. E-commerce website: ₹60,000-₹2,00,000. Custom web application: ₹1,00,000+. All websites include responsive design, basic SEO setup, and Google Analytics integration. Contact us for a free, accurate quote.`;
 
   const localFaqs = [
     {
       question: `Do you provide software services in ${location.name}?`,
-      answer: `Yes! Ekodrix provides complete software and IT services to clients in ${locationStr}. Our team delivers all projects remotely with the same quality as on-site work. We regularly serve clients from ${districtStr} for web development, mobile app development, digital marketing, SEO, and custom software development. We're happy to schedule video calls for consultations and project discussions.`,
+      answer: `Yes! Ekodrix provides complete software and IT services to clients in ${locationStr}. Our team delivers all projects with enterprise-grade quality, direct collaboration, and dedicated timezone overlap. We regularly serve clients from ${districtStr} for web development, mobile app development, digital marketing, SEO, and custom software development. We're happy to schedule video consultations anytime.`,
     },
     {
       question: `What is the cost of website development for ${location.name} businesses?`,
-      answer: `Website development costs for ${location.name} businesses: Basic business website: ₹15,000-₹35,000. Professional corporate website: ₹40,000-₹80,000. E-commerce website: ₹60,000-₹2,00,000. Custom web application: ₹1,00,000+. All websites include responsive design, basic SEO setup, and Google Analytics integration. Contact us for a free, accurate quote.`,
+      answer: priceAnswer,
     },
     {
       question: `How do I get a free consultation for my ${location.name} business?`,
-      answer: `Getting started is easy! Call us at +91-77367-67759, WhatsApp us, or email hello@ekodrix.com. Tell us about your project and we'll schedule a free 30-minute consultation video call. We'll understand your requirements, suggest the best solution, and provide a detailed quote — all at no cost, no obligation.`,
+      answer: `Getting started is seamless! Call us or WhatsApp at +91-77367-67759, or email hello@ekodrix.com. Tell us about your project and we'll schedule a free 30-minute consultation call. We'll understand your requirements, suggest the best architecture, and provide a detailed quote — all at no cost, no obligation.`,
     },
     {
       question: `Can you help my ${location.name} business rank on Google?`,
-      answer: `Absolutely! Our local SEO services help businesses in ${locationStr} rank on Google for their target keywords. We optimize for both national and ${location.district}-specific local searches. Many of our clients from ${location.name} have achieved first-page rankings within 3-6 months and are generating consistent organic leads monthly.`,
+      answer: `Absolutely! Our world-class SEO services help businesses in ${locationStr} rank at the top of Google for high-intent search queries. We optimize technical architecture, localized keywords, schema markup, and content strategy so your business secures consistent organic inbound leads.`,
     },
     {
       question: `Which is the best software company serving ${location.name}?`,
-      answer: `Ekodrix is one of the most trusted software and IT companies serving clients in ${locationStr} and across ${isGulf ? location.state : "Kerala"}. With our headquarters in Kondotty, Malappuram, we have deep understanding of the regional market and business needs. We've helped 100+ businesses across the region transform their digital presence. Our 4.9/5 average rating from verified clients reflects our commitment to quality and service.`,
+      answer: `Ekodrix is a premier software and technology consulting company trusted by 100+ businesses across ${isGCC ? "the GCC and Middle East" : isGlobal ? "the globe" : "Kerala and India"}. Our engineering team combines modern silicon-grade tech stacks (Next.js, React, Node.js, AI workflows) with responsive client communication and transparent milestone delivery. Our 4.9/5 average rating from verified clients reflects our relentless commitment to excellence.`,
     },
   ];
 
-  const nearbyLocations = LOCATIONS
-    .filter((l) => l.district === location.district && l.slug !== slug)
-    .slice(0, 6);
+  const nearbyLocations = isGCC
+    ? LOCATIONS.filter((l) => ["UAE", "Saudi Arabia", "Qatar", "Kuwait", "Oman", "Bahrain"].includes(l.state) && l.slug !== slug).slice(0, 6)
+    : isGlobal
+    ? LOCATIONS.filter((l) => ["United States", "United Kingdom", "Australia", "Canada", "Singapore"].includes(l.state) && l.slug !== slug).slice(0, 6)
+    : LOCATIONS.filter((l) => l.district === location.district && l.slug !== slug).slice(0, 6);
 
   const services = [
-    { name: "Web Development", slug: "web-development", icon: "🌐", desc: `Custom websites for ${locationStr} businesses` },
-    { name: "Mobile App Development", slug: "app-development", icon: "📱", desc: `Android & iOS apps for ${location.name}` },
-    { name: "Digital Marketing", slug: "digital-marketing", icon: "📈", desc: `Grow your ${location.name} business online` },
-    { name: "SEO Services", slug: "seo-services", icon: "🔍", desc: `Rank #1 on Google in ${location.name}` },
-    { name: "Custom Software", slug: "software-development", icon: "💻", desc: `Business software for ${location.name} companies` },
-    { name: "Graphic Design", slug: "graphic-design", icon: "🎨", desc: `Logo & branding for ${location.name} businesses` },
+    { name: "Web Development", slug: "web-development", icon: "🌐", desc: `Custom websites & web apps for ${locationStr} businesses` },
+    { name: "Mobile App Development", slug: "app-development", icon: "📱", desc: `High-performance Android & iOS apps for ${location.name}` },
+    { name: "Digital Marketing", slug: "digital-marketing", icon: "📈", desc: `Scale customer acquisition for your ${location.name} business` },
+    { name: "SEO Services", slug: "seo-services", icon: "🔍", desc: `Rank #1 on Google for high-intent searches in ${location.name}` },
+    { name: "Custom Software", slug: "software-development", icon: "💻", desc: `Enterprise software, ERP & SaaS for ${location.name} companies` },
+    { name: "UI/UX & Branding", slug: "graphic-design", icon: "🎨", desc: `World-class product design and branding for ${location.name}` },
   ];
 
   const industries = [
@@ -123,14 +154,14 @@ export default async function LocationPage({ params }: Props) {
     "description": `Professional web development, app development, digital marketing and IT services for businesses in ${locationStr}`,
     "provider": {
       "@type": "SoftwareCompany",
-      "@id": "https://ekodrix.com/#organization",
+      "@id": "https://www.ekodrix.com/#organization",
       "name": "Ekodrix",
     },
     "areaServed": {
       "@type": "City",
       "name": location.name,
     },
-    "url": `https://ekodrix.com/locations/${location.slug}`,
+    "url": `https://www.ekodrix.com/locations/${location.slug}`,
   };
 
   return (
@@ -141,9 +172,9 @@ export default async function LocationPage({ params }: Props) {
       />
       <BreadcrumbSchema
         items={[
-          { name: "Home", url: "https://ekodrix.com" },
-          { name: "Service Locations", url: "https://ekodrix.com/locations" },
-          { name: location.name, url: `https://ekodrix.com/locations/${location.slug}` },
+          { name: "Home", url: "https://www.ekodrix.com" },
+          { name: "Service Locations", url: "https://www.ekodrix.com/locations" },
+          { name: location.name, url: `https://www.ekodrix.com/locations/${location.slug}` },
         ]}
       />
       <FAQSchema faqs={localFaqs} />
@@ -205,7 +236,7 @@ export default async function LocationPage({ params }: Props) {
                 <h2 className="text-xl font-bold mb-6">Why {location.name} Businesses Choose Ekodrix</h2>
                 <ul className="space-y-3">
                   {[
-                    `Deep understanding of ${isGulf ? location.state : "Kerala"} market and customer behavior`,
+                    `Deep understanding of ${isInternational ? location.state : "Kerala"} market and customer behavior`,
                     "100+ successful projects for businesses like yours",
                     "Complete services: web, app, marketing, SEO, software",
                     "Competitive pricing with no hidden costs",
@@ -263,7 +294,7 @@ export default async function LocationPage({ params }: Props) {
             <article className="prose prose-invert prose-lg max-w-none prose-headings:text-white prose-headings:font-bold prose-p:text-gray-400 prose-h2:text-3xl prose-h3:text-xl">
               <h2>Software Company Serving {location.name} — Why Ekodrix?</h2>
               <p>
-                Finding a reliable software company in {locationStr} doesn&apos;t have to be difficult. Ekodrix, headquartered in Kondotty{location.distanceFromKondotty ? ` (just ${location.distanceFromKondotty} from ${location.name})` : ""}, has been the technology partner of choice for businesses across {isGulf ? location.state : "Kerala and the Gulf region"} since our founding.
+                Finding a reliable software company in {locationStr} doesn&apos;t have to be difficult. Ekodrix, headquartered in Kondotty{location.distanceFromKondotty ? ` (just ${location.distanceFromKondotty} from ${location.name})` : ""}, has been the technology partner of choice for businesses across {isInternational ? `${location.state} and global markets` : "Kerala and India"} since our founding.
               </p>
               <p>
                 We believe that every business in {location.name} deserves access to world-class software and digital marketing solutions — not just the big companies in metro cities. That&apos;s why we work with businesses of all sizes in {districtStr}, from local shops setting up their first website to established companies building enterprise software.
@@ -281,7 +312,7 @@ export default async function LocationPage({ params }: Props) {
 
               <h3>Digital Marketing for {location.name} Businesses</h3>
               <p>
-                Want more customers from {location.name} and surrounding areas? Our digital marketing team runs SEO campaigns, Google Ads, Facebook/Instagram ads, and social media management that drives real business results. We understand the {isGulf ? `Gulf expat` : "Kerala"} market deeply and create campaigns that resonate with your target audience.
+                Want more customers from {location.name} and surrounding areas? Our digital marketing team runs SEO campaigns, Google Ads, Facebook/Instagram ads, and social media management that drives real business results. We understand the {isGCC ? "Gulf and Middle East" : isGlobal ? "international" : "Kerala"} market deeply and create campaigns that resonate with your target audience.
               </p>
 
               <h3>Industries We Serve in {location.name}</h3>
@@ -359,7 +390,9 @@ export default async function LocationPage({ params }: Props) {
               Ready to Grow Your {location.name} Business with Technology?
             </h2>
             <p className="text-xl text-gray-400 mb-10">
-              Join 100+ businesses across Kerala who trust Ekodrix for their software and digital marketing needs.
+              {isInternational
+                ? `Join 100+ businesses worldwide and across ${location.state} that trust Ekodrix for high-performance software and digital engineering.`
+                : "Join 100+ businesses across Kerala and India that trust Ekodrix for their software and digital marketing needs."}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link

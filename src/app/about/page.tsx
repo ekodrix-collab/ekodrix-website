@@ -26,11 +26,11 @@ export const metadata: Metadata = {
     "ekodrix mission vision",
     "software company founded kerala",
   ],
-  alternates: { canonical: "https://ekodrix.com/about" },
+  alternates: { canonical: "https://www.ekodrix.com/about" },
   openGraph: {
     title: "About Ekodrix — Software Company Kondotty, Kerala",
     description: "Meet the team building Kondotty's leading software company. Our mission, values, and the engineers behind every project.",
-    url: "https://ekodrix.com/about",
+    url: "https://www.ekodrix.com/about",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
 };

@@ -23,11 +23,11 @@ export const metadata: Metadata = {
     "nextjs blog tutorial",
     "react development tips",
   ],
-  alternates: { canonical: "https://ekodrix.com/blog" },
+  alternates: { canonical: "https://www.ekodrix.com/blog" },
   openGraph: {
     title: "Ekodrix Blog — Tech Insights from Kondotty's Leading Software Company",
     description: "Expert insights on web development, app development, digital marketing & SEO from the Ekodrix engineering team.",
-    url: "https://ekodrix.com/blog",
+    url: "https://www.ekodrix.com/blog",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
 };
