@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, MessageCircle, Send, ShieldCheck, MessageSquare } from "lucide-react";
 import Image from "next/image";
@@ -9,6 +10,7 @@ export function FloatingContact() {
   const [isOpen, setIsOpen] = useState(false);
   const [showTeaser, setShowTeaser] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     setMounted(true);
@@ -23,6 +25,8 @@ export function FloatingContact() {
       return () => clearTimeout(timer);
     }
   }, []);
+
+  if (pathname?.startsWith("/ekodrix-panel")) return null;
 
   const handleCloseTeaser = (e: React.MouseEvent) => {
     e.stopPropagation();

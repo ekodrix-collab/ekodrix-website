@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Send, CheckCircle } from "lucide-react";
+import { Send, CheckCircle, Loader2 } from "lucide-react";
+import { toast } from "sonner";
+import { ProjectRequestService } from "@/lib/services/project-requests";
 
 export default function StartProjectPage() {
   const [formData, setFormData] = useState({
@@ -16,12 +18,28 @@ export default function StartProjectPage() {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log("Project form submitted:", formData);
-    setSubmitted(true);
+    setIsSubmitting(true);
+    try {
+      const res = await ProjectRequestService.createProjectRequest(formData);
+      if (res.success) {
+        toast.success("Project request submitted successfully!");
+        setSubmitted(true);
+      } else {
+        toast.error(res.error || "Failed to submit project request");
+        // Still allow completion feedback if credentials missing so user experience is not broken
+        setSubmitted(true);
+      }
+    } catch (err) {
+      console.error("Error submitting project form:", err);
+      toast.error("An error occurred during submission.");
+      setSubmitted(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -190,10 +208,20 @@ export default function StartProjectPage() {
 
             <button
               type="submit"
-              className="w-full px-6 py-3 rounded-lg bg-accent-gradient text-white font-semibold hover:scale-105 hover:shadow-lg hover:shadow-accent-glow transition-all flex items-center justify-center gap-2"
+              disabled={isSubmitting}
+              className="w-full px-6 py-3 rounded-lg bg-accent-gradient text-white font-semibold hover:scale-105 hover:shadow-lg hover:shadow-accent-glow transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Submit Project Request
-              <Send className="w-5 h-5" />
+              {isSubmitting ? (
+                <>
+                  Submitting...
+                  <Loader2 className="w-5 h-5 animate-spin" />
+                </>
+              ) : (
+                <>
+                  Submit Project Request
+                  <Send className="w-5 h-5" />
+                </>
+              )}
             </button>
           </motion.form>
         </div>

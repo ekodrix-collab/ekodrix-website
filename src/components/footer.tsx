@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Instagram, Twitter, Linkedin, Mail, MapPin, Phone } from "lucide-react";
 import { EkodrixLogo } from "@/components/logos/ekodrix-logo";
 
@@ -32,6 +33,9 @@ const socialLinks = [
 ];
 
 export function Footer() {
+  const pathname = usePathname();
+  if (pathname?.startsWith("/ekodrix-panel")) return null;
+
   return (
     <footer className="bg-ekodrix-charcoal-dark border-t border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
