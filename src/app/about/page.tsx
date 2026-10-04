@@ -40,7 +40,7 @@ const techRibbon = [
 ];
 
 const teamMembers = [
-  { name: "Siyad Aslam", role: "CEO", image: "https://cdn.sanity.io/images/3sq1n5yp/production/7912555a6e49b893da054692929d8538997a1d64-640x640.png?auto=format&w=600&q=85", color: "from-teal-500 to-cyan-500" },
+  { name: "Muhammed Siyad", role: "CEO", image: "https://cdn.sanity.io/images/3sq1n5yp/production/7912555a6e49b893da054692929d8538997a1d64-640x640.png?auto=format&w=600&q=85", color: "from-teal-500 to-cyan-500" },
   { name: "Muhammed Rashid", role: "CTO", image: "https://cdn.sanity.io/images/3sq1n5yp/production/01179034ef34e8dd34a12929a049c9c5bbab593a-800x1280.png?auto=format&w=600&q=85", color: "from-blue-500 to-cyan-500" },
   { name: "Anaswar Mohanan", role: "CMO", image: "https://cdn.sanity.io/images/3sq1n5yp/production/b515a0d9aaa9d976e661216aa15ec0579a5ad9e0-960x576.jpg?auto=format&w=600&q=85", color: "from-purple-500 to-pink-500" },
   { name: "Mrithul", role: "Founding Engineer", image: "https://cdn.sanity.io/images/3sq1n5yp/production/153562e28edd041de78ec5750f330ad6d6144a2f-1080x1312.jpg?auto=format&w=600&q=85", color: "from-orange-500 to-red-500", position: "center 28%", scale: 1.3 },

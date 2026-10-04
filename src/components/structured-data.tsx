@@ -22,13 +22,13 @@ export function StructuredData() {
     foundingDate: "2024",
     founder: {
       "@type": "Person",
-      name: "Siyad Aslam",
+      name: "Muhammed Siyad",
       jobTitle: "Chief Executive Officer (CEO)",
     },
     employee: [
       {
         "@type": "Person",
-        name: "Siyad Aslam",
+        name: "Muhammed Siyad",
         jobTitle: "Chief Executive Officer (CEO)",
       },
       {

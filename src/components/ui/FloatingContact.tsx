@@ -70,7 +70,7 @@ export function FloatingContact() {
                   <div className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-ekodrix-green rounded-full border-2 border-[#1e1e1e] animate-pulse" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-white text-base">Siyad Aslam</h4>
+                  <h4 className="font-bold text-white text-base">Muhammed Siyad</h4>
                   <p className="text-[0.7rem] text-ekodrix-green font-medium uppercase tracking-widest opacity-80">CEO • Online Now</p>
                 </div>
               </div>
