@@ -22,19 +22,24 @@ export function StructuredData() {
     foundingDate: "2024",
     founder: {
       "@type": "Person",
-      name: "Muhammed Siyad",
-      jobTitle: "Founder & CEO",
+      name: "Siyad Aslam",
+      jobTitle: "Chief Executive Officer (CEO)",
     },
     employee: [
       {
         "@type": "Person",
+        name: "Siyad Aslam",
+        jobTitle: "Chief Executive Officer (CEO)",
+      },
+      {
+        "@type": "Person",
         name: "Muhammed Rashid",
-        jobTitle: "Chief Technology Officer",
+        jobTitle: "Chief Technology Officer (CTO)",
       },
       {
         "@type": "Person",
         name: "Anaswar Mohanan",
-        jobTitle: "Co-Founder",
+        jobTitle: "Chief Marketing Officer (CMO)",
       },
     ],
     address: {

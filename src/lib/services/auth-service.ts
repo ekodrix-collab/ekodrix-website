@@ -5,77 +5,56 @@ export interface AdminUser {
   lastLogin: string;
 }
 
-const AUTH_KEY = "ekodrix_admin_session_v1";
-
+/**
+ * Client-side wrapper around the server admin auth API.
+ *
+ * Credentials are verified on the server (/api/admin/login) against
+ * server-only env vars, and the session is stored in an httpOnly signed
+ * cookie — nothing secret is stored in localStorage or the JS bundle.
+ */
 export const AuthService = {
-  /**
-   * Check if current user has an active admin session.
-   */
-  isAuthenticated(): boolean {
-    if (typeof window === "undefined") return false;
+  /** Returns the logged-in admin, or null if there is no valid session. */
+  async checkSession(): Promise<AdminUser | null> {
     try {
-      const session = localStorage.getItem(AUTH_KEY);
-      return !!session;
-    } catch {
-      return false;
-    }
-  },
-
-  /**
-   * Get current authenticated admin user profile.
-   */
-  getCurrentUser(): AdminUser | null {
-    if (typeof window === "undefined") return null;
-    try {
-      const session = localStorage.getItem(AUTH_KEY);
-      if (!session) return null;
-      return JSON.parse(session);
+      const res = await fetch("/api/admin/session", {
+        method: "GET",
+        credentials: "same-origin",
+        cache: "no-store",
+      });
+      if (!res.ok) return null;
+      const data = await res.json();
+      return data.authenticated ? (data.user as AdminUser) : null;
     } catch {
       return null;
     }
   },
 
-  /**
-   * Login method.
-   * Accepts credentials or provides quick admin demo access.
-   * 
-   * =========================================================================
-   * SUPABASE AUTH INTEGRATION READY:
-   * const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-   * =========================================================================
-   */
-  async login(email?: string, password?: string): Promise<{ success: boolean; user?: AdminUser; error?: string }> {
-    // Default demo validation
-    const adminUser: AdminUser = {
-      email: email || "admin@ekodrix.com",
-      role: "Administrator",
-      name: "EKODRIX Admin",
-      lastLogin: new Date().toISOString(),
-    };
-
-    if (password && password.length < 4) {
-      return { success: false, error: "Password must be at least 4 characters." };
-    }
-
+  async login(
+    email: string,
+    password: string
+  ): Promise<{ success: boolean; user?: AdminUser; error?: string }> {
     try {
-      localStorage.setItem(AUTH_KEY, JSON.stringify(adminUser));
-      sessionStorage.setItem("ekodrix_cms_authenticated", "true");
-      return { success: true, user: adminUser };
-    } catch (err) {
-      return { success: false, error: "Failed to store authentication session." };
+      const res = await fetch("/api/admin/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "same-origin",
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.success) {
+        return { success: false, error: data.error || "Invalid admin email or password." };
+      }
+      return { success: true, user: data.user as AdminUser };
+    } catch {
+      return { success: false, error: "Network error. Please try again." };
     }
   },
 
-  /**
-   * Logout administrator and clear session.
-   */
-  logout(): void {
-    if (typeof window === "undefined") return;
+  async logout(): Promise<void> {
     try {
-      localStorage.removeItem(AUTH_KEY);
-      sessionStorage.removeItem("ekodrix_cms_authenticated");
+      await fetch("/api/admin/logout", { method: "POST", credentials: "same-origin" });
     } catch (err) {
       console.error("Error during logout:", err);
     }
-  }
+  },
 };

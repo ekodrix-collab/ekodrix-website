@@ -61,6 +61,8 @@ export default function AdminPanelPage() {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const [loginLoading, setLoginLoading] = useState(false);
+  const [loginError, setLoginError] = useState("");
+  const [authChecking, setAuthChecking] = useState(true);
 
   // Requests & Stats state
   const [requests, setRequests] = useState<ProjectRequest[]>([]);
@@ -103,17 +105,24 @@ export default function AdminPanelPage() {
     }
   }, [statusFilter, typeFilter, searchQuery]);
 
-  // Check Auth state on load
+  // Check Auth state on load (verified server-side via httpOnly cookie)
   useEffect(() => {
-    const isAuth = AuthService.isAuthenticated();
-    setIsAuthenticated(isAuth);
-    if (isAuth) {
-      setUser(AuthService.getCurrentUser());
-      loadData();
-    } else {
-      setLoading(false);
-    }
-  }, [loadData]);
+    let cancelled = false;
+    AuthService.checkSession().then((sessionUser) => {
+      if (cancelled) return;
+      if (sessionUser) {
+        setUser(sessionUser);
+        setIsAuthenticated(true);
+      } else {
+        setIsAuthenticated(false);
+        setLoading(false);
+      }
+      setAuthChecking(false);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -124,25 +133,29 @@ export default function AdminPanelPage() {
   // Handle Login
   const handleLoginSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoginError("");
     setLoginLoading(true);
     const res = await AuthService.login(loginEmail, loginPassword);
     setLoginLoading(false);
     if (res.success && res.user) {
       setIsAuthenticated(true);
       setUser(res.user);
+      setLoginError("");
+      setLoginPassword("");
       toast.success("Welcome back to EKODRIX Panel!");
-      loadData();
     } else {
+      setLoginError(res.error || "Invalid admin credentials. Access Denied.");
       toast.error(res.error || "Login failed");
     }
   };
 
 
 
-  const handleLogout = () => {
-    AuthService.logout();
+  const handleLogout = async () => {
+    await AuthService.logout();
     setIsAuthenticated(false);
     setUser(null);
+    setRequests([]);
     toast.info("Logged out of EKODRIX Panel");
   };
 
@@ -217,6 +230,15 @@ export default function AdminPanelPage() {
     }
   };
 
+  // While verifying the session cookie, show a lightweight loader
+  if (authChecking) {
+    return (
+      <div className="min-h-screen bg-[#0A0D14] flex items-center justify-center">
+        <RefreshCw className="w-6 h-6 text-ekodrix-green animate-spin" />
+      </div>
+    );
+  }
+
   // If NOT authenticated, render Login Screen
   if (!isAuthenticated) {
     return (
@@ -246,8 +268,13 @@ export default function AdminPanelPage() {
               <div className="relative">
                 <input
                   type="email"
+                  required
+                  autoComplete="username"
                   value={loginEmail}
-                  onChange={(e) => setLoginEmail(e.target.value)}
+                  onChange={(e) => {
+                    setLoginEmail(e.target.value);
+                    setLoginError("");
+                  }}
                   placeholder="admin@ekodrix.com"
                   className="w-full px-4 py-3 bg-[#0A0D14] border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-ekodrix-green transition-colors text-sm"
                 />
@@ -261,13 +288,24 @@ export default function AdminPanelPage() {
               <div className="relative">
                 <input
                   type="password"
+                  required
+                  autoComplete="current-password"
                   value={loginPassword}
-                  onChange={(e) => setLoginPassword(e.target.value)}
+                  onChange={(e) => {
+                    setLoginPassword(e.target.value);
+                    setLoginError("");
+                  }}
                   placeholder="••••••••"
                   className="w-full px-4 py-3 bg-[#0A0D14] border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-ekodrix-green transition-colors text-sm"
                 />
               </div>
             </div>
+
+            {loginError && (
+              <p className="text-xs text-rose-400 bg-rose-500/10 border border-rose-500/20 rounded-lg p-2.5 text-center">
+                {loginError}
+              </p>
+            )}
 
             <button
               type="submit"

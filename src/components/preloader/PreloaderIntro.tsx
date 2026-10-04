@@ -281,17 +281,14 @@ const STAGES = [
 ═══════════════════════════════════════════════════════════════ */
 export function PreloaderIntro({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const isAdminOrCms =
-    Boolean(pathname?.startsWith("/ekodrix-panel")) ||
-    Boolean(pathname?.startsWith("/cms")) ||
-    (typeof window !== "undefined" &&
-      (window.location.pathname.startsWith("/ekodrix-panel") ||
-       window.location.pathname.startsWith("/cms")));
-
-  if (isAdminOrCms) {
+  // Admin panel & CMS skip the intro entirely
+  if (pathname?.startsWith("/ekodrix-panel") || pathname?.startsWith("/cms")) {
     return <>{children}</>;
   }
+  return <PreloaderIntroInner>{children}</PreloaderIntroInner>;
+}
 
+function PreloaderIntroInner({ children }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading]       = useState(true);
   const [hasSeenIntro, setHasSeenIntro] = useState(false);
   const [progress, setProgress]         = useState(0);
@@ -332,9 +329,6 @@ export function PreloaderIntro({ children }: { children: React.ReactNode }) {
     window.addEventListener("keydown", fn);
     return () => window.removeEventListener("keydown", fn);
   }, []);
-
-  // Skip preloader entirely on admin panel & cms routes
-  if (pathname?.startsWith("/ekodrix-panel") || pathname?.startsWith("/cms")) return <>{children}</>;
 
   if (hasSeenIntro && mounted) return <>{children}</>;
 

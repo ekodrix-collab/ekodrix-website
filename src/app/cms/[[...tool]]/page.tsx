@@ -5,6 +5,7 @@ import { NextStudio } from "next-sanity/studio";
 import config from "../../../../sanity.config";
 import { Lock, ShieldCheck, ArrowRight, User, LogOut, ExternalLink } from "lucide-react";
 import Link from "next/link";
+import { AuthService } from "@/lib/services/auth-service";
 
 export default function CMSStudioPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -12,36 +13,37 @@ export default function CMSStudioPage() {
   const [passwordInput, setPasswordInput] = useState("");
   const [error, setError] = useState("");
   const [mounted, setMounted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [adminEmail, setAdminEmail] = useState("");
 
-  const adminUsername = process.env.NEXT_PUBLIC_ADMIN_USERNAME || "ekodrix-user";
-  const adminPassword = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || "Ekodrix@2026!";
-
+  // Shares the same httpOnly session as /ekodrix-panel (single sign-on)
   useEffect(() => {
-    setMounted(true);
-    const sessionAuth = sessionStorage.getItem("ekodrix_cms_authenticated");
-    const adminSession = typeof window !== "undefined" ? localStorage.getItem("ekodrix_admin_session_v1") : null;
-    if (sessionAuth === "true" || adminSession) {
-      setIsAuthenticated(true);
-      sessionStorage.setItem("ekodrix_cms_authenticated", "true");
-    }
+    AuthService.checkSession().then((user) => {
+      if (user) {
+        setIsAuthenticated(true);
+        setAdminEmail(user.email);
+      }
+      setMounted(true);
+    });
   }, []);
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (
-      (usernameInput === adminUsername && passwordInput === adminPassword) ||
-      (usernameInput === "admin@ekodrix.com" && passwordInput === adminPassword)
-    ) {
+    setSubmitting(true);
+    const res = await AuthService.login(usernameInput, passwordInput);
+    setSubmitting(false);
+    if (res.success && res.user) {
       setIsAuthenticated(true);
-      sessionStorage.setItem("ekodrix_cms_authenticated", "true");
+      setAdminEmail(res.user.email);
+      setPasswordInput("");
       setError("");
     } else {
-      setError("Invalid username or password. Access Denied.");
+      setError(res.error || "Invalid email or password. Access Denied.");
     }
   };
 
-  const handleLogout = () => {
-    sessionStorage.removeItem("ekodrix_cms_authenticated");
+  const handleLogout = async () => {
+    await AuthService.logout();
     setIsAuthenticated(false);
     setUsernameInput("");
     setPasswordInput("");
@@ -70,18 +72,19 @@ export default function CMSStudioPage() {
           <form onSubmit={handleLogin} className="space-y-4 relative z-10">
             <div>
               <label className="block text-xs font-mono uppercase tracking-wider text-gray-400 mb-2">
-                Username
+                Admin Email
               </label>
               <div className="relative">
                 <input
-                  type="text"
+                  type="email"
                   required
+                  autoComplete="username"
                   value={usernameInput}
                   onChange={(e) => {
                     setUsernameInput(e.target.value);
                     setError("");
                   }}
-                  placeholder="Enter username (ekodrix-user)"
+                  placeholder="admin@ekodrix.com"
                   className="w-full pl-11 pr-4 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-ekodrix-green transition-colors text-sm"
                 />
                 <User className="w-4 h-4 text-gray-400 absolute left-4 top-1/2 -translate-y-1/2" />
@@ -116,9 +119,10 @@ export default function CMSStudioPage() {
 
             <button
               type="submit"
-              className="w-full py-3.5 px-6 rounded-xl bg-ekodrix-green text-[#0a0a0a] font-bold text-sm hover:scale-[1.02] hover:shadow-lg hover:shadow-ekodrix-green/20 transition-all flex items-center justify-center gap-2 active:scale-[0.98]"
+              disabled={submitting}
+              className="w-full py-3.5 px-6 rounded-xl bg-ekodrix-green text-[#0a0a0a] font-bold text-sm hover:scale-[1.02] hover:shadow-lg hover:shadow-ekodrix-green/20 transition-all flex items-center justify-center gap-2 active:scale-[0.98] disabled:opacity-60"
             >
-              Sign In to CMS Studio
+              {submitting ? "Signing in..." : "Sign In to CMS Studio"}
               <ArrowRight className="w-4 h-4" />
             </button>
           </form>
@@ -146,7 +150,7 @@ export default function CMSStudioPage() {
           <span className="w-2 h-2 rounded-full bg-ekodrix-green animate-pulse" />
           <span className="font-semibold tracking-wide">Ekodrix Sanity CMS</span>
           <span className="text-gray-500">|</span>
-          <span className="text-gray-400">User: <strong className="text-gray-200">{adminUsername}</strong></span>
+          <span className="text-gray-400">User: <strong className="text-gray-200">{adminEmail}</strong></span>
         </div>
         <div className="flex items-center gap-3">
           <Link
