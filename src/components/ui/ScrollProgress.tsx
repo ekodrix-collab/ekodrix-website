@@ -1,8 +1,12 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { motion, useScroll, useSpring } from "framer-motion";
 
 export function ScrollProgress() {
+  const pathname = usePathname();
+  if (pathname?.startsWith("/ekodrix-panel") || pathname?.startsWith("/cms")) return null;
+
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,

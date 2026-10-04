@@ -281,6 +281,17 @@ const STAGES = [
 ═══════════════════════════════════════════════════════════════ */
 export function PreloaderIntro({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const isAdminOrCms =
+    Boolean(pathname?.startsWith("/ekodrix-panel")) ||
+    Boolean(pathname?.startsWith("/cms")) ||
+    (typeof window !== "undefined" &&
+      (window.location.pathname.startsWith("/ekodrix-panel") ||
+       window.location.pathname.startsWith("/cms")));
+
+  if (isAdminOrCms) {
+    return <>{children}</>;
+  }
+
   const [isLoading, setIsLoading]       = useState(true);
   const [hasSeenIntro, setHasSeenIntro] = useState(false);
   const [progress, setProgress]         = useState(0);
@@ -493,9 +504,8 @@ export function PreloaderIntro({ children }: { children: React.ReactNode }) {
 
       <div
         style={{
-          visibility: contentReady ? "visible" : "hidden",
-          opacity: contentReady ? 1 : 0,
-          transition: contentReady ? "opacity 1s cubic-bezier(0.22,1,0.36,1) 0.3s, visibility 0s 0s" : "none",
+          opacity: showPreloader ? 0 : 1,
+          transition: "opacity 0.6s ease",
         }}
       >
         {children}

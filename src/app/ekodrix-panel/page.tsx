@@ -225,12 +225,7 @@ export default function AdminPanelPage() {
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-ekodrix-green/10 rounded-full blur-[140px] pointer-events-none" />
         <div className="absolute bottom-10 right-10 w-[300px] h-[300px] bg-blue-500/10 rounded-full blur-[100px] pointer-events-none" />
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="w-full max-w-md bg-[#121622]/90 backdrop-blur-2xl border border-white/10 rounded-3xl p-8 shadow-2xl relative z-10"
-        >
+        <div className="w-full max-w-md bg-[#121622]/95 backdrop-blur-2xl border border-white/10 rounded-3xl p-8 shadow-2xl relative z-10">
           <div className="text-center mb-8">
             <div className="flex justify-center mb-4">
               <EkodrixLogo size="md" variant="light" />
@@ -290,7 +285,7 @@ export default function AdminPanelPage() {
               Protected Admin Area. Supabase Auth and Role-Based Access Control (RBAC) integration ready.
             </p>
           </div>
-        </motion.div>
+        </div>
       </div>
     );
   }
