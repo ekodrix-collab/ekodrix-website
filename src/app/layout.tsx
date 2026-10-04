@@ -157,7 +157,10 @@ export const metadata: Metadata = {
   },
 
   verification: {
-    google: "34pmmJuoBHFNIS5y3uoIU3A-BwT82KgNASH9211j0No",
+    google: [
+      "iNnJ0Dib4hiXiImL2YfYldA3qBkinI6spXV1lG4KW6Q",
+      "34pmmJuoBHFNIS5y3uoIU3A-BwT82KgNASH9211j0No",
+    ],
     other: {
       "msvalidate.01": process.env.NEXT_PUBLIC_BING_VERIFICATION || "",
     },
@@ -208,7 +211,9 @@ export default function RootLayout({
         />
         <link rel="preconnect" href="https://www.google-analytics.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        {/* Google Search Console Verification */}
+        <meta name="google-site-verification" content="iNnJ0Dib4hiXiImL2YfYldA3qBkinI6spXV1lG4KW6Q" />
+        <meta name="google-site-verification" content="34pmmJuoBHFNIS5y3uoIU3A-BwT82KgNASH9211j0No" />
       </head>
       <body className="antialiased selection:bg-ekodrix-green/30 selection:text-ekodrix-green overflow-x-hidden">
         {/* Google Analytics — Load base script */}
