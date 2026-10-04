@@ -26,7 +26,7 @@ export function FloatingContact() {
     }
   }, []);
 
-  if (pathname?.startsWith("/ekodrix-panel")) return null;
+  if (pathname?.startsWith("/ekodrix-panel") || pathname?.startsWith("/cms")) return null;
 
   const handleCloseTeaser = (e: React.MouseEvent) => {
     e.stopPropagation();

@@ -59,6 +59,7 @@ export const AuthService = {
 
     try {
       localStorage.setItem(AUTH_KEY, JSON.stringify(adminUser));
+      sessionStorage.setItem("ekodrix_cms_authenticated", "true");
       return { success: true, user: adminUser };
     } catch (err) {
       return { success: false, error: "Failed to store authentication session." };
@@ -72,6 +73,7 @@ export const AuthService = {
     if (typeof window === "undefined") return;
     try {
       localStorage.removeItem(AUTH_KEY);
+      sessionStorage.removeItem("ekodrix_cms_authenticated");
     } catch (err) {
       console.error("Error during logout:", err);
     }

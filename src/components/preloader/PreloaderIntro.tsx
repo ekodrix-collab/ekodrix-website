@@ -322,8 +322,8 @@ export function PreloaderIntro({ children }: { children: React.ReactNode }) {
     return () => window.removeEventListener("keydown", fn);
   }, []);
 
-  // Skip preloader entirely on admin panel route
-  if (pathname?.startsWith("/ekodrix-panel")) return <>{children}</>;
+  // Skip preloader entirely on admin panel & cms routes
+  if (pathname?.startsWith("/ekodrix-panel") || pathname?.startsWith("/cms")) return <>{children}</>;
 
   if (hasSeenIntro && mounted) return <>{children}</>;
 

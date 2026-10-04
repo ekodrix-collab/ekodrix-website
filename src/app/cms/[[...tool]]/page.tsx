@@ -19,14 +19,19 @@ export default function CMSStudioPage() {
   useEffect(() => {
     setMounted(true);
     const sessionAuth = sessionStorage.getItem("ekodrix_cms_authenticated");
-    if (sessionAuth === "true") {
+    const adminSession = typeof window !== "undefined" ? localStorage.getItem("ekodrix_admin_session_v1") : null;
+    if (sessionAuth === "true" || adminSession) {
       setIsAuthenticated(true);
+      sessionStorage.setItem("ekodrix_cms_authenticated", "true");
     }
   }, []);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (usernameInput === adminUsername && passwordInput === adminPassword) {
+    if (
+      (usernameInput === adminUsername && passwordInput === adminPassword) ||
+      (usernameInput === "admin@ekodrix.com" && passwordInput === adminPassword)
+    ) {
       setIsAuthenticated(true);
       sessionStorage.setItem("ekodrix_cms_authenticated", "true");
       setError("");
