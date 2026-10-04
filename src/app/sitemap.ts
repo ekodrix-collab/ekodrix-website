@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 import { SERVICE_SLUGS } from '@/lib/services-data'
 import { LOCATION_SLUGS } from '@/lib/locations-data'
 
-const BASE_URL = 'https://ekodrix.com'
+const BASE_URL = 'https://www.ekodrix.com'
 
 const blogSlugs = [
   "building-scalable-saas-platform",

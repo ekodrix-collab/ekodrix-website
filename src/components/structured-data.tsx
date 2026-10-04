@@ -2,19 +2,19 @@ export function StructuredData() {
   const softwareCompanySchema = {
     "@context": "https://schema.org",
     "@type": ["SoftwareCompany", "LocalBusiness", "ProfessionalService"],
-    "@id": "https://ekodrix.com/#organization",
+    "@id": "https://www.ekodrix.com/#organization",
     name: "Ekodrix",
     legalName: "Ekodrix Software Solutions",
-    url: "https://ekodrix.com",
+    url: "https://www.ekodrix.com",
     logo: {
       "@type": "ImageObject",
-      url: "https://ekodrix.com/logo.png",
+      url: "https://www.ekodrix.com/logo.png",
       width: 600,
       height: 600,
     },
     image: [
-      "https://ekodrix.com/og-image.jpg",
-      "https://ekodrix.com/logo.png",
+      "https://www.ekodrix.com/og-image.jpg",
+      "https://www.ekodrix.com/logo.png",
     ],
     description:
       "Ekodrix is the leading software company in Kondotty, Malappuram, Kerala. We specialize in web development, mobile app development, digital marketing, SEO, custom software solutions, and IT consulting. Trusted by 100+ clients across Kerala and India.",
@@ -129,7 +129,7 @@ export function StructuredData() {
             name: "Web Development",
             description:
               "Custom website development using React, Next.js, WordPress and more",
-            url: "https://ekodrix.com/services/web-development",
+            url: "https://www.ekodrix.com/services/web-development",
           },
         },
         {
@@ -139,7 +139,7 @@ export function StructuredData() {
             name: "Mobile App Development",
             description:
               "Android, iOS, React Native and Flutter app development",
-            url: "https://ekodrix.com/services/app-development",
+            url: "https://www.ekodrix.com/services/app-development",
           },
         },
         {
@@ -149,7 +149,7 @@ export function StructuredData() {
             name: "Digital Marketing",
             description:
               "SEO, Google Ads, Social Media Marketing and Content Marketing",
-            url: "https://ekodrix.com/services/digital-marketing",
+            url: "https://www.ekodrix.com/services/digital-marketing",
           },
         },
         {
@@ -159,7 +159,7 @@ export function StructuredData() {
             name: "SEO Services",
             description:
               "Local SEO, technical SEO, on-page and off-page optimization",
-            url: "https://ekodrix.com/services/seo-services",
+            url: "https://www.ekodrix.com/services/seo-services",
           },
         },
         {
@@ -169,7 +169,7 @@ export function StructuredData() {
             name: "Custom Software Development",
             description:
               "ERP, CRM, SaaS and enterprise software development",
-            url: "https://ekodrix.com/services/software-development",
+            url: "https://www.ekodrix.com/services/software-development",
           },
         },
         {
@@ -179,7 +179,7 @@ export function StructuredData() {
             name: "E-commerce Development",
             description:
               "Shopify, WooCommerce, and custom online store development",
-            url: "https://ekodrix.com/services/ecommerce-development",
+            url: "https://www.ekodrix.com/services/ecommerce-development",
           },
         },
       ],
@@ -224,7 +224,7 @@ export function StructuredData() {
           "30-minute free consultation for all new clients. Discuss your project requirements.",
         price: "0",
         priceCurrency: "INR",
-        url: "https://ekodrix.com/contact",
+        url: "https://www.ekodrix.com/contact",
       },
     ],
   };
@@ -232,19 +232,19 @@ export function StructuredData() {
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "@id": "https://ekodrix.com/#website",
+    "@id": "https://www.ekodrix.com/#website",
     name: "Ekodrix",
-    url: "https://ekodrix.com",
+    url: "https://www.ekodrix.com",
     description:
       "Best software company in Kondotty, Kerala — web development, app development, digital marketing & custom software solutions",
     publisher: {
-      "@id": "https://ekodrix.com/#organization",
+      "@id": "https://www.ekodrix.com/#organization",
     },
     potentialAction: {
       "@type": "SearchAction",
       target: {
         "@type": "EntryPoint",
-        urlTemplate: "https://ekodrix.com/blog?search={search_term_string}",
+        urlTemplate: "https://www.ekodrix.com/blog?search={search_term_string}",
       },
       "query-input": "required name=search_term_string",
     },
@@ -260,42 +260,42 @@ export function StructuredData() {
         "position": 1,
         "name": "Web Development",
         "description": "Custom enterprise websites, React & Next.js applications, and corporate portals.",
-        "url": "https://ekodrix.com/services/web-development"
+        "url": "https://www.ekodrix.com/services/web-development"
       },
       {
         "@type": "SiteNavigationElement",
         "position": 2,
         "name": "App Development",
         "description": "High-performance iOS and Android applications built with Flutter and React Native.",
-        "url": "https://ekodrix.com/services/app-development"
+        "url": "https://www.ekodrix.com/services/app-development"
       },
       {
         "@type": "SiteNavigationElement",
         "position": 3,
         "name": "Digital Marketing",
         "description": "Data-driven SEO, Google Ads, and social media marketing to scale your business.",
-        "url": "https://ekodrix.com/services/digital-marketing"
+        "url": "https://www.ekodrix.com/services/digital-marketing"
       },
       {
         "@type": "SiteNavigationElement",
         "position": 4,
         "name": "Our Portfolio",
         "description": "Explore successful projects and case studies delivered by the Ekodrix team.",
-        "url": "https://ekodrix.com/work"
+        "url": "https://www.ekodrix.com/work"
       },
       {
         "@type": "SiteNavigationElement",
         "position": 5,
         "name": "Contact Us",
         "description": "Get in touch for a free project consultation and tech strategy session.",
-        "url": "https://ekodrix.com/contact"
+        "url": "https://www.ekodrix.com/contact"
       },
       {
         "@type": "SiteNavigationElement",
         "position": 6,
         "name": "About Ekodrix",
         "description": "Learn about Kondotty's leading IT solutions and software engineering firm.",
-        "url": "https://ekodrix.com/about"
+        "url": "https://www.ekodrix.com/about"
       }
     ]
   };
@@ -314,9 +314,9 @@ export function StructuredData() {
     creator: {
       "@type": "Organization",
       name: "Ekodrix",
-      url: "https://ekodrix.com",
+      url: "https://www.ekodrix.com",
     },
-    url: "https://ekodrix.com/resellerpro",
+    url: "https://www.ekodrix.com/resellerpro",
     description: "All-in-one SaaS CRM and reseller automation platform engineered by Ekodrix Technologies.",
   };
 
