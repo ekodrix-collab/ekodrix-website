@@ -47,8 +47,9 @@ import { EkodrixLogo } from "@/components/logos/ekodrix-logo";
 import { AuthService, AdminUser } from "@/lib/services/auth-service";
 import { ProjectRequestService } from "@/lib/services/project-requests";
 import { ProjectRequest, ProjectRequestStats, RequestStatus } from "@/types/project-request";
+import { PortfolioManager } from "@/components/admin/PortfolioManager";
 
-type AdminTab = "dashboard" | "requests" | "cms" | "settings";
+type AdminTab = "dashboard" | "requests" | "portfolio" | "cms" | "settings";
 
 export default function AdminPanelPage() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
@@ -56,6 +57,17 @@ export default function AdminPanelPage() {
   const [activeTab, setActiveTab] = useState<AdminTab>("dashboard");
   const cmsIframeRef = React.useRef<HTMLIFrameElement>(null);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState<boolean>(false);
+
+  // Read tab parameter from URL on load
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const tab = params.get("tab") as AdminTab;
+      if (tab && ["dashboard", "requests", "portfolio", "cms", "settings"].includes(tab)) {
+        setActiveTab(tab);
+      }
+    }
+  }, []);
 
   // Login form state
   const [loginEmail, setLoginEmail] = useState("");
@@ -419,6 +431,26 @@ export default function AdminPanelPage() {
 
               <button
                 onClick={() => {
+                  setActiveTab("portfolio");
+                  setMobileSidebarOpen(false);
+                }}
+                className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-all ${
+                  activeTab === "portfolio"
+                    ? "bg-ekodrix-green/10 text-ekodrix-green border border-ekodrix-green/30 shadow-lg shadow-ekodrix-green/5"
+                    : "text-gray-400 hover:text-white hover:bg-white/5"
+                }`}
+              >
+                <div className="flex items-center gap-3.5">
+                  <Globe className="w-4 h-4" />
+                  Portfolio
+                </div>
+                <span className="text-[10px] font-bold uppercase tracking-wider bg-ekodrix-green/20 text-ekodrix-green px-1.5 py-0.5 rounded border border-ekodrix-green/30">
+                  Dynamic
+                </span>
+              </button>
+
+              <button
+                onClick={() => {
                   setActiveTab("cms");
                   setMobileSidebarOpen(false);
                 }}
@@ -486,12 +518,15 @@ export default function AdminPanelPage() {
             <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-white flex items-center gap-3">
               {activeTab === "dashboard" && "Dashboard Overview"}
               {activeTab === "requests" && "Project Requests Submissions"}
+              {activeTab === "portfolio" && "Portfolio Management"}
               {activeTab === "cms" && "Content Management Studio"}
               {activeTab === "settings" && "System & Integrations Settings"}
             </h1>
             <p className="text-xs md:text-sm text-gray-400 mt-1">
               {activeTab === "cms"
                 ? "Manage Portfolio Projects, Blog Articles, Team Members & Testimonials with Sanity"
+                : activeTab === "portfolio"
+                ? "Manage live website portfolio projects, browser screenshots, and display ordering"
                 : "EKODRIX Management & Client Lead Pipeline"}
             </p>
           </div>
@@ -842,7 +877,12 @@ export default function AdminPanelPage() {
           </div>
         )}
 
-        {/* TAB 3: CONTENT MANAGEMENT STUDIO (SANITY CMS) */}
+        {/* TAB 3: DYNAMIC PORTFOLIO MANAGEMENT */}
+        {activeTab === "portfolio" && (
+          <PortfolioManager />
+        )}
+
+        {/* TAB 4: CONTENT MANAGEMENT STUDIO (SANITY CMS) */}
         {activeTab === "cms" && (
           <div className="space-y-6">
             {/* CMS Status & Quick Stats Bar */}

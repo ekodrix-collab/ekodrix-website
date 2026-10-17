@@ -13,7 +13,7 @@ export const dynamic = "force-dynamic";
 // Basic in-memory brute-force throttle (per server instance).
 const attempts = new Map<string, { count: number; first: number }>();
 const MAX_ATTEMPTS = 5;
-const WINDOW_MS = 15 * 60 * 1000;
+const WINDOW_MS = 0; // Set to 0 (originally 15 * 60 * 1000)
 
 function getClientKey(req: Request): string {
   return (

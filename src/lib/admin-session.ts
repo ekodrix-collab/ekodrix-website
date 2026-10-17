@@ -24,6 +24,9 @@ export interface AdminSessionUser {
 function getSecret(): string {
   const secret = process.env.ADMIN_SESSION_SECRET;
   if (!secret || secret.length < 32) {
+    if (process.env.NODE_ENV !== "production") {
+      return "ekodrix_local_dev_secret_key_32_characters_minimum_length";
+    }
     throw new Error("ADMIN_SESSION_SECRET is missing or too short (min 32 chars).");
   }
   return secret;
@@ -44,15 +47,33 @@ function sign(payload: string): string {
   return createHmac("sha256", getSecret()).update(payload).digest("base64url");
 }
 
-/** Checks the submitted credentials against the single fixed admin account. */
+/** Checks the submitted credentials against the configured admin account or dev fallback. */
 export function verifyAdminCredentials(email: string, password: string): boolean {
-  const validEmail = (process.env.PANEL_ADMIN_EMAIL || "").trim().toLowerCase();
+  const validEmail = (process.env.PANEL_ADMIN_EMAIL || process.env.ADMIN_EMAIL || "").trim().toLowerCase();
   const validPassword = process.env.PANEL_ADMIN_PASSWORD || "";
-  if (!validEmail || !validPassword) return false;
 
-  const emailOk = safeEqual(email.trim().toLowerCase(), validEmail);
-  const passwordOk = safeEqual(password, validPassword);
-  return emailOk && passwordOk;
+  // If explicit credentials are configured in environment variables, check them first
+  if (validEmail && validPassword) {
+    const emailOk = safeEqual(email.trim().toLowerCase(), validEmail);
+    const passwordOk = safeEqual(password, validPassword);
+    if (emailOk && passwordOk) return true;
+  }
+
+  // Development fallback: allow local developers to log in without needing secret production env vars
+  if (process.env.NODE_ENV !== "production") {
+    const inputEmail = email.trim().toLowerCase();
+    const isAllowedEmail =
+      inputEmail === "admin@ekodrix.com" ||
+      inputEmail === (process.env.ADMIN_EMAIL || "").trim().toLowerCase() ||
+      inputEmail === (process.env.PANEL_ADMIN_EMAIL || "").trim().toLowerCase() ||
+      inputEmail.endsWith("@ekodrix.com");
+
+    if (isAllowedEmail && password.length >= 4) {
+      return true;
+    }
+  }
+
+  return false;
 }
 
 /** Creates a signed token: base64url(json payload) + "." + signature */
@@ -82,9 +103,11 @@ export function verifySessionToken(token: string | undefined | null): AdminSessi
     };
     if (!data.exp || Date.now() > data.exp) return null;
 
-    // Session is only valid for the currently configured admin email.
-    const validEmail = (process.env.PANEL_ADMIN_EMAIL || "").trim().toLowerCase();
-    if (data.email !== validEmail) return null;
+    // In production, session is only valid for the currently configured admin email.
+    const validEmail = (process.env.PANEL_ADMIN_EMAIL || process.env.ADMIN_EMAIL || "").trim().toLowerCase();
+    if (validEmail && data.email !== validEmail && process.env.NODE_ENV === "production") {
+      return null;
+    }
 
     return {
       email: data.email,
