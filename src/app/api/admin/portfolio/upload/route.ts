@@ -73,22 +73,39 @@ export async function POST(req: Request) {
       .toLowerCase()
       .replace(/[^a-z0-9_-]/g, "-")
       .slice(0, 40);
-    const filename = `${cleanName}-${Date.now()}${ext}`;
+    const filename = `${cleanName}-${Date.now()}.webp`;
+
+    // Pre-compress and optimize full-page screenshot using sharp (reduces 15MB PNG to ~250KB WebP)
+    let uploadBuffer = buffer;
+    let uploadContentType = file.type;
+    try {
+      const sharp = (await import("sharp")).default;
+      uploadBuffer = await sharp(buffer)
+        .resize({ width: 1200, withoutEnlargement: true })
+        .webp({ quality: 82, effort: 4 })
+        .toBuffer();
+      uploadContentType = "image/webp";
+    } catch (sharpErr: any) {
+      console.warn("[Upload] Sharp optimization skipped:", sharpErr?.message);
+    }
 
     // 1. Primary Strategy: Upload to Sanity Cloud CDN (Serverless safe on Vercel, no read-only disk issues)
     try {
       const sanityClient = getSanityClient();
-      const asset = await sanityClient.assets.upload("image", buffer, {
+      const asset = await sanityClient.assets.upload("image", uploadBuffer, {
         filename,
-        contentType: file.type,
+        contentType: uploadContentType,
       });
 
       if (asset && asset.url) {
+        // Append auto=format & width constraint so the public site serves lightweight WebP/AVIF
+        const optimizedUrl = `${asset.url}?auto=format&w=650&q=80`;
         return NextResponse.json({
           success: true,
-          url: asset.url,
+          url: optimizedUrl,
+          rawUrl: asset.url,
           filename: asset.originalFilename || filename,
-          size: file.size,
+          size: uploadBuffer.length,
           storage: "sanity-cdn",
         });
       }

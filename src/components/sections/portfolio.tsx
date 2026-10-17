@@ -10,6 +10,15 @@ import { DEFAULT_PORTFOLIO_ITEMS } from "@/lib/portfolio-defaults";
 // Re-export the 13 original hardcoded items for backward compatibility
 export const portfolioItems: PortfolioItem[] = DEFAULT_PORTFOLIO_ITEMS;
 
+function getOptimizedImageUrl(url: string, width = 650): string {
+  if (!url) return url;
+  if (url.includes("cdn.sanity.io") && !url.includes("auto=format")) {
+    const separator = url.includes("?") ? "&" : "?";
+    return `${url}${separator}auto=format&w=${width}&q=80`;
+  }
+  return url;
+}
+
 // Reusable individual portfolio card component matching the exact browser-mockup visual design
 export function PortfolioCard({
   item,
@@ -21,6 +30,7 @@ export function PortfolioCard({
   const cardRef = useRef<HTMLDivElement>(null);
   const formattedUrl = item.url.startsWith("http") ? item.url : `https://${item.url}`;
   const displayDomain = item.url.replace(/^https?:\/\//, "").replace(/\/.*$/, "");
+  const optimizedImage = getOptimizedImageUrl(item.image);
 
   return (
     <motion.div
@@ -74,7 +84,7 @@ export function PortfolioCard({
           {/* Screenshot preview window */}
           <div className="portfolio-preview-window">
             <img
-              src={item.image}
+              src={optimizedImage}
               alt={item.altText || `${item.title} — Web & SaaS Development Portfolio by Ekodrix`}
               className="portfolio-preview-image group-hover:!translate-y-[calc(-100%+220px)] group-hover:!transition-transform group-hover:!duration-[6000ms] group-hover:!ease-in-out"
               loading="lazy"
@@ -108,7 +118,7 @@ export function Portfolio() {
     let cancelled = false;
     async function loadDynamicPortfolio() {
       try {
-        const res = await fetch("/api/portfolio", { cache: "no-store" });
+        const res = await fetch(`/api/portfolio?_t=${Date.now()}`, { cache: "no-store" });
         if (!res.ok) return;
         const data = await res.json();
         if (!cancelled && data.success && Array.isArray(data.data) && data.data.length > 0) {
