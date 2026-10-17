@@ -21,7 +21,7 @@ const successStories = [
     ],
     tech: ["Next.js", "Supabase", "WhatsApp API", "PostgreSQL"],
     rotation: { x: -2, y: -6, hover: { x: 0, y: -3 } },
-    image: "/images/hero/coding-closeup.png", // Placeholder
+    image: "https://cdn.sanity.io/images/3sq1n5yp/production/6e21f31a6c1632704fcd7481038fa8a09b74e3b6-1024x1024.jpg?auto=format&w=800&q=85",
     gradient: "from-ekodrix-green/20 to-resellerpro-blue-medium/20",
   },
   {
@@ -37,7 +37,7 @@ const successStories = [
     ],
     tech: ["Node.js", "Kubernetes", "PostgreSQL", "Redis", "AWS"],
     rotation: { x: 3, y: 8, hover: { x: 0, y: 5 } },
-    image: "/images/hero/developer-workspace.png", // Placeholder
+    image: "https://cdn.sanity.io/images/3sq1n5yp/production/c7814551b02a48f8ac7c7878f1f1aab684d01f83-1024x1024.jpg?auto=format&w=800&q=85",
     gradient: "from-blue-500/20 to-purple-500/20",
   },
   {
@@ -53,7 +53,7 @@ const successStories = [
     ],
     tech: ["React", "Python", "AWS", "PostgreSQL"],
     rotation: { x: -1, y: -4, hover: { x: 0, y: -2 } },
-    image: "/images/hero/team-collaboration.png", // Placeholder
+    image: "https://cdn.sanity.io/images/3sq1n5yp/production/d76b89f80e6d2db5f02fa8f251cdda9ee7c994f1-1024x1024.jpg?auto=format&w=800&q=85",
     gradient: "from-green-500/20 to-teal-500/20",
   },
 ];

@@ -18,11 +18,11 @@ export const metadata: Metadata = {
     "ekodrix work",
     "software development case studies kerala",
   ],
-  alternates: { canonical: "https://ekodrix.com/work" },
+  alternates: { canonical: "https://www.ekodrix.com/work" },
   openGraph: {
     title: "Portfolio — Ekodrix Software Company Kondotty",
     description: "100+ projects delivered. See our web development, app development and digital marketing portfolio.",
-    url: "https://ekodrix.com/work",
+    url: "https://www.ekodrix.com/work",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
 };

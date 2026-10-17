@@ -237,11 +237,11 @@ export async function generateMetadata({
       "software company blog malappuram",
       "tech blog kondotty",
     ],
-    alternates: { canonical: `https://ekodrix.com/blog/${params.slug}` },
+    alternates: { canonical: `https://www.ekodrix.com/blog/${params.slug}` },
     openGraph: {
       title: `${post.title} | Ekodrix Blog`,
       description: `${post.content.replace(/[#\n]/g, ' ').substring(0, 155).trim()}...`,
-      url: `https://ekodrix.com/blog/${params.slug}`,
+      url: `https://www.ekodrix.com/blog/${params.slug}`,
       type: "article",
       publishedTime: post.date,
       authors: ["Ekodrix Team"],
@@ -268,15 +268,15 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       <ArticleSchema
         title={post.title}
         description={post.content.replace(/[#\n]/g, ' ').substring(0, 155).trim()}
-        url={`https://ekodrix.com/blog/${params.slug}`}
+        url={`https://www.ekodrix.com/blog/${params.slug}`}
         datePublished={post.date}
         category={post.category}
       />
       <BreadcrumbSchema
         items={[
-          { name: "Home", url: "https://ekodrix.com" },
-          { name: "Blog", url: "https://ekodrix.com/blog" },
-          { name: post.title, url: `https://ekodrix.com/blog/${params.slug}` },
+          { name: "Home", url: "https://www.ekodrix.com" },
+          { name: "Blog", url: "https://www.ekodrix.com/blog" },
+          { name: post.title, url: `https://www.ekodrix.com/blog/${params.slug}` },
         ]}
       />
     <main className="min-h-screen pt-20">

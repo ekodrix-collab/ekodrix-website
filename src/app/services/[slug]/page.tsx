@@ -23,12 +23,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: service.metaDescription,
     keywords: service.keywords,
     alternates: {
-      canonical: `https://ekodrix.com/services/${service.slug}`,
+      canonical: `https://www.ekodrix.com/services/${service.slug}`,
     },
     openGraph: {
       title: service.metaTitle,
       description: service.metaDescription,
-      url: `https://ekodrix.com/services/${service.slug}`,
+      url: `https://www.ekodrix.com/services/${service.slug}`,
       siteName: "Ekodrix",
       images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: service.name }],
       type: "website",
@@ -56,14 +56,14 @@ export default async function ServicePage({ params }: Props) {
       <ServiceSchema
         name={service.name}
         description={service.description}
-        url={`https://ekodrix.com/services/${service.slug}`}
+        url={`https://www.ekodrix.com/services/${service.slug}`}
         priceRange={service.priceRange}
       />
       <BreadcrumbSchema
         items={[
-          { name: "Home", url: "https://ekodrix.com" },
-          { name: "Services", url: "https://ekodrix.com/services" },
-          { name: service.name, url: `https://ekodrix.com/services/${service.slug}` },
+          { name: "Home", url: "https://www.ekodrix.com" },
+          { name: "Services", url: "https://www.ekodrix.com/services" },
+          { name: service.name, url: `https://www.ekodrix.com/services/${service.slug}` },
         ]}
       />
       <FAQSchema faqs={service.faqs} />

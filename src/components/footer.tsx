@@ -34,7 +34,7 @@ const socialLinks = [
 
 export function Footer() {
   const pathname = usePathname();
-  if (pathname?.startsWith("/ekodrix-panel")) return null;
+  if (pathname?.startsWith("/ekodrix-panel") || pathname?.startsWith("/cms")) return null;
 
   return (
     <footer className="bg-ekodrix-charcoal-dark border-t border-gray-800">

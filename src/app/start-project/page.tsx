@@ -152,7 +152,7 @@ export default function StartProjectPage() {
 
               <div>
                 <label htmlFor="budget" className="block text-sm font-medium mb-2">
-                  Budget Range *
+                  Budget Range (USD / AED / INR) *
                 </label>
                 <select
                   id="budget"
@@ -161,12 +161,11 @@ export default function StartProjectPage() {
                   onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
                   className="w-full px-4 py-3 rounded-lg bg-cosmic border border-glass-border text-white focus:outline-none focus:border-accent-start transition-colors"
                 >
-                  <option value="">Select...</option>
-                  <option value="30k-50k">₹30K - ₹50K</option>
-                  <option value="50k-100k">₹50K - ₹100K</option>
-                  <option value="100k-250k">₹100K - ₹250K</option>
-                  <option value="250k-500k">₹250K - ₹500K</option>
-                  <option value="500k+">₹500K+</option>
+                  <option value="">Select budget tier...</option>
+                  <option value="starter-hook">$199 – $499 / AED 750 – AED 1,800 (Starter Website / MVP Launch)</option>
+                  <option value="growth">$500 – $1,500 / AED 1,800 – AED 5,500 (Web App / E-Commerce)</option>
+                  <option value="scale">$1,500 – $4,500 / AED 5,500 – AED 16,000 (Custom SaaS & Mobile App)</option>
+                  <option value="enterprise">$4,500+ / AED 16,000+ (Enterprise Platform & Custom Scale)</option>
                 </select>
               </div>
             </div>

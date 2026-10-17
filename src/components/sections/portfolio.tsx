@@ -1,119 +1,26 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
+import { PortfolioItem } from "@/types/portfolio";
+import { DEFAULT_PORTFOLIO_ITEMS } from "@/lib/portfolio-defaults";
 
+// Re-export the 13 original hardcoded items for backward compatibility
+export const portfolioItems: PortfolioItem[] = DEFAULT_PORTFOLIO_ITEMS;
 
-const portfolioItems = [
-  {
-    id: "resellerpro",
-    title: "ResellerPro - SaaS CRM Platform",
-    category: "SaaS Product · Full-Stack Development",
-    image: "/images/portfolio/www.resellerpro.in_.webp",
-    url: "resellerpro.in",
-  },
-    {
-    id: "axion-technology-co",
-    title: "Axion Technology Company - Business Website",
-    category: "Web Design & Development",
-    image: "/images/portfolio/axiontechgroup.com_ (1).webp",
-    url: "axiontechgroup.com",
-  },
-      {
-    id: "wcc-fashions",
-    title: "WCC Fashions-western clothing co",
-    category: "B2B-Website",
-    image: "/images/portfolio/www.wccfashions.com_.webp",
-    url: "wccfashions.com",
-  },
-
-  {
-    id: "nexa-network",
-    title: "Nexa Network Solutions",
-    category: "Web Design & Development",
-    image: "/images/portfolio/nexa.com.qa_ (1).webp",
-    url: "nexa.com.qa",
-  },
-
-  {
-    id: "griva",
-    title: "The Griva - Electronics",
-    category: "Web Design & E-Commerce", 
-    image: "/images/portfolio/www.thegriva.com1_.webp",
-    url: "thegriva.com",
-  },
-
-    {
-    id: "ambiayu-natureproducts",
-    title: "Ambiayu - Ayurvedic products",
-    category: "Web Design & Shopify", 
-    image: "/images/portfolio/ambiayu.com_.webp",
-    url: "ambiayu.com",
-  },
-  
-  {
-    id: "editron-studio",
-    title: "Editron Studio - Creative Agency",
-    category: "Web Design & Development · UAE",
-    image: "/images/portfolio/www.editronstudio.com_.webp",
-    url: "editronstudio.com",
-  },
-  {
-    id: "kl59-fashion",
-    title: "KL-59 Men's Fashion",
-    category: "E-Commerce · WhatsApp Integration",
-    image: "/images/portfolio/www.kl-59mensfashion.in_ (4).webp",
-    url: "kl-59mensfashion.in",
-  },
-  {
-    id: "magnat",
-    title: "Magnat - Luxury Furniture",
-    category: "Web Design & Development · Kondotty",
-    image: "/images/portfolio/www.magnat.in_.webp",
-    url: "magnat.in",
-  },
-  {
-    id: "vidya-academy",
-    title: "Vidya Academy - EdTech Platform",
-    category: "Education · Full-Stack Development",
-    image: "/images/portfolio/vidyaacademy.ekodrix.com_.webp",
-    url: "vidyaacademy.ekodrix.com",
-  },
-  {
-    id: "er-groups",
-    title: "ER Groups - Construction Company",
-    category: "Web Design & Development · UAE",
-    image: "/images/portfolio/er-groups.vercel.app_ (2).webp",
-    url: "er-groups.vercel.app",
-  },
-  {
-    id: "care-pro-health",
-    title: "CarePro Health - Healthcare Platform",
-    category: "Web Design & Development",
-    image: "/images/portfolio/care-pro-health.vercel.app_.webp",
-    url: "care-pro-health.vercel.app",
-  },
-  {
-    id: "ekodrix-events",
-    title: "Al Wafa - Event Management",
-    category: "Web Design & Development",
-    image: "/images/portfolio/ekodrix-event-management-demo.vercel.app_.webp",
-    url: "ekodrix-event-management-demo.vercel.app",
-  },
-];
-
-// Individual portfolio card component
-function PortfolioCard({
+// Reusable individual portfolio card component matching the exact browser-mockup visual design
+export function PortfolioCard({
   item,
-  index,
+  index = 0,
 }: {
-  item: (typeof portfolioItems)[0];
-  index: number;
+  item: PortfolioItem;
+  index?: number;
 }) {
   const cardRef = useRef<HTMLDivElement>(null);
+  const formattedUrl = item.url.startsWith("http") ? item.url : `https://${item.url}`;
+  const displayDomain = item.url.replace(/^https?:\/\//, "").replace(/\/.*$/, "");
 
   return (
     <motion.div
@@ -128,7 +35,7 @@ function PortfolioCard({
       className="group relative"
     >
       <a 
-        href={item.url.startsWith('http') ? item.url : `https://${item.url}`}
+        href={formattedUrl}
         target="_blank"
         rel="noopener noreferrer"
         className="portfolio-card-wrapper group"
@@ -155,7 +62,7 @@ function PortfolioCard({
                 <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
                 <path d="M7 11V7a5 5 0 0 1 10 0v4" />
               </svg>
-              <span className="url-text">{item.url}</span>
+              <span className="url-text">{displayDomain}</span>
             </div>
             <div className="portfolio-browser-actions">
               <span className="browser-action-dot" />
@@ -168,9 +75,12 @@ function PortfolioCard({
           <div className="portfolio-preview-window">
             <img
               src={item.image}
-              alt={item.title}
+              alt={item.altText || `${item.title} — Web & SaaS Development Portfolio by Ekodrix`}
               className="portfolio-preview-image group-hover:!translate-y-[calc(-100%+220px)] group-hover:!transition-transform group-hover:!duration-[6000ms] group-hover:!ease-in-out"
               loading="lazy"
+              decoding="async"
+              width={600}
+              height={400}
             />
             {/* Subtle gradient overlay at bottom */}
             <div className="portfolio-preview-fade" />
@@ -190,6 +100,30 @@ function PortfolioCard({
 export function Portfolio() {
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.05 });
+  
+  // Default fallback initialized immediately to prevent layout shift or empty states
+  const [items, setItems] = useState<PortfolioItem[]>(DEFAULT_PORTFOLIO_ITEMS);
+
+  useEffect(() => {
+    let cancelled = false;
+    async function loadDynamicPortfolio() {
+      try {
+        const res = await fetch("/api/portfolio", { cache: "no-store" });
+        if (!res.ok) return;
+        const data = await res.json();
+        if (!cancelled && data.success && Array.isArray(data.data) && data.data.length > 0) {
+          setItems(data.data);
+        }
+      } catch (err) {
+        // Silently preserve DEFAULT_PORTFOLIO_ITEMS fallback
+        console.warn("[Portfolio] Loading dynamic items failed, staying on static defaults:", err);
+      }
+    }
+    loadDynamicPortfolio();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   return (
     <section
@@ -228,8 +162,8 @@ export function Portfolio() {
 
         {/* Portfolio grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
-          {portfolioItems.map((item, index) => (
-            <PortfolioCard key={item.title} item={item} index={index} />
+          {items.map((item, index) => (
+            <PortfolioCard key={item.id || item.title} item={item} index={index} />
           ))}
         </div>
 

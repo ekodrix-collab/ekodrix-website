@@ -8,8 +8,8 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
   useEffect(() => {
-    // Skip Lenis on admin panel route — it has its own scroll context
-    if (pathname?.startsWith("/ekodrix-panel")) return;
+    // Skip Lenis on admin panel & cms routes — they have their own scroll contexts
+    if (pathname?.startsWith("/ekodrix-panel") || pathname?.startsWith("/cms")) return;
 
     // Disable smooth scroll on mobile/touch devices to prevent scroll issues
     const isMobile =

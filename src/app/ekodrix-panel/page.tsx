@@ -33,25 +33,48 @@ import {
   TrendingUp,
   FileText,
   Trash2,
+  ExternalLink,
+  Layers,
+  Globe,
+  Sparkles,
+  BookOpen,
+  Users,
+  Quote,
+  Maximize2,
 } from "lucide-react";
 import { toast } from "sonner";
 import { EkodrixLogo } from "@/components/logos/ekodrix-logo";
 import { AuthService, AdminUser } from "@/lib/services/auth-service";
 import { ProjectRequestService } from "@/lib/services/project-requests";
 import { ProjectRequest, ProjectRequestStats, RequestStatus } from "@/types/project-request";
+import { PortfolioManager } from "@/components/admin/PortfolioManager";
 
-type AdminTab = "dashboard" | "requests" | "settings";
+type AdminTab = "dashboard" | "requests" | "portfolio" | "cms" | "settings";
 
 export default function AdminPanelPage() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [user, setUser] = useState<AdminUser | null>(null);
   const [activeTab, setActiveTab] = useState<AdminTab>("dashboard");
+  const cmsIframeRef = React.useRef<HTMLIFrameElement>(null);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState<boolean>(false);
+
+  // Read tab parameter from URL on load
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const tab = params.get("tab") as AdminTab;
+      if (tab && ["dashboard", "requests", "portfolio", "cms", "settings"].includes(tab)) {
+        setActiveTab(tab);
+      }
+    }
+  }, []);
 
   // Login form state
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const [loginLoading, setLoginLoading] = useState(false);
+  const [loginError, setLoginError] = useState("");
+  const [authChecking, setAuthChecking] = useState(true);
 
   // Requests & Stats state
   const [requests, setRequests] = useState<ProjectRequest[]>([]);
@@ -94,17 +117,24 @@ export default function AdminPanelPage() {
     }
   }, [statusFilter, typeFilter, searchQuery]);
 
-  // Check Auth state on load
+  // Check Auth state on load (verified server-side via httpOnly cookie)
   useEffect(() => {
-    const isAuth = AuthService.isAuthenticated();
-    setIsAuthenticated(isAuth);
-    if (isAuth) {
-      setUser(AuthService.getCurrentUser());
-      loadData();
-    } else {
-      setLoading(false);
-    }
-  }, [loadData]);
+    let cancelled = false;
+    AuthService.checkSession().then((sessionUser) => {
+      if (cancelled) return;
+      if (sessionUser) {
+        setUser(sessionUser);
+        setIsAuthenticated(true);
+      } else {
+        setIsAuthenticated(false);
+        setLoading(false);
+      }
+      setAuthChecking(false);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -115,25 +145,29 @@ export default function AdminPanelPage() {
   // Handle Login
   const handleLoginSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoginError("");
     setLoginLoading(true);
     const res = await AuthService.login(loginEmail, loginPassword);
     setLoginLoading(false);
     if (res.success && res.user) {
       setIsAuthenticated(true);
       setUser(res.user);
+      setLoginError("");
+      setLoginPassword("");
       toast.success("Welcome back to EKODRIX Panel!");
-      loadData();
     } else {
+      setLoginError(res.error || "Invalid admin credentials. Access Denied.");
       toast.error(res.error || "Login failed");
     }
   };
 
 
 
-  const handleLogout = () => {
-    AuthService.logout();
+  const handleLogout = async () => {
+    await AuthService.logout();
     setIsAuthenticated(false);
     setUser(null);
+    setRequests([]);
     toast.info("Logged out of EKODRIX Panel");
   };
 
@@ -208,6 +242,15 @@ export default function AdminPanelPage() {
     }
   };
 
+  // While verifying the session cookie, show a lightweight loader
+  if (authChecking) {
+    return (
+      <div className="min-h-screen bg-[#0A0D14] flex items-center justify-center">
+        <RefreshCw className="w-6 h-6 text-ekodrix-green animate-spin" />
+      </div>
+    );
+  }
+
   // If NOT authenticated, render Login Screen
   if (!isAuthenticated) {
     return (
@@ -216,12 +259,7 @@ export default function AdminPanelPage() {
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-ekodrix-green/10 rounded-full blur-[140px] pointer-events-none" />
         <div className="absolute bottom-10 right-10 w-[300px] h-[300px] bg-blue-500/10 rounded-full blur-[100px] pointer-events-none" />
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="w-full max-w-md bg-[#121622]/90 backdrop-blur-2xl border border-white/10 rounded-3xl p-8 shadow-2xl relative z-10"
-        >
+        <div className="w-full max-w-md bg-[#121622]/95 backdrop-blur-2xl border border-white/10 rounded-3xl p-8 shadow-2xl relative z-10">
           <div className="text-center mb-8">
             <div className="flex justify-center mb-4">
               <EkodrixLogo size="md" variant="light" />
@@ -242,8 +280,13 @@ export default function AdminPanelPage() {
               <div className="relative">
                 <input
                   type="email"
+                  required
+                  autoComplete="username"
                   value={loginEmail}
-                  onChange={(e) => setLoginEmail(e.target.value)}
+                  onChange={(e) => {
+                    setLoginEmail(e.target.value);
+                    setLoginError("");
+                  }}
                   placeholder="admin@ekodrix.com"
                   className="w-full px-4 py-3 bg-[#0A0D14] border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-ekodrix-green transition-colors text-sm"
                 />
@@ -257,13 +300,24 @@ export default function AdminPanelPage() {
               <div className="relative">
                 <input
                   type="password"
+                  required
+                  autoComplete="current-password"
                   value={loginPassword}
-                  onChange={(e) => setLoginPassword(e.target.value)}
+                  onChange={(e) => {
+                    setLoginPassword(e.target.value);
+                    setLoginError("");
+                  }}
                   placeholder="••••••••"
                   className="w-full px-4 py-3 bg-[#0A0D14] border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-ekodrix-green transition-colors text-sm"
                 />
               </div>
             </div>
+
+            {loginError && (
+              <p className="text-xs text-rose-400 bg-rose-500/10 border border-rose-500/20 rounded-lg p-2.5 text-center">
+                {loginError}
+              </p>
+            )}
 
             <button
               type="submit"
@@ -281,7 +335,7 @@ export default function AdminPanelPage() {
               Protected Admin Area. Supabase Auth and Role-Based Access Control (RBAC) integration ready.
             </p>
           </div>
-        </motion.div>
+        </div>
       </div>
     );
   }
@@ -377,6 +431,46 @@ export default function AdminPanelPage() {
 
               <button
                 onClick={() => {
+                  setActiveTab("portfolio");
+                  setMobileSidebarOpen(false);
+                }}
+                className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-all ${
+                  activeTab === "portfolio"
+                    ? "bg-ekodrix-green/10 text-ekodrix-green border border-ekodrix-green/30 shadow-lg shadow-ekodrix-green/5"
+                    : "text-gray-400 hover:text-white hover:bg-white/5"
+                }`}
+              >
+                <div className="flex items-center gap-3.5">
+                  <Globe className="w-4 h-4" />
+                  Portfolio
+                </div>
+                <span className="text-[10px] font-bold uppercase tracking-wider bg-ekodrix-green/20 text-ekodrix-green px-1.5 py-0.5 rounded border border-ekodrix-green/30">
+                  Dynamic
+                </span>
+              </button>
+
+              <button
+                onClick={() => {
+                  setActiveTab("cms");
+                  setMobileSidebarOpen(false);
+                }}
+                className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-all ${
+                  activeTab === "cms"
+                    ? "bg-ekodrix-green/10 text-ekodrix-green border border-ekodrix-green/30 shadow-lg shadow-ekodrix-green/5"
+                    : "text-gray-400 hover:text-white hover:bg-white/5"
+                }`}
+              >
+                <div className="flex items-center gap-3.5">
+                  <FileText className="w-4 h-4" />
+                  CMS Studio
+                </div>
+                <span className="text-[10px] font-bold uppercase tracking-wider bg-ekodrix-green/20 text-ekodrix-green px-1.5 py-0.5 rounded border border-ekodrix-green/30">
+                  Sanity
+                </span>
+              </button>
+
+              <button
+                onClick={() => {
                   setActiveTab("settings");
                   setMobileSidebarOpen(false);
                 }}
@@ -424,22 +518,40 @@ export default function AdminPanelPage() {
             <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-white flex items-center gap-3">
               {activeTab === "dashboard" && "Dashboard Overview"}
               {activeTab === "requests" && "Project Requests Submissions"}
+              {activeTab === "portfolio" && "Portfolio Management"}
+              {activeTab === "cms" && "Content Management Studio"}
               {activeTab === "settings" && "System & Integrations Settings"}
             </h1>
             <p className="text-xs md:text-sm text-gray-400 mt-1">
-              EKODRIX Management & Client Lead Pipeline
+              {activeTab === "cms"
+                ? "Manage Portfolio Projects, Blog Articles, Team Members & Testimonials with Sanity"
+                : activeTab === "portfolio"
+                ? "Manage live website portfolio projects, browser screenshots, and display ordering"
+                : "EKODRIX Management & Client Lead Pipeline"}
             </p>
           </div>
 
           <div className="flex items-center gap-3">
-            <button
-              onClick={loadData}
-              title="Refresh data"
-              className="px-3 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-gray-400 hover:text-white text-xs font-medium transition-all flex items-center gap-2"
-            >
-              <RefreshCw className="w-4 h-4" />
-              Refresh
-            </button>
+            {activeTab === "cms" ? (
+              <a
+                href="/cms"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2.5 rounded-xl bg-ekodrix-green hover:bg-ekodrix-green-light text-ekodrix-charcoal-dark text-xs font-bold transition-all shadow-lg shadow-ekodrix-green/20 flex items-center gap-2"
+              >
+                <ExternalLink className="w-4 h-4" />
+                Fullscreen Studio
+              </a>
+            ) : (
+              <button
+                onClick={loadData}
+                title="Refresh data"
+                className="px-3 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-gray-400 hover:text-white text-xs font-medium transition-all flex items-center gap-2"
+              >
+                <RefreshCw className="w-4 h-4" />
+                Refresh
+              </button>
+            )}
           </div>
         </div>
 
@@ -765,9 +877,207 @@ export default function AdminPanelPage() {
           </div>
         )}
 
-        {/* TAB 3: INTEGRATION SETTINGS */}
+        {/* TAB 3: DYNAMIC PORTFOLIO MANAGEMENT */}
+        {activeTab === "portfolio" && (
+          <PortfolioManager />
+        )}
+
+        {/* TAB 4: CONTENT MANAGEMENT STUDIO (SANITY CMS) */}
+        {activeTab === "cms" && (
+          <div className="space-y-6">
+            {/* CMS Status & Quick Stats Bar */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="bg-[#121624] border border-white/10 rounded-2xl p-4 flex items-center gap-3.5 shadow-lg">
+                <div className="w-10 h-10 rounded-xl bg-ekodrix-green/10 text-ekodrix-green flex items-center justify-center border border-ekodrix-green/20">
+                  <Layers className="w-5 h-5" />
+                </div>
+                <div>
+                  <div className="text-xs text-gray-400 font-medium">Portfolio Projects</div>
+                  <div className="text-lg font-bold text-white">13 Projects</div>
+                  <div className="text-[10px] text-ekodrix-green font-semibold">Schema: project</div>
+                </div>
+              </div>
+
+              <div className="bg-[#121624] border border-white/10 rounded-2xl p-4 flex items-center gap-3.5 shadow-lg">
+                <div className="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center border border-blue-500/20">
+                  <BookOpen className="w-5 h-5" />
+                </div>
+                <div>
+                  <div className="text-xs text-gray-400 font-medium">Articles & Blogs</div>
+                  <div className="text-lg font-bold text-white">7 Articles</div>
+                  <div className="text-[10px] text-blue-400 font-semibold">Schema: post</div>
+                </div>
+              </div>
+
+              <div className="bg-[#121624] border border-white/10 rounded-2xl p-4 flex items-center gap-3.5 shadow-lg">
+                <div className="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center border border-purple-500/20">
+                  <Users className="w-5 h-5" />
+                </div>
+                <div>
+                  <div className="text-xs text-gray-400 font-medium">Team Members</div>
+                  <div className="text-lg font-bold text-white">16 Profiles</div>
+                  <div className="text-[10px] text-purple-400 font-semibold">Schema: teamMember</div>
+                </div>
+              </div>
+
+              <div className="bg-[#121624] border border-white/10 rounded-2xl p-4 flex items-center gap-3.5 shadow-lg">
+                <div className="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center border border-amber-500/20">
+                  <Quote className="w-5 h-5" />
+                </div>
+                <div>
+                  <div className="text-xs text-gray-400 font-medium">Client Testimonials</div>
+                  <div className="text-lg font-bold text-white">Verified Reviews</div>
+                  <div className="text-[10px] text-amber-400 font-semibold">Schema: testimonial</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Quick Actions & CDN Notice Banner */}
+            <div className="bg-gradient-to-r from-[#121624] to-[#151c30] border border-white/10 rounded-2xl p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-xl">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-ekodrix-green/10 border border-ekodrix-green/30 flex items-center justify-center text-ekodrix-green flex-shrink-0">
+                  <Sparkles className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-bold text-white flex items-center gap-2">
+                    Lag-Free Sanity Asset CDN Active
+                    <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-ekodrix-green/20 text-ekodrix-green border border-ekodrix-green/30">
+                      Live
+                    </span>
+                  </h3>
+                  <p className="text-xs text-gray-400 mt-0.5">
+                    Portfolio & website images stream through <code className="text-ekodrix-green font-mono">cdn.sanity.io</code> with on-the-fly WebP compression and instant global CDN edge caching.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2.5 w-full md:w-auto flex-shrink-0">
+                <button
+                  onClick={() => {
+                    if (cmsIframeRef.current) {
+                      cmsIframeRef.current.src = "/cms";
+                      toast.success("Studio refreshed");
+                    }
+                  }}
+                  className="px-3 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white border border-white/10 text-xs font-semibold flex items-center gap-1.5 transition-all"
+                >
+                  <RefreshCw className="w-3.5 h-3.5" />
+                  Reload Frame
+                </button>
+                <a
+                  href="/cms"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-2 rounded-xl bg-ekodrix-green hover:bg-ekodrix-green-light text-ekodrix-charcoal-dark text-xs font-bold transition-all shadow-md shadow-ekodrix-green/20 flex items-center gap-1.5"
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                  Open in New Tab
+                </a>
+              </div>
+            </div>
+
+            {/* Embedded Live Sanity Studio Frame */}
+            <div className="bg-[#121624] border border-white/10 rounded-2xl overflow-hidden shadow-2xl flex flex-col">
+              {/* Studio Frame Toolbar */}
+              <div className="px-5 py-3 bg-[#0c0f18] border-b border-white/10 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
+                  </div>
+                  <span className="text-xs font-mono text-gray-400 pl-2 border-l border-white/10">
+                    ekodrix.com/cms
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-3 text-xs text-gray-400">
+                  <span className="hidden sm:inline">Project ID: <strong className="text-white font-mono">3sq1n5yp</strong></span>
+                  <span className="text-gray-600 hidden sm:inline">•</span>
+                  <span className="hidden sm:inline">Dataset: <strong className="text-white font-mono">production</strong></span>
+                  <a
+                    href="/cms"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-1.5 rounded-lg hover:bg-white/10 text-gray-400 hover:text-white transition-colors"
+                    title="Open Fullscreen"
+                  >
+                    <Maximize2 className="w-4 h-4" />
+                  </a>
+                </div>
+              </div>
+
+              {/* Iframe */}
+              <div className="w-full relative" style={{ height: "calc(100vh - 320px)", minHeight: "680px" }}>
+                <iframe
+                  ref={cmsIframeRef}
+                  src="/cms"
+                  title="Ekodrix Sanity CMS Studio"
+                  className="w-full h-full border-0 bg-[#0E121F]"
+                  allow="clipboard-write; fullscreen"
+                />
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* TAB 4: INTEGRATION SETTINGS */}
         {activeTab === "settings" && (
           <div className="space-y-8 max-w-4xl">
+            {/* Sanity CMS Card */}
+            <div className="bg-[#121624] border border-white/10 rounded-2xl p-6 space-y-4">
+              <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                <div className="flex items-center gap-3">
+                  <div className="p-2.5 rounded-xl bg-ekodrix-green/10 text-ekodrix-green border border-ekodrix-green/20">
+                    <FileText className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-white">Sanity Headless CMS & Image CDN</h3>
+                    <p className="text-xs text-gray-400">Content Studio, Schema Models & Global Asset Distribution</p>
+                  </div>
+                </div>
+                <span className="px-3 py-1 rounded-full text-xs font-semibold bg-ekodrix-green/10 text-ekodrix-green border border-ekodrix-green/20 flex items-center gap-1.5">
+                  <CheckCircle2 className="w-3.5 h-3.5" />
+                  Connected & Live
+                </span>
+              </div>
+
+              <div className="space-y-3 text-xs text-gray-300">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <div className="p-3 rounded-xl bg-[#090C15] border border-white/10">
+                    <span className="text-gray-400 block text-[0.7rem]">Project ID</span>
+                    <strong className="text-white font-mono text-xs">3sq1n5yp</strong>
+                  </div>
+                  <div className="p-3 rounded-xl bg-[#090C15] border border-white/10">
+                    <span className="text-gray-400 block text-[0.7rem]">Dataset</span>
+                    <strong className="text-white font-mono text-xs">production</strong>
+                  </div>
+                  <div className="p-3 rounded-xl bg-[#090C15] border border-white/10">
+                    <span className="text-gray-400 block text-[0.7rem]">Studio Path</span>
+                    <strong className="text-ekodrix-green font-mono text-xs">/cms</strong>
+                  </div>
+                </div>
+
+                <div className="p-4 rounded-xl bg-white/5 border border-white/10 text-[0.75rem] text-gray-400 space-y-1">
+                  <strong className="text-white block">Lag-Free CDN Status:</strong>
+                  All website hero images, 13 portfolio showcases, 7 blog covers, and 16 team photos are hosted on <code className="text-ekodrix-green font-mono">cdn.sanity.io</code> with on-the-fly WebP compression and zero server bandwidth lag.
+                </div>
+
+                <div className="flex items-center justify-between pt-2">
+                  <span className="text-xs text-gray-400">Manage all website schemas:</span>
+                  <a
+                    href="/cms"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3.5 py-1.5 rounded-lg bg-ekodrix-green/10 hover:bg-ekodrix-green/20 text-ekodrix-green border border-ekodrix-green/30 text-xs font-semibold transition-colors flex items-center gap-1.5"
+                  >
+                    Open Studio
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                </div>
+              </div>
+            </div>
+
             {/* Supabase Card */}
             <div className="bg-[#121624] border border-white/10 rounded-2xl p-6 space-y-4">
               <div className="flex items-center justify-between border-b border-white/10 pb-4">

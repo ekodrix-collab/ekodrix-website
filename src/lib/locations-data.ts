@@ -61,13 +61,28 @@ export const LOCATIONS: LocationData[] = [
   { slug: "pathanamthitta", name: "Pathanamthitta", district: "Pathanamthitta", state: "Kerala" },
   { slug: "wayanad", name: "Wayanad", district: "Wayanad", state: "Kerala" },
   
-  // Gulf locations (Ekodrix serves this market heavily)
+  // GCC Hubs (UAE, Saudi Arabia, Qatar, Kuwait, Oman, Bahrain)
   { slug: "dubai", name: "Dubai", district: "Dubai", state: "UAE" },
   { slug: "abu-dhabi", name: "Abu Dhabi", district: "Abu Dhabi", state: "UAE" },
   { slug: "sharjah", name: "Sharjah", district: "Sharjah", state: "UAE" },
+  { slug: "ajman", name: "Ajman", district: "Ajman", state: "UAE" },
+  { slug: "riyadh", name: "Riyadh", district: "Riyadh Province", state: "Saudi Arabia" },
+  { slug: "jeddah", name: "Jeddah", district: "Makkah Province", state: "Saudi Arabia" },
+  { slug: "dammam", name: "Dammam", district: "Eastern Province", state: "Saudi Arabia" },
   { slug: "doha", name: "Doha", district: "Doha", state: "Qatar" },
-  { slug: "riyadh", name: "Riyadh", district: "Riyadh", state: "Saudi Arabia" },
-  { slug: "muscat", name: "Muscat", district: "Muscat", state: "Oman" },
+  { slug: "kuwait-city", name: "Kuwait City", district: "Capital Governorate", state: "Kuwait" },
+  { slug: "muscat", name: "Muscat", district: "Muscat Governorate", state: "Oman" },
+  { slug: "manama", name: "Manama", district: "Capital Governorate", state: "Bahrain" },
+
+  // Worldwide & Global Tech Hubs (USA, UK, Australia, Canada, Singapore)
+  { slug: "new-york", name: "New York", district: "New York", state: "United States" },
+  { slug: "san-francisco", name: "San Francisco", district: "California", state: "United States" },
+  { slug: "austin", name: "Austin", district: "Texas", state: "United States" },
+  { slug: "london", name: "London", district: "Greater London", state: "United Kingdom" },
+  { slug: "sydney", name: "Sydney", district: "New South Wales", state: "Australia" },
+  { slug: "melbourne", name: "Melbourne", district: "Victoria", state: "Australia" },
+  { slug: "toronto", name: "Toronto", district: "Ontario", state: "Canada" },
+  { slug: "singapore", name: "Singapore", district: "Central Region", state: "Singapore" },
 ];
 
 export const LOCATION_SLUGS = LOCATIONS.map((l) => l.slug);
@@ -82,4 +97,16 @@ export function getKeralaLocations(): LocationData[] {
 
 export function getMalappuramLocations(): LocationData[] {
   return LOCATIONS.filter((l) => l.district === "Malappuram");
+}
+
+export function getGCCLocations(): LocationData[] {
+  return LOCATIONS.filter((l) =>
+    ["UAE", "Saudi Arabia", "Qatar", "Kuwait", "Oman", "Bahrain"].includes(l.state)
+  );
+}
+
+export function getGlobalLocations(): LocationData[] {
+  return LOCATIONS.filter((l) =>
+    ["United States", "United Kingdom", "Australia", "Canada", "Singapore"].includes(l.state)
+  );
 }

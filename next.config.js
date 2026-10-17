@@ -10,6 +10,7 @@ const nextConfig = {
     remotePatterns: [
       { protocol: 'https', hostname: 'images.unsplash.com' },
       { protocol: 'https', hostname: 'res.cloudinary.com' },
+      { protocol: 'https', hostname: 'cdn.sanity.io' },
       { protocol: 'https', hostname: 'ekodrix.com' },
       { protocol: 'https', hostname: 'picsum.photos' },
       { protocol: 'https', hostname: 'i.pravatar.cc' },

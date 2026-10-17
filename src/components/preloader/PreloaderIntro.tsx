@@ -281,6 +281,14 @@ const STAGES = [
 ═══════════════════════════════════════════════════════════════ */
 export function PreloaderIntro({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  // Admin panel & CMS skip the intro entirely
+  if (pathname?.startsWith("/ekodrix-panel") || pathname?.startsWith("/cms")) {
+    return <>{children}</>;
+  }
+  return <PreloaderIntroInner>{children}</PreloaderIntroInner>;
+}
+
+function PreloaderIntroInner({ children }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading]       = useState(true);
   const [hasSeenIntro, setHasSeenIntro] = useState(false);
   const [progress, setProgress]         = useState(0);
@@ -321,9 +329,6 @@ export function PreloaderIntro({ children }: { children: React.ReactNode }) {
     window.addEventListener("keydown", fn);
     return () => window.removeEventListener("keydown", fn);
   }, []);
-
-  // Skip preloader entirely on admin panel route
-  if (pathname?.startsWith("/ekodrix-panel")) return <>{children}</>;
 
   if (hasSeenIntro && mounted) return <>{children}</>;
 
@@ -493,9 +498,8 @@ export function PreloaderIntro({ children }: { children: React.ReactNode }) {
 
       <div
         style={{
-          visibility: contentReady ? "visible" : "hidden",
-          opacity: contentReady ? 1 : 0,
-          transition: contentReady ? "opacity 1s cubic-bezier(0.22,1,0.36,1) 0.3s, visibility 0s 0s" : "none",
+          opacity: showPreloader ? 0 : 1,
+          transition: "opacity 0.6s ease",
         }}
       >
         {children}

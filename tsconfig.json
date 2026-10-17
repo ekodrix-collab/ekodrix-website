@@ -22,9 +22,14 @@
         "name": "next"
       }
     ],
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
     "paths": {
       "@/*": [
         "./src/*"
+      ],
+      "~/*": [
+        "./*"
       ]
     }
   },
@@ -36,6 +41,9 @@
   ],
   "exclude": [
     "node_modules",
+    ".next",
+    "out",
+    "scripts",
     "supabase/functions"
   ]
 }

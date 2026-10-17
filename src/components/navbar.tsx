@@ -33,7 +33,7 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  if (pathname?.startsWith("/ekodrix-panel")) return null;
+  if (pathname?.startsWith("/ekodrix-panel") || pathname?.startsWith("/cms")) return null;
 
   if (!mounted) {
     return (

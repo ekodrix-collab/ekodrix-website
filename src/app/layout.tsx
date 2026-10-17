@@ -34,46 +34,57 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://ekodrix.com"),
+  metadataBase: new URL("https://www.ekodrix.com"),
 
   title: {
-    default:
-      "Ekodrix — Best Software Company in Kondotty | Web Development, App Development & Digital Marketing Kerala",
-    template: "%s | Ekodrix — Top IT Company Kondotty, Kerala",
+    default: "Ekodrix Technologies — World-Class Software, Web & Mobile App Development | UAE, GCC, USA & Global",
+    template: "%s | Ekodrix Technologies",
   },
 
   description:
-    "Ekodrix is the #1 software company in Kondotty, Malappuram, Kerala. Expert web development, mobile app development, digital marketing, SEO, custom software & IT solutions. 100+ happy clients. Free consultation. Call +91-77367-67759.",
+    "Ekodrix is an elite software engineering company delivering high-performance web applications, mobile apps, enterprise SaaS, and AI workflows for clients across UAE, Saudi Arabia, Qatar, USA, UK, Australia, and India.",
 
   keywords: [
-    // Brand
+    // Brand & Global Authority
     "ekodrix",
-    "ekodrix kondotty",
+    "ekodrix technologies",
     "ekodrix software",
-    "ekodrix malappuram",
-    // Primary Local
-    "best software company kondotty",
-    "top it company malappuram",
+    "ekodrix solutions",
+    // GCC & Middle East
+    "software company uae",
+    "software company dubai",
+    "software company abu dhabi",
+    "web development company uae",
+    "mobile app development saudi arabia",
+    "it company qatar",
+    "software company riyadh",
+    "software agency kuwait",
+    "it solutions gcc",
+    // Global & Western Markets
+    "software development company usa",
+    "custom software development new york",
+    "web development company uk london",
+    "software engineering australia sydney",
+    "offshore software development team",
+    "hire remote fullstack developers",
+    "saas development company",
+    "nextjs development agency",
+    // Headquarters & Regional
+    "software company kondotty",
+    "software company malappuram",
     "web development company kerala",
-    "app development company kondotty",
-    "digital marketing agency kondotty",
-    "seo services malappuram",
-    // Services
-    "saas development india",
-    "custom software development kerala",
-    "nextjs development company",
-    "react native developers kondotty",
-    "ai integration services",
-    "ecommerce development kondotty",
-    "ui ux design kerala",
-    "it consulting malappuram",
-    // Intent
-    "hire software developers kerala",
-    "build saas product india",
+    "app development company kerala",
+    "best it company malappuram",
+    "digital marketing company kerala",
+    // Enterprise Technologies
+    "nextjs enterprise agency",
+    "react native app developers",
+    "ai workflow automation",
+    "cloud infrastructure enterprise",
     "startup tech partner",
   ],
 
-  authors: [{ name: "Ekodrix", url: "https://ekodrix.com" }],
+  authors: [{ name: "Ekodrix", url: "https://www.ekodrix.com" }],
   creator: "Ekodrix Software Solutions",
   publisher: "Ekodrix",
 
@@ -85,19 +96,18 @@ export const metadata: Metadata = {
 
   openGraph: {
     type: "website",
-    locale: "en_IN",
-    url: "https://ekodrix.com",
-    siteName: "Ekodrix",
-    title:
-      "Ekodrix — Best Software Company in Kondotty, Kerala | Web Development, App Development",
+    locale: "en_US",
+    url: "https://www.ekodrix.com",
+    siteName: "Ekodrix Technologies",
+    title: "Ekodrix Technologies — World-Class Software, Web & Mobile App Development",
     description:
-      "Ekodrix is the #1 IT company in Kondotty, Kerala. Expert web development, app development, digital marketing & SEO. 100+ happy clients. Free consultation!",
+      "Elite software engineering company delivering high-performance web applications, mobile apps, enterprise SaaS, and AI workflows for clients across UAE, Saudi Arabia, Qatar, USA, UK, Australia, and India.",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Ekodrix — Software Company Kondotty, Kerala",
+        alt: "Ekodrix Technologies — World-Class Software & Web Development Company",
         type: "image/jpeg",
       },
     ],
@@ -107,9 +117,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@ekodrix",
     creator: "@ekodrix",
-    title: "Ekodrix — Best Software Company in Kondotty, Kerala",
+    title: "Ekodrix Technologies — World-Class Software, Web & Mobile App Development",
     description:
-      "Top IT company in Kondotty, Kerala. Web Development | App Development | Digital Marketing | SEO Services. Free Consultation!",
+      "Elite software engineering company delivering high-performance web applications, mobile apps, enterprise SaaS, and AI workflows for clients across UAE, Saudi Arabia, Qatar, USA, UK, Australia, and India.",
     images: ["/og-image.jpg"],
   },
 
@@ -128,11 +138,29 @@ export const metadata: Metadata = {
   },
 
   alternates: {
-    canonical: "https://ekodrix.com",
+    canonical: "https://www.ekodrix.com",
+    languages: {
+      "x-default": "https://www.ekodrix.com",
+      "en": "https://www.ekodrix.com",
+      "en-AE": "https://www.ekodrix.com",
+      "en-SA": "https://www.ekodrix.com",
+      "en-QA": "https://www.ekodrix.com",
+      "en-KW": "https://www.ekodrix.com",
+      "en-OM": "https://www.ekodrix.com",
+      "en-BH": "https://www.ekodrix.com",
+      "en-US": "https://www.ekodrix.com",
+      "en-GB": "https://www.ekodrix.com",
+      "en-AU": "https://www.ekodrix.com",
+      "en-CA": "https://www.ekodrix.com",
+      "en-IN": "https://www.ekodrix.com",
+    },
   },
 
   verification: {
-    google: "34pmmJuoBHFNIS5y3uoIU3A-BwT82KgNASH9211j0No",
+    google: [
+      "iNnJ0Dib4hiXiImL2YfYldA3qBkinI6spXV1lG4KW6Q",
+      "34pmmJuoBHFNIS5y3uoIU3A-BwT82KgNASH9211j0No",
+    ],
     other: {
       "msvalidate.01": process.env.NEXT_PUBLIC_BING_VERIFICATION || "",
     },
@@ -183,7 +211,9 @@ export default function RootLayout({
         />
         <link rel="preconnect" href="https://www.google-analytics.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        {/* Google Search Console Verification */}
+        <meta name="google-site-verification" content="iNnJ0Dib4hiXiImL2YfYldA3qBkinI6spXV1lG4KW6Q" />
+        <meta name="google-site-verification" content="34pmmJuoBHFNIS5y3uoIU3A-BwT82KgNASH9211j0No" />
       </head>
       <body className="antialiased selection:bg-ekodrix-green/30 selection:text-ekodrix-green overflow-x-hidden">
         {/* Google Analytics — Load base script */}

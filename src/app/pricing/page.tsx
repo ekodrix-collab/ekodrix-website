@@ -44,23 +44,31 @@ export default function PricingPage() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {/* MVP/Starter */}
+            {/* Starter / MVP */}
             <div className="bg-[#111] rounded-2xl p-8 border border-white/10 hover:border-ekodrix-green/30 transition-all duration-300">
               <div>
-                <h3 className="text-2xl font-bold mb-2 text-white">MVP Launch</h3>
-                <p className="text-white/50 text-sm mb-6">For validating your idea fast</p>
+                <div className="inline-block px-3 py-1 rounded-full bg-ekodrix-green/10 text-ekodrix-green text-xs font-semibold uppercase tracking-wider mb-3">
+                  Entry Hook • Fast Launch
+                </div>
+                <h3 className="text-2xl font-bold mb-2 text-white">Starter Website & MVP</h3>
+                <p className="text-white/50 text-sm mb-6">For small businesses, startups & fast validation</p>
                 <div className="mb-6">
-                  <span className="text-4xl font-bold text-white">₹80K - ₹1.5L</span>
-                  <span className="text-white/50 text-sm ml-2">fixed price</span>
+                  <div className="text-3xl font-bold text-white mb-1">
+                    $199 – $499 <span className="text-sm font-normal text-white/50">USD</span>
+                  </div>
+                  <div className="text-sm text-ekodrix-green font-medium">
+                    AED 750 – AED 1,800 <span className="text-white/40 font-normal">| ₹15K – ₹40K</span>
+                  </div>
+                  <span className="text-white/40 text-xs mt-1 block">fixed transparent pricing</span>
                 </div>
                 <ul className="space-y-3 mb-8">
                   {[
-                    "30-day delivery guarantee",
-                    "Core feature set (3-5 features)",
-                    "Responsive web app",
-                    "Authentication & dashboard",
-                    "Database & API setup",
-                    "Production deployment",
+                    "7-14 day rapid delivery",
+                    "Modern high-converting Next.js web application",
+                    "Direct WhatsApp lead capture button",
+                    "Mobile & tablet responsive perfection",
+                    "Basic SEO & Google Search Console setup",
+                    "Free SSL & production cloud deployment",
                   ].map((feature) => (
                     <li key={feature} className="flex items-start gap-3 text-sm text-white/70">
                       <Check className="w-5 h-5 text-ekodrix-green flex-shrink-0 mt-0.5" />
@@ -79,22 +87,27 @@ export default function PricingPage() {
                 </span>
               </div>
               <div>
-                <h3 className="text-2xl font-bold mb-2 text-white">Full Product</h3>
-                <p className="text-white/50 text-sm mb-6">Complete SaaS platform</p>
+                <h3 className="text-2xl font-bold mb-2 text-white">Growth & Custom Web App</h3>
+                <p className="text-white/50 text-sm mb-6">Complete web portal, SaaS MVP & E-Commerce</p>
                 <div className="mb-6">
-                  <span className="text-4xl font-bold text-white">₹2L - ₹5L</span>
-                  <span className="text-white/50 text-sm ml-2">fixed price</span>
+                  <div className="text-3xl font-bold text-white mb-1">
+                    $800 – $2,500 <span className="text-sm font-normal text-white/50">USD</span>
+                  </div>
+                  <div className="text-sm text-ekodrix-green font-medium">
+                    AED 2,900 – AED 9,000 <span className="text-white/40 font-normal">| ₹65K – ₹2L</span>
+                  </div>
+                  <span className="text-white/40 text-xs mt-1 block">fixed milestone-based pricing</span>
                 </div>
                 <ul className="space-y-3 mb-8">
                   {[
-                    "8-12 week delivery",
-                    "Full feature set (10-15 features)",
-                    "Multi-tenant architecture",
-                    "Payment & billing integration",
-                    "Admin dashboard & analytics",
-                    "API development",
-                    "Performance optimization",
-                    "Post-launch support (30 days)",
+                    "4-8 week milestone delivery",
+                    "Full feature set & custom PostgreSQL/MongoDB database",
+                    "Admin dashboard & analytics reporting",
+                    "Payment integration (Stripe, Telr, HyperPay, Razorpay)",
+                    "Bilingual Arabic/English UX capability",
+                    "API development & custom integrations",
+                    "Performance optimization (<1s load time)",
+                    "Post-launch support & warranty (30 days)",
                   ].map((feature) => (
                     <li key={feature} className="flex items-start gap-3 text-sm text-white/70">
                       <Check className="w-5 h-5 text-ekodrix-green flex-shrink-0 mt-0.5" />
@@ -106,27 +119,31 @@ export default function PricingPage() {
             </div>
 
             {/* Enterprise */}
-            <div className="bg-[#111] rounded-2xl p-8 border border-white/10 hover:border-resellerpro-blue-medium/30 transition-all duration-300">
+            <div className="bg-[#111] rounded-2xl p-8 border border-white/10 hover:border-blue-400/30 transition-all duration-300">
               <div>
-                <h3 className="text-2xl font-bold mb-2 text-white">Enterprise</h3>
-                <p className="text-white/50 text-sm mb-6">Complex platforms & scale</p>
+                <h3 className="text-2xl font-bold mb-2 text-white">Enterprise & Mobile Apps</h3>
+                <p className="text-white/50 text-sm mb-6">Complex platforms, iOS/Android & scale</p>
                 <div className="mb-6">
-                  <span className="text-4xl font-bold text-white">₹8L+</span>
-                  <span className="text-white/50 text-sm ml-2">custom quote</span>
+                  <div className="text-3xl font-bold text-white mb-1">
+                    $3,500+ <span className="text-sm font-normal text-white/50">USD</span>
+                  </div>
+                  <div className="text-sm text-blue-400 font-medium">
+                    AED 13,000+ <span className="text-white/40 font-normal">| ₹3L+</span>
+                  </div>
+                  <span className="text-white/40 text-xs mt-1 block">custom proposal & SLA</span>
                 </div>
                 <ul className="space-y-3 mb-8">
                   {[
-                    "Custom timeline (12+ weeks)",
-                    "Unlimited features",
-                    "Microservices architecture",
-                    "AI/ML integration",
-                    "Mobile apps (iOS +Android)",
-                    "DevOps & infrastructure",
-                    "Dedicated team (4-6 engineers)",
-                    "24/7 support & SLA",
+                    "Custom timeline (8-16+ weeks)",
+                    "Native or cross-platform Mobile Apps (iOS + Android)",
+                    "AI workflow automation & LLM integration",
+                    "Microservices & high-concurrency cloud scaling",
+                    "Dedicated engineering team & Project Lead",
+                    "Enterprise NDA & full IP code ownership",
+                    "Dedicated SLA & 24/7 technical support",
                   ].map((feature) => (
                     <li key={feature} className="flex items-start gap-3 text-sm text-white/70">
-                      <Check className="w-5 h-5 text-resellerpro-blue-medium flex-shrink-0 mt-0.5" />
+                      <Check className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
                       <span>{feature}</span>
                     </li>
                   ))}
