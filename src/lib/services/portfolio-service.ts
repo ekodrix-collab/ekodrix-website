@@ -29,12 +29,21 @@ function mapRowToProject(row: SupabasePortfolioRow): PortfolioProject {
   };
 }
 
+function optimizeCdnImageUrl(url: string, width = 700): string {
+  if (!url) return url;
+  if (url.includes("cdn.sanity.io") && !url.includes("auto=format")) {
+    const separator = url.includes("?") ? "&" : "?";
+    return `${url}${separator}auto=format&w=${width}&q=80`;
+  }
+  return url;
+}
+
 function mapProjectToPublicItem(project: PortfolioProject): PortfolioItem {
   return {
     id: project.legacyId || project.slug || project.id,
     title: project.title,
     category: project.category,
-    image: project.imageUrl,
+    image: optimizeCdnImageUrl(project.imageUrl),
     url: project.domain,
     description: project.description,
     source: project.source,

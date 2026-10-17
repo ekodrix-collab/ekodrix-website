@@ -50,6 +50,7 @@ export async function supabaseFetch<T>(
     const requestUrl = `${url}/rest/v1/${endpoint}${options.query ? `?${options.query}` : ""}`;
     const res = await fetch(requestUrl, {
       method: options.method || "GET",
+      cache: "no-store",
       headers: {
         apikey: key,
         Authorization: `Bearer ${key}`,
