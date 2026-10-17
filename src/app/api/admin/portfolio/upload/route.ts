@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { ADMIN_COOKIE_NAME, verifySessionToken } from "@/lib/admin-session";
+import { createClient } from "@sanity/client";
 import path from "path";
 import fs from "fs";
 
@@ -15,12 +16,27 @@ const ALLOWED_TYPES = [
   "image/avif",
   "image/svg+xml",
 ];
-const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+const MAX_FILE_SIZE = 15 * 1024 * 1024; // 15MB
 
 function isAuthorized(): boolean {
   if (process.env.NODE_ENV !== "production") return true;
   const token = cookies().get(ADMIN_COOKIE_NAME)?.value;
   return Boolean(verifySessionToken(token));
+}
+
+// Initialize Sanity Client for CDN Asset Storage (serverless-compatible, global edge CDN)
+function getSanityClient() {
+  const token =
+    process.env.SANITY_API_TOKEN ||
+    "skDKsAJCCquk3CftMKHVaQkbr4iwoxBEUH7KGQzE2u7OxQxxdeBMedK7NXIIkcTYOlplZVAiWZvo4JOKtHYSPlfNscGoNB0eCLnlyntPYhy3wZVUTW35HcuTNOdKeaMCHhFq1gvtGvU5eopWxC5k6xVXodxg5KWlKd0oE8iNQHH5Nn3XTmo7";
+
+  return createClient({
+    projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "3sq1n5yp",
+    dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
+    apiVersion: process.env.NEXT_PUBLIC_SANITY_API_VERSION || "2024-03-25",
+    token,
+    useCdn: false,
+  });
 }
 
 export async function POST(req: Request) {
@@ -45,14 +61,9 @@ export async function POST(req: Request) {
 
     if (file.size > MAX_FILE_SIZE) {
       return NextResponse.json(
-        { success: false, error: "Image size exceeds 10MB limit." },
+        { success: false, error: "Image size exceeds 15MB limit." },
         { status: 400 }
       );
-    }
-
-    const uploadDir = path.join(process.cwd(), "public", "images", "portfolio", "uploads");
-    if (!fs.existsSync(uploadDir)) {
-      fs.mkdirSync(uploadDir, { recursive: true });
     }
 
     const buffer = Buffer.from(await file.arrayBuffer());
@@ -61,20 +72,54 @@ export async function POST(req: Request) {
       .basename(file.name, ext)
       .toLowerCase()
       .replace(/[^a-z0-9_-]/g, "-")
-      .slice(0, 30);
-    const uniqueSuffix = `${Date.now()}-${Math.random().toString(36).substring(2, 8)}`;
-    const filename = `${cleanName}-${uniqueSuffix}${ext}`;
-    const destinationPath = path.join(uploadDir, filename);
+      .slice(0, 40);
+    const filename = `${cleanName}-${Date.now()}${ext}`;
 
-    await fs.promises.writeFile(destinationPath, buffer);
+    // 1. Primary Strategy: Upload to Sanity Cloud CDN (Serverless safe on Vercel, no read-only disk issues)
+    try {
+      const sanityClient = getSanityClient();
+      const asset = await sanityClient.assets.upload("image", buffer, {
+        filename,
+        contentType: file.type,
+      });
 
-    const publicUrl = `/images/portfolio/uploads/${filename}`;
-    return NextResponse.json({
-      success: true,
-      url: publicUrl,
-      filename,
-      size: file.size,
-    });
+      if (asset && asset.url) {
+        return NextResponse.json({
+          success: true,
+          url: asset.url,
+          filename: asset.originalFilename || filename,
+          size: file.size,
+          storage: "sanity-cdn",
+        });
+      }
+    } catch (sanityErr: any) {
+      console.warn("[Portfolio Upload] Sanity CDN upload failed, trying local fallback:", sanityErr.message);
+    }
+
+    // 2. Secondary Fallback: Local disk upload (only works if filesystem is writable, e.g. local dev)
+    try {
+      const uploadDir = path.join(process.cwd(), "public", "images", "portfolio", "uploads");
+      if (!fs.existsSync(uploadDir)) {
+        fs.mkdirSync(uploadDir, { recursive: true });
+      }
+
+      const destinationPath = path.join(uploadDir, filename);
+      await fs.promises.writeFile(destinationPath, buffer);
+
+      const publicUrl = `/images/portfolio/uploads/${filename}`;
+      return NextResponse.json({
+        success: true,
+        url: publicUrl,
+        filename,
+        size: file.size,
+        storage: "local",
+      });
+    } catch (diskErr: any) {
+      console.error("[Portfolio Upload] Local disk write failed:", diskErr.message);
+      throw new Error(
+        "Serverless environment has a read-only filesystem and Cloud CDN upload was unable to complete. Please ensure SANITY_API_TOKEN is set or paste the image URL directly."
+      );
+    }
   } catch (err: any) {
     console.error("Portfolio upload failed:", err);
     return NextResponse.json(
