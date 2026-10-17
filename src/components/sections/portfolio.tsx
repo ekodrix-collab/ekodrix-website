@@ -1,115 +1,26 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
+import { PortfolioItem } from "@/types/portfolio";
+import { DEFAULT_PORTFOLIO_ITEMS } from "@/lib/portfolio-defaults";
 
+// Re-export the 13 original hardcoded items for backward compatibility
+export const portfolioItems: PortfolioItem[] = DEFAULT_PORTFOLIO_ITEMS;
 
-const portfolioItems = [
-  {
-    id: "resellerpro",
-    title: "ResellerPro - SaaS CRM Platform",
-    category: "SaaS Product · Full-Stack Development",
-    image: "https://cdn.sanity.io/images/3sq1n5yp/production/99f57edbc53ee44bdb74546de7cfe9fe8c09ec70-1900x10691.webp?auto=format&w=650&q=80",
-    url: "resellerpro.in",
-  },
-  {
-    id: "axion-technology-co",
-    title: "Axion Technology Company - Business Website",
-    category: "Web Design & Development",
-    image: "https://cdn.sanity.io/images/3sq1n5yp/production/12bb67f765fb97394a54dc196139859562301768-2992x8610.webp?auto=format&w=650&q=80",
-    url: "axiontechgroup.com",
-  },
-  {
-    id: "wcc-fashions",
-    title: "WCC Fashions - Western Clothing Co",
-    category: "B2B-Website",
-    image: "https://cdn.sanity.io/images/3sq1n5yp/production/4a2ffe09759ccc32b04b1643031e9851cdf1aca9-2922x16000.webp?auto=format&w=650&q=80",
-    url: "wccfashions.com",
-  },
-  {
-    id: "nexa-network",
-    title: "Nexa Network Solutions",
-    category: "Web Design & Development",
-    image: "https://cdn.sanity.io/images/3sq1n5yp/production/370ebe099acd526622cafa3f9a3a98e649f32416-2992x11954.webp?auto=format&w=650&q=80",
-    url: "nexa.com.qa",
-  },
-  {
-    id: "griva",
-    title: "The Griva - Electronics",
-    category: "Web Design & E-Commerce", 
-    image: "https://cdn.sanity.io/images/3sq1n5yp/production/a1c3da816ca814687977ae9a53ff5fad539f71e5-2992x13136.webp?auto=format&w=650&q=80",
-    url: "thegriva.com",
-  },
-  {
-    id: "ambiayu-natureproducts",
-    title: "Ambiayu - Ayurvedic products",
-    category: "Web Design & Shopify", 
-    image: "https://cdn.sanity.io/images/3sq1n5yp/production/72e8a4acd89f34792d4d9633b20792bdfe8b21f7-2992x6332.webp?auto=format&w=650&q=80",
-    url: "ambiayu.com",
-  },
-  {
-    id: "editron-studio",
-    title: "Editron Studio - Creative Agency",
-    category: "Web Design & Development · UAE",
-    image: "https://cdn.sanity.io/images/3sq1n5yp/production/1fb11c446cc887c8826b6140e1f157033b3eb276-1900x8571.webp?auto=format&w=650&q=80",
-    url: "editronstudio.com",
-  },
-  {
-    id: "kl59-fashion",
-    title: "KL-59 Men's Fashion",
-    category: "E-Commerce · WhatsApp Integration",
-    image: "https://cdn.sanity.io/images/3sq1n5yp/production/3516e2b5434e415cace2680cb86b75cf007d72d2-1906x12584.webp?auto=format&w=650&q=80",
-    url: "kl-59mensfashion.in",
-  },
-  {
-    id: "magnat",
-    title: "Magnat - Luxury Furniture",
-    category: "Web Design & Development · Kondotty",
-    image: "https://cdn.sanity.io/images/3sq1n5yp/production/11f8602db75da50605ecd203ea9ee05f5076a8cf-1915x7499.webp?auto=format&w=650&q=80",
-    url: "magnat.in",
-  },
-  {
-    id: "vidya-academy",
-    title: "Vidya Academy - EdTech Platform",
-    category: "Education · Full-Stack Development",
-    image: "https://cdn.sanity.io/images/3sq1n5yp/production/acbef0625319bbc029a9afc21d7be1fef0013d6f-1900x7549.webp?auto=format&w=650&q=80",
-    url: "vidyaacademy.ekodrix.com",
-  },
-  {
-    id: "er-groups",
-    title: "ER Groups - Construction Company",
-    category: "Web Design & Development · UAE",
-    image: "https://cdn.sanity.io/images/3sq1n5yp/production/c6e4ca911b1ded7d311d8afd83923488cc3f5291-1920x14053.webp?auto=format&w=650&q=80",
-    url: "er-groups.vercel.app",
-  },
-  {
-    id: "care-pro-health",
-    title: "CarePro Health - Healthcare Platform",
-    category: "Web Design & Development",
-    image: "https://cdn.sanity.io/images/3sq1n5yp/production/64bf260a6b20c0f9145f86b2d241dbc3f8130a62-1908x5745.webp?auto=format&w=650&q=80",
-    url: "care-pro-health.vercel.app",
-  },
-  {
-    id: "ekodrix-events",
-    title: "Al Wafa - Event Management",
-    category: "Web Design & Development",
-    image: "https://cdn.sanity.io/images/3sq1n5yp/production/2ec647d0ed5bb9a94b86883439790a2325ded3d6-1910x10678.webp?auto=format&w=650&q=80",
-    url: "ekodrix-event-management-demo.vercel.app",
-  },
-];
-
-// Individual portfolio card component
-function PortfolioCard({
+// Reusable individual portfolio card component matching the exact browser-mockup visual design
+export function PortfolioCard({
   item,
-  index,
+  index = 0,
 }: {
-  item: (typeof portfolioItems)[0];
-  index: number;
+  item: PortfolioItem;
+  index?: number;
 }) {
   const cardRef = useRef<HTMLDivElement>(null);
+  const formattedUrl = item.url.startsWith("http") ? item.url : `https://${item.url}`;
+  const displayDomain = item.url.replace(/^https?:\/\//, "").replace(/\/.*$/, "");
 
   return (
     <motion.div
@@ -124,7 +35,7 @@ function PortfolioCard({
       className="group relative"
     >
       <a 
-        href={item.url.startsWith('http') ? item.url : `https://${item.url}`}
+        href={formattedUrl}
         target="_blank"
         rel="noopener noreferrer"
         className="portfolio-card-wrapper group"
@@ -151,7 +62,7 @@ function PortfolioCard({
                 <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
                 <path d="M7 11V7a5 5 0 0 1 10 0v4" />
               </svg>
-              <span className="url-text">{item.url}</span>
+              <span className="url-text">{displayDomain}</span>
             </div>
             <div className="portfolio-browser-actions">
               <span className="browser-action-dot" />
@@ -164,7 +75,7 @@ function PortfolioCard({
           <div className="portfolio-preview-window">
             <img
               src={item.image}
-              alt={`${item.title} — Web & SaaS Development Portfolio by Ekodrix`}
+              alt={item.altText || `${item.title} — Web & SaaS Development Portfolio by Ekodrix`}
               className="portfolio-preview-image group-hover:!translate-y-[calc(-100%+220px)] group-hover:!transition-transform group-hover:!duration-[6000ms] group-hover:!ease-in-out"
               loading="lazy"
               decoding="async"
@@ -189,6 +100,30 @@ function PortfolioCard({
 export function Portfolio() {
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.05 });
+  
+  // Default fallback initialized immediately to prevent layout shift or empty states
+  const [items, setItems] = useState<PortfolioItem[]>(DEFAULT_PORTFOLIO_ITEMS);
+
+  useEffect(() => {
+    let cancelled = false;
+    async function loadDynamicPortfolio() {
+      try {
+        const res = await fetch("/api/portfolio", { cache: "no-store" });
+        if (!res.ok) return;
+        const data = await res.json();
+        if (!cancelled && data.success && Array.isArray(data.data) && data.data.length > 0) {
+          setItems(data.data);
+        }
+      } catch (err) {
+        // Silently preserve DEFAULT_PORTFOLIO_ITEMS fallback
+        console.warn("[Portfolio] Loading dynamic items failed, staying on static defaults:", err);
+      }
+    }
+    loadDynamicPortfolio();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   return (
     <section
@@ -227,8 +162,8 @@ export function Portfolio() {
 
         {/* Portfolio grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
-          {portfolioItems.map((item, index) => (
-            <PortfolioCard key={item.title} item={item} index={index} />
+          {items.map((item, index) => (
+            <PortfolioCard key={item.id || item.title} item={item} index={index} />
           ))}
         </div>
 
